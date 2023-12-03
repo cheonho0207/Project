@@ -75,10 +75,10 @@ namespace CartoonFX
 					}
 					//remove 'Assets' and replace with OS path
 					path = Application.dataPath + path.Substring(6);
-					//convert to cross-platform path
-					path = path.Replace('/', Path.DirectorySeparatorChar);
-					//open file for reading
-					var lines = File.ReadAllLines(path);
+                    //convert to cross-platform path
+                    path = path.Replace('/', System.IO.Path.DirectorySeparatorChar);
+                    //open file for reading
+                    var lines = File.ReadAllLines(path);
 
 					bool insideProperties = false;
 					//regex pattern to find properties, as they need to be counted so that
