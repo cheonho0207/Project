@@ -40,8 +40,22 @@ namespace CartoonFX
             VisualElement root = rootVisualElement;
             root.style.height = new StyleLength(new Length(100, LengthUnit.Percent));
 
-            // UXML
-            var uxmlDocument = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(AssetDatabase.GUIDToAssetPath("bfd03f272fe010b4ba558a3bc456ffeb"));
+            string uxmlGUID = "bfd03f272fe010b4ba558a3bc456ffeb";
+            var uxmlPath = AssetDatabase.GUIDToAssetPath(uxmlGUID);
+
+            // uxmlPath 출력
+            Debug.Log("UXML Path: " + uxmlPath);
+
+            var uxmlDocument = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxmlPath);
+
+            // uxmlDocument이 null인지 확인
+            if (uxmlDocument == null)
+            {
+                Debug.LogError("UXML 문서를 로드하는 데 실패했습니다.");
+                return;
+            }
+
+
             root.Add(uxmlDocument.Instantiate());
             // USS
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(AssetDatabase.GUIDToAssetPath("f8b971f10a610844f968f582415df874"));
