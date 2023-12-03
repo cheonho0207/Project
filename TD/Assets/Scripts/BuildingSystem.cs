@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -15,7 +14,6 @@ public class BuildingSystem : MonoBehaviour
 
     public GameObject prefab1;
     public GameObject prefab2;
-    public GameObject prefab3;
 
     private PlaceableObject objectToPlace;
 
@@ -29,30 +27,14 @@ public class BuildingSystem : MonoBehaviour
 
     private void Update()
     {
-        if (!objectToPlace)
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            return;
+            InitializeWithObject(prefab1);
         }
-
-        if(Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.B))
         {
-            if (CanBePlaced(objectToPlace))
-            {
-                objectToPlace.Place();
-                Vector3Int start = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
-                TakeArea(start, objectToPlace.Size);
-            }
-            else
-            {
-                Debug.Log("you can`t set here");
-                Destroy(objectToPlace.gameObject);
-            }
+            InitializeWithObject(prefab2);
         }
-    }
-
-    public void SetTower(GameObject prefeb,int a)
-    {
-        SettingWithObject(prefeb,a);
     }
 
     #endregion
@@ -79,21 +61,6 @@ public class BuildingSystem : MonoBehaviour
         return position;
     }
 
-    private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
-    {
-        TileBase[] array = new TileBase[area.size.x * area.size.y * area.size.z];
-        int counter = 0;
-
-        foreach (var v in area.allPositionsWithin)
-        {
-            Vector3Int pos = new Vector3Int(v.x, v.y, z:0);
-            array[counter]=tilemap.GetTile(pos);
-            counter++;
-        }
-
-        return array;
-    }
-
     #endregion
 
     #region Building Placement
@@ -107,39 +74,5 @@ public class BuildingSystem : MonoBehaviour
         obj.AddComponent<ObjectDrag>();
     }
 
-    public void SettingWithObject(GameObject prefeb,int a)
-    {
-        Vector3 mousePosition = GetMouseWorldPosition();
-        //transform mousepotion with grid
-        Vector3 position = SnapCoordinateToGrid(mousePosition);
-        //setting prefeb with mouseposition
-        GameObject obj = Instantiate(prefeb, position, Quaternion.identity);
-        obj.transform.Rotate(Vector3.up, 90f * a);
-        objectToPlace = obj.GetComponent<PlaceableObject>();
-    }
-
-    private bool CanBePlaced(PlaceableObject placeableObject)
-    {
-        BoundsInt area = new BoundsInt();
-        area.position = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
-        area.size = placeableObject.Size;
-
-        TileBase[] baseArray = GetTilesBlock(area, MainTilemap);
-
-        foreach(var b in baseArray)
-        {
-            if (b == whiteTile)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public void TakeArea(Vector3Int start, Vector3Int size)
-    {
-        MainTilemap.BoxFill(start, whiteTile, start.x, start.y, start.x + size.x, start.y + size.y);
-    }
     #endregion
 }

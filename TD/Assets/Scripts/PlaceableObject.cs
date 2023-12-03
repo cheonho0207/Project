@@ -30,25 +30,4 @@ public class PlaceableObject : MonoBehaviour
 
         Size = new Vector3Int(x: Math.Abs((vertices[0] - vertices[1]).x), y:Math.Abs((vertices[0] - vertices[3]).y), z: 1);
     }
-
-    public Vector3 GetStartPosition()
-    {
-        return transform.TransformPoint(Vertices[0]);
-    }
-
-    private void Start()
-    {
-        GetColliderVertexPositionsLocal();
-        CalculateSizeInCells();
-    }
-
-    public virtual void Place()
-    {
-        ObjectDrag drag = gameObject.GetComponent<ObjectDrag>();
-        Destroy(drag);
-
-        Placed = true;
-
-        //invoke events of placement
-    }
 }
