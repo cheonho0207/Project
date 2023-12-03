@@ -680,10 +680,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3323e48659a92b544b2544d760b5bd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawntower: {fileID: 0}
-  prefeb1: {fileID: 5396563865073786310, guid: e941f803aa7f8c8458b0870df429264e, type: 3}
-  prefeb2: {fileID: 8013175361742563040, guid: 6de568e7f70430548bde4252809aafbd, type: 3}
-  prefeb3: {fileID: 6216272446829426483, guid: a94e1e8e4d40a874f8b3bf8add74bfc4, type: 3}
+  spawntower: {fileID: 2555298714750529507, guid: a237a4572c79e9f40b2a5281dffc6fb3, type: 3}
+  prefeb1: {fileID: 2555298714750529507, guid: a237a4572c79e9f40b2a5281dffc6fb3, type: 3}
+  prefeb2: {fileID: 2555298714750529507, guid: a237a4572c79e9f40b2a5281dffc6fb3, type: 3}
+  prefeb3: {fileID: 2555298714750529507, guid: a237a4572c79e9f40b2a5281dffc6fb3, type: 3}
 --- !u!1 &559681079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,7 +2149,7 @@ MonoBehaviour:
   whiteTile: {fileID: 11400000, guid: 368ccb87eb6d5e840b4777dd2e633134, type: 2}
   prefab1: {fileID: 5396563865073786310, guid: e941f803aa7f8c8458b0870df429264e, type: 3}
   prefab2: {fileID: 8013175361742563040, guid: 6de568e7f70430548bde4252809aafbd, type: 3}
-  prefab3: {fileID: 6216272446829426483, guid: a94e1e8e4d40a874f8b3bf8add74bfc4, type: 3}
+  prefab3: {fileID: 0}
 --- !u!156049354 &1603513622
 Grid:
   m_ObjectHideFlags: 0
