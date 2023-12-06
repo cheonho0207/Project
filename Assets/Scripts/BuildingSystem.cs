@@ -129,7 +129,8 @@ public class BuildingSystem : MonoBehaviour
         {
             Debug.Log("You Can`t Spawn Tower here");
         }
-        /*if (Physics.Raycast(ray, out hit))
+        /*
+        if (Physics.Raycast(ray, out hit))
         {
             Debug.Log(hit.collider.name);
             if (Physics.Raycast(ray, out hit))
@@ -151,6 +152,7 @@ public class BuildingSystem : MonoBehaviour
             }
         }
         */
+        
     }
     
 
