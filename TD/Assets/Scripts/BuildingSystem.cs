@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+//using Unity.Burst.CompilerServices;
+//using Unity.VisualScripting;
+//using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -19,6 +21,8 @@ public class BuildingSystem : MonoBehaviour
 
     private PlaceableObject objectToPlace;
 
+    public static bool setable = false;
+
     #region Unity methods
 
     private void Awake()
@@ -34,7 +38,7 @@ public class BuildingSystem : MonoBehaviour
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        /*if(Input.GetKeyDown(KeyCode.Space))
         {
             if (CanBePlaced(objectToPlace))
             {
@@ -48,12 +52,14 @@ public class BuildingSystem : MonoBehaviour
                 Destroy(objectToPlace.gameObject);
             }
         }
+        */
     }
-
+    
     public void SetTower(GameObject prefeb,int a)
     {
         SettingWithObject(prefeb,a);
     }
+    
 
     #endregion
 
@@ -62,7 +68,7 @@ public class BuildingSystem : MonoBehaviour
     public static Vector3 GetMouseWorldPosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out RaycastHit raycastHit))
+        if (Physics.Raycast(ray, out RaycastHit raycastHit))
         {
             return raycastHit.point;
         }
@@ -107,17 +113,18 @@ public class BuildingSystem : MonoBehaviour
         obj.AddComponent<ObjectDrag>();
     }
 
+    
     public void SettingWithObject(GameObject prefeb,int a)
     {
         Vector3 mousePosition = GetMouseWorldPosition();
         //transform mousepotion with grid
         Vector3 position = SnapCoordinateToGrid(mousePosition);
         //setting prefeb with mouseposition
-        GameObject obj = Instantiate(prefeb, position, Quaternion.identity);
-        obj.transform.Rotate(Vector3.up, 90f * a);
-        objectToPlace = obj.GetComponent<PlaceableObject>();
+        //GameObject obj = Instantiate(prefeb, position, Quaternion.identity);
+        //obj.transform.Rotate(Vector3.up, 90f * a);
+        //objectToPlace = obj.GetComponent<PlaceableObject>();
     }
-
+    /*
     private bool CanBePlaced(PlaceableObject placeableObject)
     {
         BoundsInt area = new BoundsInt();
@@ -141,5 +148,6 @@ public class BuildingSystem : MonoBehaviour
     {
         MainTilemap.BoxFill(start, whiteTile, start.x, start.y, start.x + size.x, start.y + size.y);
     }
+    */
     #endregion
 }
