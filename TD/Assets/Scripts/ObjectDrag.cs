@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using Unity.VisualScripting;
 using UnityEditor.Presets;
 using UnityEngine;
@@ -10,20 +11,29 @@ public class ObjectDrag : MonoBehaviour
     public GameObject settower;
     int count = 0;
 
-
-
+    /*
     private void OnMouseUp()
     {
         Destroy(gameObject);
         SetTower();
     }
+    */
+
     private void SetTower()
     {
+        settower = GameObject.Find("Grid");
+        settower.GetComponent<BuildingSystem>().SetTower(gameObject, count);
+
+        /*
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 20, Color.red, 60f); //show ray
+
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            // 충돌한 gameobject의 태그가 "tile"인지 확인합니다.
+            Debug.Log(hit.collider.name);
+
+            // if tag = tile, set tower
             if (hit.collider.CompareTag("Tile"))
             {
                 Debug.Log("tile");
@@ -35,6 +45,7 @@ public class ObjectDrag : MonoBehaviour
                 Debug.Log("not tile");
             }
         }
+        */
     }
 
     private void Update()
@@ -49,6 +60,11 @@ public class ObjectDrag : MonoBehaviour
             {
                 count -= 4;
             }
+        }
+        else if (Input.GetMouseButtonDown(0)) 
+        {
+            Destroy(gameObject) ;
+            SetTower();
         }
     }
 }
