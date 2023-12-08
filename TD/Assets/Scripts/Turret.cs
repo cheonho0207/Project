@@ -93,7 +93,7 @@ public class Turret : MonoBehaviour
 
         if (arrow != null)
         {
-          
+            
             arrow.GetComponent<Rigidbody>().AddForce(firePoint.forward * bulletSpeed, ForceMode.Impulse);
         }
         Destroy(arrowGO, 0.4f);
