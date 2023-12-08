@@ -24,7 +24,7 @@ public class Turret : MonoBehaviour
 
     [Header("Bullet Attributes")]
     public float bulletSpeed = 3f; // 수정: 총알 속도
-    public float upwardForce = 5.0f;
+    public float upwardForce = 4.0f;
 
     void Start()
     {
@@ -94,12 +94,11 @@ public class Turret : MonoBehaviour
 
         if (bulletRigidbody != null)
         {
+            // 총알의 로컬 회전 x 값을 80도로 설정합니다.
             bullet.transform.localRotation = Quaternion.Euler(80, 40, 0);
-            // 터렛의 현재 방향을 고려하여 총알의 로컬 회전을 설정합니다.
-            bullet.transform.rotation = firePoint.rotation;
 
-            // 전방 힘을 계산하고 적용합니다.
-            Vector3 forwardForce = bullet.transform.forward * bulletSpeed; // z축을 사용하여 위로 향하게 수정
+            // 터렛의 현재 방향을 고려하여 총알의 전방 힘을 설정합니다.
+            Vector3 forwardForce = firePoint.forward * bulletSpeed;
             bulletRigidbody.AddForce(forwardForce, ForceMode.Impulse);
 
             // 상향 힘을 계산하고 적용합니다. (조절이 필요할 수 있습니다.)
