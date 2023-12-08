@@ -24,7 +24,7 @@ public class Turret : MonoBehaviour
 
     [Header("Bullet Attributes")]
     public float bulletSpeed = 3f; // 수정: 총알 속도
-   
+    public float upwardForce = 5.0f;
 
     void Start()
     {
@@ -88,15 +88,27 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        GameObject arrowGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Arrow arrow = arrowGO.GetComponent<Arrow>();
+        // 총알 프리팹을 인스턴스화합니다.
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
-        if (arrow != null)
+        if (bulletRigidbody != null)
         {
-            
-            arrow.GetComponent<Rigidbody>().AddForce(firePoint.forward * bulletSpeed, ForceMode.Impulse);
+            bullet.transform.localRotation = Quaternion.Euler(80, 40, 0);
+            // 터렛의 현재 방향을 고려하여 총알의 로컬 회전을 설정합니다.
+            bullet.transform.rotation = firePoint.rotation;
+
+            // 전방 힘을 계산하고 적용합니다.
+            Vector3 forwardForce = bullet.transform.forward * bulletSpeed; // z축을 사용하여 위로 향하게 수정
+            bulletRigidbody.AddForce(forwardForce, ForceMode.Impulse);
+
+            // 상향 힘을 계산하고 적용합니다. (조절이 필요할 수 있습니다.)
+            Vector3 upwardForceVector = Vector3.up * (upwardForce / 2); // 강도를 조절
+            bulletRigidbody.AddForce(upwardForceVector, ForceMode.Impulse);
         }
-        Destroy(arrowGO, 0.4f);
+
+        // 일정 시간이 지난 후에 총알을 파괴합니다.
+        Destroy(bullet, 0.4f);
     }
     private void OnDrawGizmosSelected()
     {

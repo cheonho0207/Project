@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public int power = 3;
+    public int power = 10;
 
     // Start is called before the first frame update
     void Start()
