@@ -5,29 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public GameObject spawntower;
+    [SerializeField]
+    private TowerManager towerManager;
 
-    public GameObject prefeb1;
-    public GameObject prefeb2;
-    public GameObject prefeb3;
+    public GameObject spawnTower;
+    private GameObject selectedPrefab;
 
-    private GameObject selectedPrefeb;
-
-    public void SetSelectedPrefeb1()
+    public void SetSelectedPrefab(int id)
     {
-        selectedPrefeb = prefeb1;
+        selectedPrefab = towerManager.Towers[id].Prefab;
     }
 
-    public void SetSelectedPrefeb2()
+    #region TowerSelect
+    public void SetSelectedPrefab1()
     {
-        selectedPrefeb = prefeb2;
+        SetSelectedPrefab(0);
     }
 
-    public void SetSelectedPrefeb3()
+    public void SetSelectedPrefab2()
     {
-        selectedPrefeb = prefeb3;
+        SetSelectedPrefab(1);
     }
 
+    public void SetSelectedPrefab3()
+    {
+        SetSelectedPrefab(2);
+    }
+    #endregion
+
+    #region SceneSelect
     public void SelectScene()
     {
         SceneManager.LoadScene("SelectScene");
@@ -56,11 +62,12 @@ public class ButtonManager : MonoBehaviour
                 Application.Quit();
         #endif
     }
+    #endregion
 
     public void SpawnTower()
     {
-        spawntower = GameObject.Find("Grid");
+        spawnTower = GameObject.Find("Grid");
         //spawntower.GetComponent<BuildingSystem>().SpawnTower();
-        spawntower.GetComponent<BuildingSystem>().InitializeWithObject(selectedPrefeb);
+        spawnTower.GetComponent<BuildingSystem>().InitializeWithObject(selectedPrefab);
     }
 }
