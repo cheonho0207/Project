@@ -19,7 +19,7 @@ public class BuildingSystem : MonoBehaviour
 
     public GameObject prefab1;
     public GameObject prefab2;
-    public GameObject prefab3;
+    //public GameObject prefab3;
 
     private PlaceableObject objectToPlace;
 
@@ -176,9 +176,28 @@ public class BuildingSystem : MonoBehaviour
         return true;
     }
 
+    public bool IsPositionOccupied(Vector3 position)
+    {
+        BoundsInt area = new BoundsInt();
+        area.position = gridLayout.WorldToCell(position);
+        area.size = objectToPlace.Size;
+
+        TileBase[] baseArray = GetTilesBlock(area, MainTilemap);
+
+        foreach (var b in baseArray)
+        {
+            if (b == whiteTile)
+            {
+                return true; // 해당 위치에 다른 오브젝트가 이미 있음을 나타내므로 true 반환
+            }
+        }
+
+        return false; // 해당 위치에 다른 오브젝트가 없음을 나타내므로 false 반환
+    }
+
     public void TakeArea(Vector3Int start, Vector3Int size)
     {
-        MainTilemap.BoxFill(start, whiteTile, start.x, start.y, start.x + size.x, start.y + size.y);
+        MainTilemap.BoxFill(start, null, start.x, start.y, start.x + size.x, start.y + size.y);
     }
     */
     #endregion

@@ -1,39 +1,164 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
-    [SerializeField]
-    private TowerManager towerManager;
+    public GameObject spawntower;
 
-    public GameObject spawnTower;
-    private GameObject selectedPrefab;
+    public GameObject prefeb1;
+    public GameObject prefeb2;
+    public GameObject prefeb3;
+    public GameObject prefeb4;
+    public GameObject prefeb5;
 
-    public void SetSelectedPrefab(int id)
+    private GameObject selectedPrefeb;
+    public TextMeshProUGUI textUI;
+    public TextMeshProUGUI textUI2;
+    public TextMeshProUGUI textUI3;
+    public TextMeshProUGUI textUI4;
+    public int coinScore = 60; // 시작 코인 스코어
+    public Text coinScoreText;
+    public Button Tower1;
+    public Button Tower2;
+    void Start()
     {
-        selectedPrefab = towerManager.Towers[id].Prefab;
+        textUI.gameObject.SetActive(false);
+        textUI2.gameObject.SetActive(false);
+        textUI3.gameObject.SetActive(false);
+        textUI4.gameObject.SetActive(false);
+        coinScoreText.text =  coinScore.ToString()+ " :전" ;
+        Tower1.gameObject.SetActive(false);
+        Tower2.gameObject.SetActive(false);
+    }
+    public void SetSelectedPrefeb1()
+    {
+        if (coinScore >= 20)
+        {
+            coinScore -= 20;
+            UpdateCoinScoreText();
+            selectedPrefeb = prefeb1;
+        }
+        else 
+        {
+            coinScore -= 10;
+            UpdateCoinScoreText();
+            Tower1.gameObject.SetActive((coinScore < 20) ? true : false);
+            Tower1.onClick.AddListener(OnTower1Click);
+        }
+        
     }
 
-    #region TowerSelect
-    public void SetSelectedPrefab1()
+    private void OnTower1Click()
     {
-        SetSelectedPrefab(0);
+        textUI2.gameObject.SetActive(true);
+        ActivateAndDeactivateTextUI2();
+        selectedPrefeb = prefeb4;
     }
 
-    public void SetSelectedPrefab2()
+    public void SetSelectedPrefeb2()
     {
-        SetSelectedPrefab(1);
+        if (coinScore >= 5)
+        {
+            coinScore -= 5;
+            UpdateCoinScoreText();
+            selectedPrefeb = prefeb2;
+        }
+        else
+        {
+            Tower2.gameObject.SetActive((coinScore < 5) ? true : false);
+            Tower2.onClick.AddListener(OnTower2Click);
+
+        }
     }
 
-    public void SetSelectedPrefab3()
+    private void OnTower2Click()
     {
-        SetSelectedPrefab(2);
+        textUI3.gameObject.SetActive(true);
+        ActivateAndDeactivateTextUI3();
+        selectedPrefeb = prefeb5;
     }
-    #endregion
 
-    #region SceneSelect
+    public void SetSelectedPrefeb3()
+    {
+        selectedPrefeb = prefeb3;
+        ActivateAndDeactivateTextUI();
+    }
+
+    private void ActivateAndDeactivateTextUI()
+    {
+        // 활성화된 후 3초 뒤에 다시 비활성화
+        StartCoroutine(ActivateAndDeactivateRoutine());
+    }
+
+    private IEnumerator ActivateAndDeactivateRoutine()
+    {
+        // Text 형식 UI를 활성화
+        textUI.gameObject.SetActive(true);
+
+        // 3초 대기
+        yield return new WaitForSeconds(3f);
+
+        // Text 형식 UI를 비활성화
+        textUI.gameObject.SetActive(false);
+    }
+    private void ActivateAndDeactivateTextUI2()
+    {
+        // 활성화된 후 3초 뒤에 다시 비활성화
+        StartCoroutine(ActivateAndDeactivateRoutine2());
+    }
+
+    private void ActivateAndDeactivateTextUI3()
+    {
+        // 활성화된 후 3초 뒤에 다시 비활성화
+        StartCoroutine(ActivateAndDeactivateRoutine3());
+    }
+
+    private void ActivateAndDeactivateTextUI4()
+    {
+        // 활성화된 후 3초 뒤에 다시 비활성화
+        StartCoroutine(ActivateAndDeactivateRoutine4());
+    }
+
+    private IEnumerator ActivateAndDeactivateRoutine2()
+    {
+        // Text 형식 UI를 활성화
+        textUI2.gameObject.SetActive(true);
+
+        // 3초 대기
+        yield return new WaitForSeconds(3f);
+
+        // Text 형식 UI를 비활성화
+        textUI2.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ActivateAndDeactivateRoutine3()
+    {
+        // Text 형식 UI를 활성화
+        textUI3.gameObject.SetActive(true);
+
+        // 3초 대기
+        yield return new WaitForSeconds(3f);
+
+        // Text 형식 UI를 비활성화
+        textUI3.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ActivateAndDeactivateRoutine4()
+    {
+        // Text 형식 UI를 활성화
+        textUI4.gameObject.SetActive(true);
+
+        // 3초 대기
+        yield return new WaitForSeconds(3f);
+
+        // Text 형식 UI를 비활성화
+        textUI4.gameObject.SetActive(false);
+    }
+
     public void SelectScene()
     {
         SceneManager.LoadScene("SelectScene");
@@ -62,12 +187,35 @@ public class ButtonManager : MonoBehaviour
                 Application.Quit();
         #endif
     }
-    #endregion
 
     public void SpawnTower()
     {
-        spawnTower = GameObject.Find("Grid");
+        spawntower = GameObject.Find("Grid");
         //spawntower.GetComponent<BuildingSystem>().SpawnTower();
-        spawnTower.GetComponent<BuildingSystem>().InitializeWithObject(selectedPrefab);
+        spawntower.GetComponent<BuildingSystem>().InitializeWithObject(selectedPrefeb);
+    }
+
+    private void UpdateCoinScoreText()
+    {
+        coinScoreText.text = coinScore.ToString() + " :전";
+        if (coinScore <= 0)
+        {
+            Tower1.gameObject.SetActive((coinScore < 20) ? true : false);
+            Tower2.gameObject.SetActive((coinScore < 5) ? true : false);
+            textUI2.gameObject.SetActive(true);
+            ActivateAndDeactivateTextUI4();
+            
+        }
+        else if(coinScore <= 20)
+        {
+            Tower1.gameObject.SetActive((coinScore < 20) ? true : false);
+            Tower1.onClick.AddListener(OnTower1Click);
+        }
+        else if(coinScore <=5)
+        {
+            Tower2.gameObject.SetActive((coinScore < 5) ? true : false);
+            Tower2.onClick.AddListener(OnTower2Click);
+        }
+       
     }
 }
