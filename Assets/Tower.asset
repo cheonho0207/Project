@@ -17,19 +17,15 @@ MonoBehaviour:
     <ID>k__BackingField: 0
     <Size>k__BackingField: {x: 0, y: 0}
     <Prefab>k__BackingField: {fileID: 0}
-  - <Name>k__BackingField: sword
+  - <Name>k__BackingField: bow
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 0}
-  - <Name>k__BackingField: bow
+    <Prefab>k__BackingField: {fileID: 4519960652217760516, guid: 7e1774d464d262c4e9725e1dc78c1ebe, type: 3}
+  - <Name>k__BackingField: crossbow
     <ID>k__BackingField: 2
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 0}
-  - <Name>k__BackingField: crossbow
-    <ID>k__BackingField: 3
-    <Size>k__BackingField: {x: 2, y: 2}
-    <Prefab>k__BackingField: {fileID: 0}
+    <Prefab>k__BackingField: {fileID: 7388316941131022043, guid: de0f519f1f4f4b043b8ff2f6aa76d6b9, type: 3}
   - <Name>k__BackingField: cannon
-    <ID>k__BackingField: 4
+    <ID>k__BackingField: 3
     <Size>k__BackingField: {x: 2, y: 2}
     <Prefab>k__BackingField: {fileID: 7930265848189419793, guid: fcfc941465a918b4b9daf2708d72f3b1, type: 3}
