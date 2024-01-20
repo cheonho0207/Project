@@ -20,12 +20,16 @@ MonoBehaviour:
   - <Name>k__BackingField: bow
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 4519960652217760516, guid: 7e1774d464d262c4e9725e1dc78c1ebe, type: 3}
+    <Prefab>k__BackingField: {fileID: 7807723238573310027, guid: 96edbe4ed817a5d41bb1a10f29154b94, type: 3}
   - <Name>k__BackingField: crossbow
     <ID>k__BackingField: 2
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 7388316941131022043, guid: de0f519f1f4f4b043b8ff2f6aa76d6b9, type: 3}
+    <Prefab>k__BackingField: {fileID: 1213046709462209225, guid: 6c4a8511a38fa434f986343946943661, type: 3}
   - <Name>k__BackingField: cannon
     <ID>k__BackingField: 3
     <Size>k__BackingField: {x: 2, y: 2}
     <Prefab>k__BackingField: {fileID: 4603317393048323396, guid: 1a353d4ddf34f6145af90ff665bbacc1, type: 3}
+  - <Name>k__BackingField: house2
+    <ID>k__BackingField: 4
+    <Size>k__BackingField: {x: 1, y: 2}
+    <Prefab>k__BackingField: {fileID: 5093564438564339435, guid: 530afd75e7d81814eac91cb9715f3a6d, type: 3}

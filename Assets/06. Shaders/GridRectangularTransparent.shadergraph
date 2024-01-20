@@ -285,7 +285,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "_width",
     "m_StageCapability": 2,
-    "m_Value": 0.8999999761581421,
+    "m_Value": 0.949999988079071,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -450,8 +450,8 @@
     "m_ShaderOutputName": "_tiling",
     "m_StageCapability": 2,
     "m_Value": {
-        "x": 4.0,
-        "y": 4.0
+        "x": 20.0,
+        "y": 20.0
     },
     "m_DefaultValue": {
         "x": 0.0,

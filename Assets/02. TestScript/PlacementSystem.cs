@@ -19,7 +19,7 @@ public class PlacementSystem : MonoBehaviour
     private int selectedObjectIndex;
 
     [SerializeField]
-    //private GameObject gridVisualization;
+    private GameObject gridVisualization;
 
     /*
     [SerializeField]
@@ -49,8 +49,9 @@ public class PlacementSystem : MonoBehaviour
             Debug.LogError($"No ID foudn {ID}");
             return;
         }
-        //gridVisualization.SetActive(true);
+        gridVisualization.SetActive(true);
         cellIndicator.SetActive(true);
+        mouseIndicator.SetActive(true);
         stopText.SetActive(true);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
@@ -96,8 +97,9 @@ public class PlacementSystem : MonoBehaviour
     private void StopPlacement()
     {
         selectedObjectIndex = -1;
-        //gridVisualization.SetActive(false);
+        gridVisualization.SetActive(false);
         cellIndicator.SetActive(false);
+        mouseIndicator.SetActive(false);
         stopText.SetActive(false);
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
