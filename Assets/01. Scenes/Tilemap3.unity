@@ -522,7 +522,7 @@ MonoBehaviour:
   cellIndicator: {fileID: 141958490}
   inputManager: {fileID: 675647048}
   grid: {fileID: 497481695}
-  Stoptext: {fileID: 1026194210}
+  stopText: {fileID: 1026194210}
   database: {fileID: 11400000, guid: 080250dc48da6dc4ca9ff1dbbf6a18e5, type: 2}
 --- !u!1 &497481693
 GameObject:
