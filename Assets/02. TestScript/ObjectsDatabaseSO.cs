@@ -20,4 +20,7 @@ public class ObjectData
     public Vector2Int Size { get; private set; }
     [field: SerializeField]
     public GameObject Prefab { get; private set; }
+
+    [field: SerializeField]
+    public Quaternion Rotation { get; set; } = Quaternion.identity;
 }
