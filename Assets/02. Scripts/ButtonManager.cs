@@ -14,6 +14,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject prefeb3;
     public GameObject prefeb4;
     public GameObject prefeb5;
+    public GameObject prefeb6;
 
     private GameObject selectedPrefeb;
     public TextMeshProUGUI textUI;
@@ -24,6 +25,7 @@ public class ButtonManager : MonoBehaviour
     public Text coinScoreText;
     public Button Tower1;
     public Button Tower2;
+    public Button Tower3;
     void Start()
     {
         textUI.gameObject.SetActive(false);
@@ -33,6 +35,7 @@ public class ButtonManager : MonoBehaviour
         coinScoreText.text =  coinScore.ToString()+ " :Àü" ;
         Tower1.gameObject.SetActive(false);
         Tower2.gameObject.SetActive(false);
+        Tower3.gameObject.SetActive(false);
     }
     public void SetSelectedPrefeb1()
     {
@@ -49,6 +52,7 @@ public class ButtonManager : MonoBehaviour
             Tower1.gameObject.SetActive((coinScore < 20) ? true : false);
             Tower1.onClick.AddListener(OnTower1Click);
         }
+        
         
     }
 
@@ -75,6 +79,22 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
+    public void SetSelectedPrefeb3()
+    {
+        if (coinScore >= 15)
+        {
+            coinScore -= 15;
+            UpdateCoinScoreText();
+            selectedPrefeb = prefeb3;
+        }
+        else
+        {
+            Tower3.gameObject.SetActive((coinScore < 15) ? true : false);
+            Tower3.onClick.AddListener(OnTower3Click);
+
+        }
+    }
+
     private void OnTower2Click()
     {
         textUI3.gameObject.SetActive(true);
@@ -82,9 +102,16 @@ public class ButtonManager : MonoBehaviour
         selectedPrefeb = prefeb5;
     }
 
-    public void SetSelectedPrefeb3()
+    private void OnTower3Click()
     {
-        selectedPrefeb = prefeb3;
+        textUI3.gameObject.SetActive(true);
+        ActivateAndDeactivateTextUI3();
+        selectedPrefeb = prefeb6;
+    }
+
+    public void SetSelectedPrefeb4()
+    {
+        selectedPrefeb = prefeb6;
         ActivateAndDeactivateTextUI();
     }
 
@@ -202,6 +229,7 @@ public class ButtonManager : MonoBehaviour
         {
             Tower1.gameObject.SetActive((coinScore < 20) ? true : false);
             Tower2.gameObject.SetActive((coinScore < 5) ? true : false);
+            Tower3.gameObject.SetActive((coinScore < 15) ? true : false);
             textUI2.gameObject.SetActive(true);
             ActivateAndDeactivateTextUI4();
             
@@ -216,6 +244,11 @@ public class ButtonManager : MonoBehaviour
             Tower2.gameObject.SetActive((coinScore < 5) ? true : false);
             Tower2.onClick.AddListener(OnTower2Click);
         }
-       
+        else if (coinScore <= 15)
+        {
+            Tower2.gameObject.SetActive((coinScore < 15) ? true : false);
+            Tower2.onClick.AddListener(OnTower2Click);
+        }
+
     }
 }

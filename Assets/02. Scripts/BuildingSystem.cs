@@ -19,7 +19,7 @@ public class BuildingSystem : MonoBehaviour
 
     public GameObject prefab1;
     public GameObject prefab2;
-    //public GameObject prefab3;
+    public GameObject prefab3;
 
     private PlaceableObject objectToPlace;
 
