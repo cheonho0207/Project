@@ -7,8 +7,8 @@ public class ArrowEffect2 : MonoBehaviour
 
     public GameObject sparkEffect;
     public GameObject sparkEffect2;
-    public GameObject sparkEffect3;
-    public GameObject sparkEffect4;
+    //public GameObject sparkEffect3;
+    //public GameObject sparkEffect4;
 
     private GameObject sparkEffectInstance;
     private GameObject sparkEffectInstance2;
@@ -61,12 +61,13 @@ public class ArrowEffect2 : MonoBehaviour
             sparkEffectInstance2 = Instantiate(sparkEffect2, transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity);
             Destroy(sparkEffectInstance2, 3f);
 
+            /*
             sparkEffectInstance = Instantiate(sparkEffect3, transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity);
             Destroy(sparkEffectInstance3, 3f);
 
             sparkEffectInstance = Instantiate(sparkEffect4, transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity);
             Destroy(sparkEffectInstance, 3f);
-
+            */
 
             isArrowInactive = true; // Arrow를 비활성화 상태로 표시
         }

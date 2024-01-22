@@ -5175,8 +5175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sparkEffect: {fileID: 3510747769390997753, guid: f9546c3377412d04cba410800bc4630c, type: 3}
   sparkEffect2: {fileID: 8951180577656291024, guid: 30aaddce408220e45962d5e78e067026, type: 3}
-  sparkEffect3: {fileID: 0}
-  sparkEffect4: {fileID: 0}
 --- !u!114 &7628931292147112176
 MonoBehaviour:
   m_ObjectHideFlags: 0
