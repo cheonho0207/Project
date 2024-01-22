@@ -63,6 +63,23 @@ public class ButtonManager : MonoBehaviour
         selectedPrefeb = prefeb4;
     }
 
+    public void SetSelectedPrefeb3()
+    {
+        if (coinScore >= 15)
+        {
+            coinScore -= 15;
+            UpdateCoinScoreText();
+            selectedPrefeb = prefeb3;
+        }
+        else
+        {
+            coinScore -= 10;
+            Tower3.gameObject.SetActive((coinScore < 15) ? true : false);
+            Tower3.onClick.AddListener(OnTower3Click);
+
+        }
+    }
+
     public void SetSelectedPrefeb2()
     {
         if (coinScore >= 5)
@@ -79,21 +96,7 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
-    public void SetSelectedPrefeb3()
-    {
-        if (coinScore >= 15)
-        {
-            coinScore -= 15;
-            UpdateCoinScoreText();
-            selectedPrefeb = prefeb3;
-        }
-        else
-        {
-            Tower3.gameObject.SetActive((coinScore < 15) ? true : false);
-            Tower3.onClick.AddListener(OnTower3Click);
 
-        }
-    }
 
     private void OnTower2Click()
     {
@@ -105,8 +108,8 @@ public class ButtonManager : MonoBehaviour
     private void OnTower3Click()
     {
         textUI3.gameObject.SetActive(true);
-        ActivateAndDeactivateTextUI3();
-        selectedPrefeb = prefeb6;
+        ActivateAndDeactivateTextUI4();
+        selectedPrefeb = prefeb5;
     }
 
     public void SetSelectedPrefeb4()
@@ -150,6 +153,12 @@ public class ButtonManager : MonoBehaviour
         StartCoroutine(ActivateAndDeactivateRoutine4());
     }
 
+    private void ActivateAndDeactivateTextUI5()
+    {
+        // 활성화된 후 3초 뒤에 다시 비활성화
+        StartCoroutine(ActivateAndDeactivateRoutine5());
+    }
+
     private IEnumerator ActivateAndDeactivateRoutine2()
     {
         // Text 형식 UI를 활성화
@@ -175,6 +184,18 @@ public class ButtonManager : MonoBehaviour
     }
 
     private IEnumerator ActivateAndDeactivateRoutine4()
+    {
+        // Text 형식 UI를 활성화
+        textUI4.gameObject.SetActive(true);
+
+        // 3초 대기
+        yield return new WaitForSeconds(3f);
+
+        // Text 형식 UI를 비활성화
+        textUI4.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ActivateAndDeactivateRoutine5()
     {
         // Text 형식 UI를 활성화
         textUI4.gameObject.SetActive(true);
@@ -246,8 +267,8 @@ public class ButtonManager : MonoBehaviour
         }
         else if (coinScore <= 15)
         {
-            Tower2.gameObject.SetActive((coinScore < 15) ? true : false);
-            Tower2.onClick.AddListener(OnTower2Click);
+            Tower3.gameObject.SetActive((coinScore < 15) ? true : false);
+            Tower3.onClick.AddListener(OnTower3Click);
         }
 
     }
