@@ -37,4 +37,8 @@ MonoBehaviour:
     <ID>k__BackingField: 4
     <Size>k__BackingField: {x: 1, y: 2}
     <Prefab>k__BackingField: {fileID: 5093564438564339435, guid: 530afd75e7d81814eac91cb9715f3a6d, type: 3}
+<<<<<<< HEAD
     <Rotation>k__BackingField: {x: 0, y: 0, z: 0, w: 1}
+=======
+    <Rotation>k__BackingField: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
+>>>>>>> eb61eb14df4bb632f7021a2710c1dac0012d363c
