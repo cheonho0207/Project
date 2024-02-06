@@ -9,11 +9,13 @@ public class ObjectDrag : MonoBehaviour
 
     private Turret turret;
     private Turret2 turret2;
+    private Turret3  turret3;
 
     private void Start()
     {
         turret = GetComponent<Turret>();
         turret2 = GetComponent<Turret2>();
+        turret3 = GetComponent<Turret3>();
     }
 
     private void OnMouseUp()
@@ -31,6 +33,11 @@ public class ObjectDrag : MonoBehaviour
         if (turret2 != null)
         {
             turret2.DeactivateSparkEffect();
+        }
+
+        if (turret3 != null)
+        {
+            turret3.DeactivateSparkEffect();
         }
 
         settower = GameObject.Find("Grid");
