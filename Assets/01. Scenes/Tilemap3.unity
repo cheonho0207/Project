@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -583,7 +583,7 @@ MonoBehaviour:
   inputManager: {fileID: 675647048}
   grid: {fileID: 497481695}
   stopText: {fileID: 1026194210}
-  database: {fileID: 11400000, guid: 080250dc48da6dc4ca9ff1dbbf6a18e5, type: 2}
+  database: {fileID: 11400000, guid: 266c88ededa7e524595e9b9d5eecb492, type: 2}
   gridVisualization: {fileID: 1689028092}
   preview: {fileID: 190973171}
 --- !u!1 &497481693
