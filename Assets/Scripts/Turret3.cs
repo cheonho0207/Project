@@ -14,14 +14,13 @@ public class Turret3 : MonoBehaviour
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
-    public Transform partToRotate;
-    public float turnspeed = 5f;
+    public Transform partToRotate; // 이 부분 삭제
     public GameObject bulletPrefab;
     public Transform firePoint;
     private Animator anim;
 
     [Header("Bullet Attributes")]
-    public float bulletSpeed = 10f;
+    public float bulletSpeed = 3f;
     public float upwardForce = 5f;
 
     private bool arrowSpawned = false;
@@ -40,6 +39,7 @@ public class Turret3 : MonoBehaviour
     private GameObject sparkEffectInstance2;
 
     private float fadeSpeed = 2f;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
@@ -87,17 +87,11 @@ public class Turret3 : MonoBehaviour
         Enemy enemyScript = target.GetComponent<Enemy>();
         if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
         {
-            Vector3 dir = target.position - transform.position;
-            Quaternion LookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = LookRotation.eulerAngles;
-            rotation.y += 5f;
-            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
             // 타겟과의 거리를 계산합니다.
             float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-            // 기즈모 박스 영역 안에 있거나 거리가 사정 거리 이내인 경우에만 발사합니다.
-            if (sparkEffect2.activeSelf && distanceToTarget <= range)
+            // 거리가 사정 거리 이내인 경우에만 발사합니다.
+            if (distanceToTarget <= range)
             {
                 if (fireCountdown <= 0f)
                 {
@@ -112,7 +106,6 @@ public class Turret3 : MonoBehaviour
                 Invoke("DeactivateSparkEffect2", 3f);
             }
 
-
             fireCountdown -= Time.deltaTime;
         }
     }
@@ -125,49 +118,37 @@ public class Turret3 : MonoBehaviour
             return;
         }
 
-        // 타겟이 없으면 발사하지 않습니다.
         if (target == null)
             return;
 
-        // SparkEffect를 발동합니다.
         motionScript.TriggerSparkEffects();
 
-        int numberOfBulletsPerRow = 3;
-        int numberOfRows = 4;
-        float spacing = 0.5f;
+        float spacing = 0.4f; // 총알 사이의 간격
+        int rows = 4; // 행의 수
+        int columns = 3; // 열의 수
 
-        for (int row = 0; row < numberOfRows; row++)
+        // 3x3 직사각형 패턴으로 총알 발사
+        for (int x = 0; x < columns; x++)
         {
-            for (int col = 0; col < numberOfBulletsPerRow; col++)
+            for (int y = 0; y < rows; y++)
             {
-                // 각각의 총알 인스턴스를 생성합니다.
-                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+                // 발사 지점 계산
+                Vector3 spawnPosition = firePoint.position + (transform.right * (x - 1) * spacing) + (transform.up * (y - 1) * spacing);
+
+                GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
                 Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
                 if (bulletRigidbody != null)
                 {
-                    // 총알의 위치를 조정하여 3x4 형태로 배치합니다.
-                    Vector3 offset = new Vector3((col - numberOfBulletsPerRow / 2) * spacing, row * spacing, 0f);
-                    bullet.transform.position += offset;
+                    Vector3 shootDirection = -transform.forward;
+                    bulletRigidbody.AddForce(shootDirection * bulletSpeed, ForceMode.Impulse);
 
-                    // 타겟의 위치로 총알의 방향을 조정합니다.
-                    Vector3 targetDirection = target.position - bullet.transform.position;
-
-                    // 타겟 방향으로 총알을 직접 회전시킵니다.
-                    bullet.transform.rotation = Quaternion.LookRotation(targetDirection.normalized);
-
-                    // 총알 발사
-                    Vector3 forwardForce = targetDirection.normalized * bulletSpeed;
-                    bulletRigidbody.AddForce(forwardForce, ForceMode.Impulse);
-
-                    // 업워드 힘 추가 (음의 값으로 수정)
-                    Vector3 upwardForceVector = Vector3.up * upwardForce;
+                    Vector3 upwardForceVector = transform.up * upwardForce;
                     bulletRigidbody.AddForce(upwardForceVector, ForceMode.Impulse);
                 }
 
                 bullet.AddComponent<BulletCollisionHandler>();
-                // 각각의 총알에 대해 1초 후에 파괴합니다.
-                Destroy(bullet, 0.5f);
+                Destroy(bullet, DestroyTime);
             }
         }
     }
@@ -178,10 +159,8 @@ public class Turret3 : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-
     public void DeactivateSparkEffect()
     {
-
         // Effect1 비활성화 또는 다른 로직 추가
         GameObject effect1 = transform.Find("Effect1").gameObject;
         if (effect1 != null)
@@ -190,7 +169,6 @@ public class Turret3 : MonoBehaviour
         }
     }
 
-
     public void ActivateSparkEffect()
     {
         if (sparkEffectPrefab != null)
@@ -198,9 +176,8 @@ public class Turret3 : MonoBehaviour
             sparkEffectInstance = Instantiate(sparkEffectPrefab, transform.position, Quaternion.identity);
             sparkEffectInstance.SetActive(true);
         }
-
-
     }
+
     private void DeactivateSparkEffect2()
     {
         if (sparkEffect2.activeSelf)

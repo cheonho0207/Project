@@ -63,23 +63,6 @@ public class ButtonManager : MonoBehaviour
         selectedPrefeb = prefeb4;
     }
 
-    public void SetSelectedPrefeb3()
-    {
-        if (coinScore >= 15)
-        {
-            coinScore -= 15;
-            UpdateCoinScoreText();
-            selectedPrefeb = prefeb3;
-        }
-        else
-        {
-            coinScore -= 10;
-            Tower3.gameObject.SetActive((coinScore < 15) ? true : false);
-            Tower3.onClick.AddListener(OnTower3Click);
-
-        }
-    }
-
     public void SetSelectedPrefeb2()
     {
         if (coinScore >= 5)
@@ -96,7 +79,22 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
+    public void SetSelectedPrefeb3()
+    {
+        if (coinScore >= 15)
+        {
+            coinScore -= 15;
+            UpdateCoinScoreText();
+            selectedPrefeb = prefeb3;
+        }
+        else
+        {
+            coinScore -= 5;
+            Tower3.gameObject.SetActive((coinScore < 15) ? true : false);
+            Tower3.onClick.AddListener(OnTower3Click);
 
+        }
+    }
 
     private void OnTower2Click()
     {
