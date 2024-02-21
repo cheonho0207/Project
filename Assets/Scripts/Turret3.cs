@@ -9,7 +9,7 @@ public class Turret3 : MonoBehaviour
 
     [Header("Attributes")]
     public float range = 3f;
-    public float fireRate = 1f;
+    public float fireRate = 2f;
     private float fireCountdown = 0f;
 
     [Header("Unity Setup Fields")]
@@ -52,6 +52,8 @@ public class Turret3 : MonoBehaviour
             Debug.LogError("씬에서 Motion2_2 스크립트를 찾을 수 없습니다.");
         }
         sparkEffect2.SetActive(false);
+
+        fireRate = 1f;
     }
 
     void UpdateTarget()
@@ -106,7 +108,7 @@ public class Turret3 : MonoBehaviour
                 Invoke("DeactivateSparkEffect2", 3f);
             }
 
-            fireCountdown -= Time.deltaTime;
+            fireCountdown -= Time.deltaTime *2;
         }
     }
 
@@ -122,9 +124,9 @@ public class Turret3 : MonoBehaviour
             return;
 
         motionScript.TriggerSparkEffects();
-
+        StartCoroutine(ActivateAndFadeSparkEffect2());
         float spacing = 0.4f; // 총알 사이의 간격
-        int rows = 4; // 행의 수
+        int rows = 2; // 행의 수
         int columns = 3; // 열의 수
 
         // 3x3 직사각형 패턴으로 총알 발사
@@ -184,6 +186,39 @@ public class Turret3 : MonoBehaviour
         {
             sparkEffect2.SetActive(false);
         }
+    }
+
+    IEnumerator ActivateAndFadeSparkEffect2()
+    {
+        // sparkEffect2의 Renderer 컴포넌트를 가져옵니다.
+        Renderer renderer = sparkEffect2.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            // 활성화 상태로 설정
+            sparkEffect2.SetActive(true);
+
+            Color initialColor = renderer.material.color;
+            float time = 0;
+
+            // 초기 알파값을 0으로 설정
+            initialColor.a = 0;
+            renderer.material.color = initialColor;
+
+            // 페이드인: 알파값을 0에서 1로 변경
+            while (initialColor.a < 1)
+            {
+                time += Time.deltaTime / fadeSpeed; // fadeSpeed로 나누어 점진적으로 증가
+                initialColor.a = Mathf.Lerp(0, 1, time); // 알파값을 0에서 1로 보간
+                renderer.material.color = initialColor; // 색상 업데이트
+                yield return null; // 다음 프레임까지 기다림
+            }
+        }
+
+        // 페이드인이 끝난 후 일정 시간(예: 3초) 유지
+        yield return new WaitForSeconds(3f);
+
+        // 시간이 지난 후 비활성화
+        sparkEffect2.SetActive(false);
     }
 
 }
