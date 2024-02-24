@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Touch
+  - Effect3
+  - Enemy
+  - Grid
+  - Skill
+  - Arrow
+  - Effect2
+  - Player2
+  - Turret4
   layers:
   - Default
   - TransparentFX
