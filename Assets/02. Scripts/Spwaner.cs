@@ -23,8 +23,8 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        // 30초 후에 SpawnWave 메서드를 호출합니다.
-        InvokeRepeating("SpawnWave", 10f, 5f);
+        // 10초 후에 SpawnWave 메서드를 호출합니다.
+        InvokeRepeating("SpawnWave", 10f, 1f);
 
         // 타이머 초기화
         timeRemaining = 30f;
