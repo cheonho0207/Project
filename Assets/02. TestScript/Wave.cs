@@ -1,21 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Wave
 {
-    public GameObject[] enemyPrefabs;
-    private int currentPrefabIndex = 0;
-
-    public int count;
+    public GameObject[] enemies; // 여러 종류의 적을 담을 배열
+    public int[] counts; // 각 적의 수를 담을 배열
     public float rate;
-
-    public void SpawnNextEnemy()
-    {
-        if (currentPrefabIndex < enemyPrefabs.Length) 
-        {
-            //Instantiate(enemyPrefabs[currentPrefabIndex], trans);
-        }
-    }
 }

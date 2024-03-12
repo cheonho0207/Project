@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class WaveSpawner : MonoBehaviour
 {
     public static int EnemiesAlive = 0;
@@ -10,10 +11,12 @@ public class WaveSpawner : MonoBehaviour
 
     public Transform spawnPoint;
 
-    public float timeBetweenWaves = 5f;
+    public float timeBetweenWaves = 5f; //wave delay time
     private float countdown = 2f;
 
-    //public WaveManager waveManager;
+    //public Text waveCountdownText;
+
+    //public GameManager gameManager;
 
     private int waveIndex = 0;
 
@@ -40,26 +43,31 @@ public class WaveSpawner : MonoBehaviour
         countdown -= Time.deltaTime;
 
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
+
+        //waveCountdownText.text = string.Format("{0:00.00}", countdown);
     }
 
     IEnumerator SpawnWave()
     {
         //PlayerStats.Rounds++;
+
         Wave wave = waves[waveIndex];
 
-        EnemiesAlive = wave.count;
-
-        for(int i=0; i < wave.count; i++)
+        for (int i = 0; i < wave.enemies.Length; i++)
         {
-            //SpawnEnemy(wave.enemy); //배열로 바꾸고
-            yield return new WaitForSeconds(1f / wave.rate);
+            for (int j = 0; j < wave.counts[i]; j++)
+            {
+                SpawnEnemy(wave.enemies[i]);
+                yield return new WaitForSeconds(1f / wave.rate);
+            }
         }
 
         waveIndex++;
     }
 
-    void SpawnEnemy(GameObject enemy) //배열로 넣고
+    void SpawnEnemy(GameObject enemy)
     {
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
     }
+
 }
