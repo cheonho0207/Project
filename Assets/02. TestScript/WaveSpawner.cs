@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Rendering.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -52,7 +52,8 @@ public class WaveSpawner : MonoBehaviour
         //PlayerStats.Rounds++;
 
         Wave wave = waves[waveIndex];
-
+        int waveCount = waves.Length;
+        Debug.Log("Wave : " + waveIndex + 1);
         for (int i = 0; i < wave.enemies.Length; i++)
         {
             for (int j = 0; j < wave.counts[i]; j++)
@@ -62,7 +63,10 @@ public class WaveSpawner : MonoBehaviour
             }
         }
 
-        waveIndex++;
+        if (waveIndex < waves.Length)
+        {
+            //waveIndex++;
+        }
     }
 
     void SpawnEnemy(GameObject enemy)

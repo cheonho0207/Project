@@ -5303,7 +5303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09d310c52482ab4b885b194dc0d8125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 3
+  power: 20
 --- !u!135 &3786756953137599986
 SphereCollider:
   m_ObjectHideFlags: 0

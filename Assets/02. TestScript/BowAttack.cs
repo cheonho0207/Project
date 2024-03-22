@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Attack : MonoBehaviour
 {
     private Transform target;
 
@@ -69,6 +68,7 @@ public class Turret : MonoBehaviour
 
         // 대상이 Enemy이고 적이 살아있으며 경로 끝에 도달하고 HP가 0이라면 공격하지 않습니다.
         Enemy enemyScript = target.GetComponent<Enemy>();
+        /*
         if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
         {
             Vector3 dir = target.position - transform.position;
@@ -77,15 +77,39 @@ public class Turret : MonoBehaviour
             rotation.y += 90f;
             partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
+            float distanceEnemy = Vector3.Distance(transform.position, target.transform.position);
+            if (distanceEnemy <= range)
+            {
+
+                if (fireCountdown <= 0f)
+                {
+                    Shoot();
+                    playerAnimator.SetTrigger("Shooting");
+                    fireCountdown = 1f / fireRate;
+                }
+
+                fireCountdown -= Time.deltaTime;
+            }
+        }
+        */
+        Vector3 dir = target.position - transform.position;
+        Quaternion LookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = LookRotation.eulerAngles;
+        rotation.y += 90f;
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        float distanceEnemy = Vector3.Distance(transform.position, target.transform.position);
+        if (distanceEnemy <= range)
+        {
+
             if (fireCountdown <= 0f)
             {
                 Shoot();
                 playerAnimator.SetTrigger("Shooting");
                 fireCountdown = 1f / fireRate;
             }
-
-            fireCountdown -= Time.deltaTime;
         }
+            fireCountdown -= Time.deltaTime;
     }
     void Shoot()
     {
@@ -114,7 +138,7 @@ public class Turret : MonoBehaviour
         }
 
         // 일정 시간이 지난 후에 총알을 파괴합니다.
-        Destroy(bullet, 0.4f);
+        Destroy(bullet,1.0f);
     }
     private void OnDrawGizmosSelected()
     {
@@ -122,17 +146,17 @@ public class Turret : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-   
-        public void DeactivateSparkEffect()
+
+    public void DeactivateSparkEffect()
+    {
+        // Effect1 비활성화 또는 다른 로직 추가
+        GameObject effect1 = transform.Find("Effect1").gameObject;
+        if (effect1 != null)
         {
-            // Effect1 비활성화 또는 다른 로직 추가
-            GameObject effect1 = transform.Find("Effect1").gameObject;
-            if (effect1 != null)
-            {
-                effect1.SetActive(false);
-            }
+            effect1.SetActive(false);
         }
-   
+    }
+
 
     public void ActivateSparkEffect()
     {
@@ -141,8 +165,5 @@ public class Turret : MonoBehaviour
             sparkEffectInstance = Instantiate(sparkEffectPrefab, transform.position, Quaternion.identity);
             sparkEffectInstance.SetActive(true);
         }
-
-
     }
-
 }
