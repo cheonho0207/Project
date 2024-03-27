@@ -1,8 +1,7 @@
-using System; //
-using System.Collections; //
-using System.Collections.Generic; //
-using Unity.VisualScripting; //
-using UnityEngine; //
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PreviewSystem : MonoBehaviour
 {
@@ -19,9 +18,6 @@ public class PreviewSystem : MonoBehaviour
 
     private Renderer cellIndicatorRenderer;
 
-    bool SetTower = false;
-    int count;
-
     private void Start()
     {
         previewMaterialInstance = new Material(previewMaterialsPrefab);
@@ -32,95 +28,21 @@ public class PreviewSystem : MonoBehaviour
     public void StartShowingPlacementPreview(GameObject prefab, Vector2Int size)
     {
         previewObject = Instantiate(prefab);
-        PreparePreaview(previewObject);
-        PrepareCursor(size);
+        PreparePreavie(previewObject);
+        prepareCursor(size);
         cellIndicator.SetActive(true);
-        SetTower = true;
-    }
-    private void Update()
-    {
-        if (SetTower == true)
-        {
-            int count = 0;
-            if (Input.GetMouseButtonDown(1))
-            {
-                previewObject.transform.Rotate(Vector3.up, 90f);
-                count++;
-                if (count == 4)
-                {
-                    count -= 4;
-                }
-            }
-
-            if (count == 0)
-            {
-                cellIndicator.transform.localScale = new Vector3(
-                    cellIndicator.transform.localScale.x,
-                    cellIndicator.transform.localScale.y,
-                    cellIndicator.transform.localScale.z);
-            }
-            else if (count == 1)
-            {
-                cellIndicator.transform.localScale = new Vector3(
-                    cellIndicator.transform.localScale.z,
-                    cellIndicator.transform.localScale.y,
-                    -cellIndicator.transform.localScale.x + 1f);
-            }
-            else if (count == 2)
-            {
-                cellIndicator.transform.localScale = new Vector3(
-                    -cellIndicator.transform.localScale.x + 1f,
-                    cellIndicator.transform.localScale.y,
-                    -cellIndicator.transform.localScale.z + 1f);
-            }
-            else if (count == 3)
-            {
-                cellIndicator.transform.localScale = new Vector3(
-                    -cellIndicator.transform.localScale.z + 1f,
-                    cellIndicator.transform.localScale.y,
-                    cellIndicator.transform.localScale.x);
-            }
-        }
-        else
-        {
-            return;
-        }
     }
 
-    private void PrepareCursor(Vector2Int size)
+    private void prepareCursor(Vector2Int size)
     {
         if (size.x > 0 || size.y > 0)
         {
-
             cellIndicator.transform.localScale = new Vector3(size.x, 1, size.y);
             cellIndicatorRenderer.material.mainTextureScale = size;
-            
-            /*
-            if (count == 0)
-            {
-                cellIndicator.transform.localScale = new Vector3(size.x, 1, size.y);
-                cellIndicatorRenderer.material.mainTextureScale = size;
-            }
-            else if (count == 1)
-            {
-                cellIndicator.transform.localScale = new Vector3(size.y, 1, -size.x);
-                cellIndicatorRenderer.material.mainTextureScale = size;
-            }
-            else if (count == 2)
-            {
-                cellIndicator.transform.localScale = new Vector3(-size.x, 1, -size.y);
-                cellIndicatorRenderer.material.mainTextureScale = size;
-            }
-            else if (count == 3)
-            {
-                cellIndicator.transform.localScale = new Vector3(-size.y, 1, size.x);
-                cellIndicatorRenderer.material.mainTextureScale = size;
-            }
-            */
         }
     }
 
-    private void PreparePreaview(GameObject previewObject)
+    private void PreparePreavie(GameObject previewObject)
     {
         Renderer[] renderers = previewObject.GetComponentsInChildren<Renderer>();
         foreach(Renderer renderer in renderers)
@@ -138,7 +60,6 @@ public class PreviewSystem : MonoBehaviour
     {
         cellIndicator.SetActive(false );
         Destroy( previewObject );
-        SetTower = false;
     }
 
     public void UpdatePosition(Vector3 position, bool validity)
@@ -166,6 +87,6 @@ public class PreviewSystem : MonoBehaviour
         previewObject.transform.position = new Vector3(
             position.x, 
             position.y + previewYOffset, 
-            position.z );
+            position.z);
     }
 }

@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     Animator enemyAnimator;
     public Transform partToRotate;
 
-    public int Hp = 15;
+    public int Hp = 5;
     public float fadeDuration = 1.0f; // 투명해지는 데 걸리는 시간
     public Image imgHpBar;
     private int initHP;
