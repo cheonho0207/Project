@@ -9,18 +9,19 @@ public class Turret3 : MonoBehaviour
 
     [Header("Attributes")]
     public float range = 3f;
-    public float fireRate = 2f;
+    public float fireRate = 1f;
     private float fireCountdown = 0f;
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
-    public Transform partToRotate; // 이 부분 삭제
+    public Transform partToRotate;
+    public float turnspeed = 5f;
     public GameObject bulletPrefab;
     public Transform firePoint;
     private Animator anim;
 
     [Header("Bullet Attributes")]
-    public float bulletSpeed = 3f;
+    public float bulletSpeed = 10f;
     public float upwardForce = 5f;
 
     private bool arrowSpawned = false;
@@ -39,7 +40,6 @@ public class Turret3 : MonoBehaviour
     private GameObject sparkEffectInstance2;
 
     private float fadeSpeed = 2f;
-
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.1f);
@@ -52,8 +52,6 @@ public class Turret3 : MonoBehaviour
             Debug.LogError("씬에서 Motion2_2 스크립트를 찾을 수 없습니다.");
         }
         sparkEffect2.SetActive(false);
-
-        fireRate = 1f;
     }
 
     void UpdateTarget()
@@ -89,11 +87,17 @@ public class Turret3 : MonoBehaviour
         Enemy enemyScript = target.GetComponent<Enemy>();
         if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
         {
+            Vector3 dir = target.position - transform.position;
+            Quaternion LookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = LookRotation.eulerAngles;
+            rotation.y += 5f;
+            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
             // 타겟과의 거리를 계산합니다.
             float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-            // 거리가 사정 거리 이내인 경우에만 발사합니다.
-            if (distanceToTarget <= range)
+            // 기즈모 박스 영역 안에 있거나 거리가 사정 거리 이내인 경우에만 발사합니다.
+            if (sparkEffect2.activeSelf && distanceToTarget <= range)
             {
                 if (fireCountdown <= 0f)
                 {
@@ -108,7 +112,8 @@ public class Turret3 : MonoBehaviour
                 Invoke("DeactivateSparkEffect2", 3f);
             }
 
-            fireCountdown -= Time.deltaTime *2;
+
+            fireCountdown -= Time.deltaTime;
         }
     }
 
@@ -120,37 +125,49 @@ public class Turret3 : MonoBehaviour
             return;
         }
 
+        // 타겟이 없으면 발사하지 않습니다.
         if (target == null)
             return;
 
+        // SparkEffect를 발동합니다.
         motionScript.TriggerSparkEffects();
-        StartCoroutine(ActivateAndFadeSparkEffect2());
-        float spacing = 0.4f; // 총알 사이의 간격
-        int rows = 2; // 행의 수
-        int columns = 3; // 열의 수
 
-        // 3x3 직사각형 패턴으로 총알 발사
-        for (int x = 0; x < columns; x++)
+        int numberOfBulletsPerRow = 3;
+        int numberOfRows = 4;
+        float spacing = 0.5f;
+
+        for (int row = 0; row < numberOfRows; row++)
         {
-            for (int y = 0; y < rows; y++)
+            for (int col = 0; col < numberOfBulletsPerRow; col++)
             {
-                // 발사 지점 계산
-                Vector3 spawnPosition = firePoint.position + (transform.right * (x - 1) * spacing) + (transform.up * (y - 1) * spacing);
-
-                GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
+                // 각각의 총알 인스턴스를 생성합니다.
+                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
                 Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
                 if (bulletRigidbody != null)
                 {
-                    Vector3 shootDirection = -transform.forward;
-                    bulletRigidbody.AddForce(shootDirection * bulletSpeed, ForceMode.Impulse);
+                    // 총알의 위치를 조정하여 3x4 형태로 배치합니다.
+                    Vector3 offset = new Vector3((col - numberOfBulletsPerRow / 2) * spacing, row * spacing, 0f);
+                    bullet.transform.position += offset;
 
-                    Vector3 upwardForceVector = transform.up * upwardForce;
+                    // 타겟의 위치로 총알의 방향을 조정합니다.
+                    Vector3 targetDirection = target.position - bullet.transform.position;
+
+                    // 타겟 방향으로 총알을 직접 회전시킵니다.
+                    bullet.transform.rotation = Quaternion.LookRotation(targetDirection.normalized);
+
+                    // 총알 발사
+                    Vector3 forwardForce = targetDirection.normalized * bulletSpeed;
+                    bulletRigidbody.AddForce(forwardForce, ForceMode.Impulse);
+
+                    // 업워드 힘 추가 (음의 값으로 수정)
+                    Vector3 upwardForceVector = Vector3.up * upwardForce;
                     bulletRigidbody.AddForce(upwardForceVector, ForceMode.Impulse);
                 }
 
                 bullet.AddComponent<BulletCollisionHandler>();
-                Destroy(bullet, DestroyTime);
+                // 각각의 총알에 대해 1초 후에 파괴합니다.
+                Destroy(bullet, 0.5f);
             }
         }
     }
@@ -161,8 +178,10 @@ public class Turret3 : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
+
     public void DeactivateSparkEffect()
     {
+
         // Effect1 비활성화 또는 다른 로직 추가
         GameObject effect1 = transform.Find("Effect1").gameObject;
         if (effect1 != null)
@@ -171,6 +190,7 @@ public class Turret3 : MonoBehaviour
         }
     }
 
+
     public void ActivateSparkEffect()
     {
         if (sparkEffectPrefab != null)
@@ -178,47 +198,15 @@ public class Turret3 : MonoBehaviour
             sparkEffectInstance = Instantiate(sparkEffectPrefab, transform.position, Quaternion.identity);
             sparkEffectInstance.SetActive(true);
         }
-    }
 
+
+    }
     private void DeactivateSparkEffect2()
     {
         if (sparkEffect2.activeSelf)
         {
             sparkEffect2.SetActive(false);
         }
-    }
-
-    IEnumerator ActivateAndFadeSparkEffect2()
-    {
-        // sparkEffect2의 Renderer 컴포넌트를 가져옵니다.
-        Renderer renderer = sparkEffect2.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            // 활성화 상태로 설정
-            sparkEffect2.SetActive(true);
-
-            Color initialColor = renderer.material.color;
-            float time = 0;
-
-            // 초기 알파값을 0으로 설정
-            initialColor.a = 0;
-            renderer.material.color = initialColor;
-
-            // 페이드인: 알파값을 0에서 1로 변경
-            while (initialColor.a < 1)
-            {
-                time += Time.deltaTime / fadeSpeed; // fadeSpeed로 나누어 점진적으로 증가
-                initialColor.a = Mathf.Lerp(0, 1, time); // 알파값을 0에서 1로 보간
-                renderer.material.color = initialColor; // 색상 업데이트
-                yield return null; // 다음 프레임까지 기다림
-            }
-        }
-
-        // 페이드인이 끝난 후 일정 시간(예: 3초) 유지
-        yield return new WaitForSeconds(3f);
-
-        // 시간이 지난 후 비활성화
-        sparkEffect2.SetActive(false);
     }
 
 }

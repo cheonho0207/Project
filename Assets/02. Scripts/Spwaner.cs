@@ -8,8 +8,8 @@ public class Spawner : MonoBehaviour
 {
     public Transform enemyPrefab;
     public Transform spawnPoint;
-    public float timeBetweenWaves = 3f;
-    private float countdown = 10f; // 첫 번째 웨이브에 대한 초기 카운트다운
+    public float timeBetweenWaves = 5f;
+    private float countdown = 30f; // 첫 번째 웨이브에 대한 초기 카운트다운
     private int waveNumber = 1;
     private bool isFirstWave = true; // 첫 번째 웨이브 여부를 확인하기 위한 플래그
 
@@ -18,13 +18,13 @@ public class Spawner : MonoBehaviour
     private float timeRemaining;
 
     // 추가된 변수
-    private int totalEnemiesToSpawn = 10;
+    private int totalEnemiesToSpawn = 5;
     private int spawnedEnemyCount = 0;
 
     void Start()
     {
-        // 10초 후에 SpawnWave 메서드를 호출합니다.
-        InvokeRepeating("SpawnWave", 10f, 1f);
+        // 30초 후에 SpawnWave 메서드를 호출합니다.
+        InvokeRepeating("SpawnWave", 30f, 5f);
 
         // 타이머 초기화
         timeRemaining = 30f;
