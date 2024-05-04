@@ -15,14 +15,14 @@ public class Turret3 : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public Transform partToRotate; // 이 부분 삭제
+    public float turnspeed = 1f;
     public GameObject bulletPrefab;
     public Transform firePoint;
     private Animator anim;
 
     [Header("Bullet Attributes")]
-    public float bulletSpeed = 20f;
+    public float bulletSpeed = 5f;
     public float upwardForce = 5f;
-    public float turnspeed = 1f;
     private bool arrowSpawned = false;
     public int power3;
     private Transform SpPoint;
@@ -83,53 +83,55 @@ public class Turret3 : MonoBehaviour
 
     void Update()
     {
-        if (target == null)
+        if (target == null || Vector3.Distance(transform.position, target.position) > range)
+        {
+            if (arrowSpawned)
+            {
+                StopAllCoroutines(); // 화살 발사 중지
+                arrowSpawned = false;
+            }
             return;
+        }
 
         Enemy enemyScript = target.GetComponent<Enemy>();
         if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
         {
-            // 타겟과의 거리를 계산합니다.
-            float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-            // 거리가 사정 거리 이내인 경우에만 발사합니다.
-            if (distanceToTarget <= range)
+            if (fireCountdown <= 0f)
             {
-                if (fireCountdown <= 0f)
+                anim.SetTrigger("Attack");
+                fireCountdown = 1f / fireRate;
+                if (!arrowSpawned)
                 {
-                    Shoot();
-                    anim.SetTrigger("Attack");
-                    fireCountdown = 1f / fireRate;
+                    StartCoroutine(FireArrowsContinuously(3.0f, 30)); // 30 arrows
+                    arrowSpawned = true;
                 }
             }
             else if (!sparkEffect2.activeSelf)
             {
                 sparkEffect2.SetActive(true);
                 Invoke("DeactivateSparkEffect2", 3f);
-                StartCoroutine(FireArrowsContinuously(3.0f, 30));
+
             }
 
-            fireCountdown -= Time.deltaTime * 2;
+            fireCountdown -= Time.deltaTime;
         }
     }
     IEnumerator FireArrowsContinuously(float duration, int arrowCount)
     {
-        float endTime = Time.time + duration;
-        int arrowsFired = 0;
-
-        while (Time.time <= endTime && arrowsFired < arrowCount)
+        float interval = duration / arrowCount; // 발사 간격을 계산합니다.
+        for (int i = 0; i < arrowCount; i++)
         {
             Shoot();
-            arrowsFired++;
-            yield return new WaitForSeconds(duration / arrowCount);  // 전체 시간을 화살 개수로 나눠서 발사 간격 결정
+            yield return new WaitForSeconds(interval); // 계산된 간격만큼 대기합니다.
         }
-        arrowSpawned = false;  // 발사 완료 후 플래그 초기화
+        arrowSpawned = false; // 발사 완료 후 플래그 초기화
     }
+
     void Shoot()
     {
         // 발사 위치를 위한 무작위 오프셋 추가
-        float horizontalOffset = Random.Range(-0.3f, 0.3f); // 좌우로 1 유닛 범위 내에서 무작위
-        float verticalOffset = Random.Range(-0.5f, 0.5f); // 상하로 0.5 유닛 범위 내에서 무작위
+        float horizontalOffset = Random.Range(-0.3f, 0.3f); // 좌우 무작위 오프셋을 줄입니다.
+        float verticalOffset = Random.Range(-0.3f, 0.3f); // 상하 무작위 오프셋을 줄입니다.
 
         // 발사 위치 수정
         Vector3 firePosition = firePoint.position + new Vector3(horizontalOffset, verticalOffset, 0);
