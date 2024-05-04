@@ -1639,7 +1639,7 @@ MonoBehaviour:
   spawntower: {fileID: 0}
   prefeb1: {fileID: 6892075073708110240, guid: 04738edd5de1eb247a22f60eb50197ab, type: 3}
   prefeb2: {fileID: 2555298714750529507, guid: a237a4572c79e9f40b2a5281dffc6fb3, type: 3}
-  prefeb3: {fileID: 4037546278796783181, guid: d9c4d5ce58ec78948b94dc9449d7ef7d, type: 3}
+  prefeb3: {fileID: 4037546278796783181, guid: f1be4ab26ec161147a3006775c0f8590, type: 3}
   prefeb4: {fileID: 0}
   prefeb5: {fileID: 0}
   prefeb6: {fileID: 0}
