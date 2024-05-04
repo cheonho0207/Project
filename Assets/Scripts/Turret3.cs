@@ -9,7 +9,7 @@ public class Turret3 : MonoBehaviour
 
     [Header("Attributes")]
     public float range = 3f;
-    public float fireRate = 2f;
+    public float fireRate = 1f;
     private float fireCountdown = 0f;
 
     [Header("Unity Setup Fields")]
@@ -20,9 +20,9 @@ public class Turret3 : MonoBehaviour
     private Animator anim;
 
     [Header("Bullet Attributes")]
-    public float bulletSpeed = 3f;
+    public float bulletSpeed = 20f;
     public float upwardForce = 5f;
-
+    public float turnspeed = 1f;
     private bool arrowSpawned = false;
     public int power3;
     private Transform SpPoint;
@@ -106,51 +106,61 @@ public class Turret3 : MonoBehaviour
             {
                 sparkEffect2.SetActive(true);
                 Invoke("DeactivateSparkEffect2", 3f);
+                StartCoroutine(FireArrowsContinuously(3.0f, 30));
             }
 
-            fireCountdown -= Time.deltaTime *2;
+            fireCountdown -= Time.deltaTime * 2;
         }
     }
+    IEnumerator FireArrowsContinuously(float duration, int arrowCount)
+    {
+        float endTime = Time.time + duration;
+        int arrowsFired = 0;
 
+        while (Time.time <= endTime && arrowsFired < arrowCount)
+        {
+            Shoot();
+            arrowsFired++;
+            yield return new WaitForSeconds(duration / arrowCount);  // 전체 시간을 화살 개수로 나눠서 발사 간격 결정
+        }
+        arrowSpawned = false;  // 발사 완료 후 플래그 초기화
+    }
     void Shoot()
     {
-        if (firePoint == null)
+        // 발사 위치를 위한 무작위 오프셋 추가
+        float horizontalOffset = Random.Range(-0.3f, 0.3f); // 좌우로 1 유닛 범위 내에서 무작위
+        float verticalOffset = Random.Range(-0.5f, 0.5f); // 상하로 0.5 유닛 범위 내에서 무작위
+
+        // 발사 위치 수정
+        Vector3 firePosition = firePoint.position + new Vector3(horizontalOffset, verticalOffset, 0);
+
+        // 화살 생성 및 방향 설정
+        GameObject bullet = Instantiate(bulletPrefab, firePosition, Quaternion.identity);
+        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+
+        if (bulletRigidbody != null)
         {
-            Debug.LogError("포인트가 포탑에 할당되지 않았습니다.");
-            return;
+            bulletRigidbody.useGravity = false;
+            Vector3 shootingDirection = partToRotate.forward; // 부품이 가리키는 방향을 발사 방향으로 사용
+            bulletRigidbody.AddForce(shootingDirection * bulletSpeed, ForceMode.Impulse);
         }
 
-        if (target == null)
-            return;
+        // 설정한 시간 후 화살 파괴
+        Destroy(bullet, DestroyTime);
+    }
 
-        motionScript.TriggerSparkEffects();
-        StartCoroutine(ActivateAndFadeSparkEffect2());
-        float spacing = 0.4f; // 총알 사이의 간격
-        int rows = 2; // 행의 수
-        int columns = 3; // 열의 수
-
-        // 3x3 직사각형 패턴으로 총알 발사
-        for (int x = 0; x < columns; x++)
+    class BulletCollisionHandler : MonoBehaviour
+    {
+        public void Initialize()
         {
-            for (int y = 0; y < rows; y++)
+            GetComponent<Collider>().isTrigger = true; // Start with trigger disabled
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
             {
-                // 발사 지점 계산
-                Vector3 spawnPosition = firePoint.position + (transform.right * (x - 1) * spacing) + (transform.up * (y - 1) * spacing);
-
-                GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
-                Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-
-                if (bulletRigidbody != null)
-                {
-                    Vector3 shootDirection = -transform.forward;
-                    bulletRigidbody.AddForce(shootDirection * bulletSpeed, ForceMode.Impulse);
-
-                    Vector3 upwardForceVector = transform.up * upwardForce;
-                    bulletRigidbody.AddForce(upwardForceVector, ForceMode.Impulse);
-                }
-
-                bullet.AddComponent<BulletCollisionHandler>();
-                Destroy(bullet, DestroyTime);
+                GetComponent<Collider>().isTrigger = false; // Enable trigger when hitting an enemy
             }
         }
     }
