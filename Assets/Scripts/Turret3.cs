@@ -42,7 +42,7 @@ public class Turret3 : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.1f);
+        InvokeRepeating("UpdateTarget", 0f, 0.1f);  // 감지 빈도를 0.1초로 변경
         anim = GetComponent<Animator>();
         SpPoint = GameObject.Find("SpPoint").transform;
         power3 = 550;
@@ -52,7 +52,6 @@ public class Turret3 : MonoBehaviour
             Debug.LogError("씬에서 Motion2_2 스크립트를 찾을 수 없습니다.");
         }
         sparkEffect2.SetActive(false);
-
         fireRate = 1f;
     }
 
@@ -96,24 +95,18 @@ public class Turret3 : MonoBehaviour
         Enemy enemyScript = target.GetComponent<Enemy>();
         if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
         {
-            if (fireCountdown <= 0f)
+            if (!arrowSpawned)
             {
                 anim.SetTrigger("Attack");
-                fireCountdown = 1f / fireRate;
-                if (!arrowSpawned)
-                {
-                    StartCoroutine(FireArrowsContinuously(3.0f, 30)); // 30 arrows
-                    arrowSpawned = true;
-                }
+                StartCoroutine(FireArrowsContinuously(3.0f, 30)); // 30 arrows
+                arrowSpawned = true;
             }
-            else if (!sparkEffect2.activeSelf)
+
+            if (!sparkEffect2.activeSelf)
             {
                 sparkEffect2.SetActive(true);
                 Invoke("DeactivateSparkEffect2", 3f);
-
             }
-
-            fireCountdown -= Time.deltaTime;
         }
     }
     IEnumerator FireArrowsContinuously(float duration, int arrowCount)
