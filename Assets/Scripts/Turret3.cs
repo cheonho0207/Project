@@ -42,7 +42,7 @@ public class Turret3 : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.1f);  // 감지 빈도를 0.1초로 변경
+        InvokeRepeating("UpdateTarget", 0f, 0.03f);
         anim = GetComponent<Animator>();
         SpPoint = GameObject.Find("SpPoint").transform;
         power3 = 550;
@@ -52,6 +52,7 @@ public class Turret3 : MonoBehaviour
             Debug.LogError("씬에서 Motion2_2 스크립트를 찾을 수 없습니다.");
         }
         sparkEffect2.SetActive(false);
+
         fireRate = 1f;
     }
 
@@ -60,6 +61,7 @@ public class Turret3 : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
+
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
@@ -73,10 +75,31 @@ public class Turret3 : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            if (!arrowSpawned)
+            {
+                arrowSpawned = true;
+                anim.SetTrigger("Attack");
+                StartCoroutine(FireArrowsContinuously(3.0f, 30)); // 30 arrows
+            }
         }
         else
         {
+            if (target != null)
+            {
+                StartCoroutine(DelayDeactivation()); // Call Coroutine for delay
+            }
+        }
+    }
+
+    IEnumerator DelayDeactivation()
+    {
+        yield return new WaitForSeconds(3f); // Delay deactivation for 3 seconds
+
+        if (target != null && Vector3.Distance(transform.position, target.position) > range)
+        {
             target = null;
+            StopAllCoroutines(); // Stop firing arrows if the target moves out of range
+            arrowSpawned = false;
         }
     }
 
@@ -84,40 +107,31 @@ public class Turret3 : MonoBehaviour
     {
         if (target == null || Vector3.Distance(transform.position, target.position) > range)
         {
-            if (arrowSpawned)
+            if (arrowSpawned && !IsInvoking("DelayDeactivation"))
             {
-                StopAllCoroutines(); // 화살 발사 중지
-                arrowSpawned = false;
+                StartCoroutine(DelayDeactivation()); // Ensure coroutine isn't already running
             }
             return;
         }
 
-        Enemy enemyScript = target.GetComponent<Enemy>();
-        if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
+        if (!sparkEffect2.activeSelf)
         {
-            if (!arrowSpawned)
-            {
-                anim.SetTrigger("Attack");
-                StartCoroutine(FireArrowsContinuously(3.0f, 30)); // 30 arrows
-                arrowSpawned = true;
-            }
-
-            if (!sparkEffect2.activeSelf)
-            {
-                sparkEffect2.SetActive(true);
-                Invoke("DeactivateSparkEffect2", 3f);
-            }
+            sparkEffect2.SetActive(true);
+            Invoke("DeactivateSparkEffect2", 3f);
         }
     }
     IEnumerator FireArrowsContinuously(float duration, int arrowCount)
     {
-        float interval = duration / arrowCount; // 발사 간격을 계산합니다.
-        for (int i = 0; i < arrowCount; i++)
+        float endTime = Time.time + duration;
+        int arrowsFired = 0;
+
+        while (Time.time <= endTime && arrowsFired < arrowCount)
         {
             Shoot();
-            yield return new WaitForSeconds(interval); // 계산된 간격만큼 대기합니다.
+            arrowsFired++;
+            yield return new WaitForSeconds(duration / arrowCount);  // 전체 시간을 화살 개수로 나눠서 발사 간격 결정
         }
-        arrowSpawned = false; // 발사 완료 후 플래그 초기화
+        arrowSpawned = false;  // 발사 완료 후 플래그 초기화
     }
 
     void Shoot()
