@@ -117,11 +117,12 @@ public class Turret4 : MonoBehaviour
 
             if (bulletRigidbody != null)
             {
+                bulletRigidbody.useGravity = false;
                 float increasedBulletSpeed = 5f;
-                Vector3 forwardForce = bullet.transform.forward * increasedBulletSpeed;
+                Vector3 forwardForce = bullet.transform.forward * increasedBulletSpeed;  // 전방으로 힘을 가함
                 bulletRigidbody.AddForce(forwardForce, ForceMode.Impulse);
-                Vector3 upwardForceVector = Vector3.up * (upwardForce / 2); // 강도를 조절
-                bulletRigidbody.AddForce(upwardForceVector, ForceMode.Impulse);
+                Vector3 forwardVector = bullet.transform.forward * (upwardForce / 2);  // 'up' 대신 'forward' 방향으로 강도 조절
+                bulletRigidbody.AddForce(forwardVector, ForceMode.Impulse);
             }
 
             Destroy(bullet, 0.8f);
@@ -144,7 +145,21 @@ public class Turret4 : MonoBehaviour
                 effect1.SetActive(false);
             }
         }
-   
+    class BulletCollisionHandler : MonoBehaviour
+    {
+        public void Initialize()
+        {
+            GetComponent<Collider>().isTrigger = true; // Start with trigger disabled
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                GetComponent<Collider>().isTrigger = false; // Enable trigger when hitting an enemy
+            }
+        }
+    }
 
     public void ActivateSparkEffect()
     {
