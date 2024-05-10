@@ -26,7 +26,6 @@ public class ButtonManager : MonoBehaviour
     public Button Tower1;
     public Button Tower2;
     public Button Tower3;
-    public Vector3 prefeb2Position = new Vector3(0f, 0.356f, 0f);
     void Start()
     {
         textUI.gameObject.SetActive(false);
