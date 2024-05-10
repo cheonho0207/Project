@@ -117,6 +117,22 @@ public class Turret : MonoBehaviour
         // 일정 시간이 지난 후에 총알을 파괴합니다.
         Destroy(bullet, 0.4f);
     }
+
+    class BulletCollisionHandler : MonoBehaviour
+    {
+        public void Initialize()
+        {
+            GetComponent<Collider>().isTrigger = true; // Start with trigger disabled
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                GetComponent<Collider>().isTrigger = false; // Enable trigger when hitting an enemy
+            }
+        }
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
