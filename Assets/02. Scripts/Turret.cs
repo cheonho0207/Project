@@ -8,7 +8,7 @@ public class Turret : MonoBehaviour
     private Transform target;
 
     [Header("Attributes")]
-    public float range = 1.7f;
+    public float range = 1.3f;
     public float fireRate = 1f;
     private float fireCountdown = 0f;
 
@@ -75,7 +75,7 @@ public class Turret : MonoBehaviour
             Vector3 dir = target.position - transform.position;
             Quaternion LookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = LookRotation.eulerAngles;
-            rotation.y += 92f;
+            rotation.y += 90f;
             partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
             if (fireCountdown <= 0f)
@@ -104,6 +104,7 @@ public class Turret : MonoBehaviour
         {
             // 총알의 로컬 회전 x 값을 80도로 설정합니다.
             bullet.transform.localRotation = Quaternion.Euler(80, 40, 0);
+            Vector3 shootingDirection = partToRotate.forward;
 
             // 터렛의 현재 방향을 고려하여 총알의 전방 힘을 설정합니다.
             Vector3 forwardForce = firePoint.forward * bulletSpeed;
