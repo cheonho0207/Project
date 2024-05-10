@@ -42,7 +42,9 @@ public class Turret : MonoBehaviour
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+             Vector3 positionDifference = transform.position - enemy.transform.position;
+        positionDifference.y = 0; // y축을 무시하고 계산
+        float distanceToEnemy = positionDifference.magnitude; // Vector3.magnitude 사용
             if (distanceToEnemy < shortestDistance)
             {
                 shortestDistance = distanceToEnemy;
@@ -73,7 +75,7 @@ public class Turret : MonoBehaviour
             Vector3 dir = target.position - transform.position;
             Quaternion LookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = LookRotation.eulerAngles;
-            rotation.y += 90f;
+            rotation.y += 92f;
             partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
             if (fireCountdown <= 0f)
