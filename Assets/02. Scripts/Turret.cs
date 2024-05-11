@@ -9,7 +9,7 @@ public class Turret : MonoBehaviour
 
     [Header("Attributes")]
     public float range = 1.3f;
-    public float fireRate = 1f;
+    public float fireRate = 3f;
     private float fireCountdown = 0f;
    
 
@@ -30,7 +30,7 @@ public class Turret : MonoBehaviour
     private GameObject sparkEffectInstance; // 이 줄 추가
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.05f);
+        InvokeRepeating("UpdateTarget", 0f, 0.1f);
         float updateRate = Mathf.Clamp(0.1f - GameObject.FindGameObjectsWithTag(enemyTag).Length * 0.01f, 0.02f, 0.1f);
         playerAnimator = GetComponent<Animator>();
 
@@ -67,17 +67,15 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateTarget();
         if (target == null)
             return;
-
-        // 대상을 향해 부드럽게 회전
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        // 발사 메커니즘
         Enemy enemyScript = target.GetComponent<Enemy>();
+        
+            Vector3 dir = target.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
+            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
         if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
         {
             if (fireCountdown <= 0f)
@@ -86,9 +84,9 @@ public class Turret : MonoBehaviour
                 playerAnimator.SetTrigger("Shooting");
                 fireCountdown = 1f / fireRate;
             }
-
-            fireCountdown -= Time.deltaTime;
         }
+
+        fireCountdown -= Time.deltaTime;
     }
 
     void Shoot()
