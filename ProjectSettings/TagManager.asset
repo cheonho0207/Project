@@ -13,6 +13,7 @@ TagManager:
   - Effect2
   - Player2
   - Turret4
+  - Turret
   layers:
   - Default
   - TransparentFX

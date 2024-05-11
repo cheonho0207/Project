@@ -1652,7 +1652,6 @@ MonoBehaviour:
   Tower1: {fileID: 1001409256}
   Tower2: {fileID: 797460268}
   Tower3: {fileID: 1212895451}
-  prefeb2Position: {x: 0, y: 0.356, z: 0}
 --- !u!1 &524512314
 GameObject:
   m_ObjectHideFlags: 0
