@@ -105,6 +105,7 @@ public class Turret3 : MonoBehaviour
 
     void Update()
     {
+
         if (target == null || Vector3.Distance(transform.position, target.position) > range)
         {
             if (arrowSpawned && !IsInvoking("DelayDeactivation"))
@@ -119,6 +120,7 @@ public class Turret3 : MonoBehaviour
             sparkEffect2.SetActive(true);
             Invoke("DeactivateSparkEffect2", 3f);
         }
+
     }
     IEnumerator FireArrowsContinuously(float duration, int arrowCount)
     {
