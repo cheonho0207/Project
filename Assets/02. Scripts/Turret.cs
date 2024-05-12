@@ -103,15 +103,8 @@ public class Turret : MonoBehaviour
 
         if (bulletRigidbody != null)
         {
-            // 고정된 발사 각도 설정
-            float fixedAngle = 45.0f; // 일반적으로 곡사 화살/총알의 최적 각도
-            Quaternion fixedRotation = Quaternion.Euler(fixedAngle, firePoint.eulerAngles.y, 0);
-            bullet.transform.rotation = fixedRotation;
-
-            // 전방 힘 계산: 고정된 각도와 속도로 발사합니다.
-            float forceMagnitude = bulletSpeed; // 발사 속도 (이 값을 조절하여 거리 변경)
-            Vector3 forwardForce = fixedRotation * Vector3.forward * forceMagnitude;
-            bulletRigidbody.AddForce(forwardForce, ForceMode.Impulse);
+            Vector3 shootingDirection = (target.position - firePoint.position).normalized;
+            bulletRigidbody.velocity = shootingDirection * bulletSpeed;
         }
 
         // 일정 시간이 지난 후에 총알을 파괴합니다.
