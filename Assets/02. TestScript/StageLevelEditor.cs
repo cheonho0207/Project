@@ -184,6 +184,7 @@ public class StageLevelEditor : Editor
         if (GUI.Button(new Rect(140f, 70f, 100f, 30f), "Wall"))
         {
             manager.curEditType = StageLevelManager.StageCellType.Wall;
+            manager.PreviewObject();
         }
 
         if (GUI.Button(new Rect(260f, 70f, 100f, 30f), "ItemBox"))

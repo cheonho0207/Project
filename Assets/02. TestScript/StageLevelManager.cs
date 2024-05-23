@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Serialization;
+using UnityEditor;
 
 public class StageLevelManager : MonoBehaviour
 {
-    [SerializeField]
+    
+    private GameObject obj;
+
+   [SerializeField]
     private Preview preview;
 
     [XmlRoot("stageInfo")]
@@ -129,18 +133,22 @@ public class StageLevelManager : MonoBehaviour
         {
             case StageCellType.Wall:
                 prefab = wallPrefab;
+                obj = wallPrefab;
                 break;
 
             case StageCellType.ItemBox:
                 prefab = itemBoxPrefab;
+                obj = itemBoxPrefab;
                 break;
 
             case StageCellType.Goal:
                 prefab = goalPrefab;
+                obj = goalPrefab;
                 break;
 
             case StageCellType.Player:
                 prefab = playerPrefab;
+                obj = playerPrefab;
                 break;
         }
         return prefab;
@@ -163,5 +171,19 @@ public class StageLevelManager : MonoBehaviour
         Vector3 newPos = new Vector3(x, 0f, -z);
         Vector3 correction = new Vector3((stageSize * 0.5f), 0f, -(stageSize * 0.5f));
         tile.transform.localPosition = newPos - correction - new Vector3(-0.5f, 0f, 0.5f);
+    }
+
+    public void PreviewObject()
+    {
+        GameObject newObject = Instantiate(obj);
+        Vector3 mousePos = Event.current.mousePosition;
+        Ray ray = HandleUtility.GUIPointToWorldRay(mousePos);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject hitObj = hit.collider.gameObject;
+            newObject.transform.position = hitObj.transform.position;
+        }
     }
 }
