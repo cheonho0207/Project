@@ -8,10 +8,15 @@ public class Turret : MonoBehaviour
     private Transform target;
 
     [Header("Attributes")]
+<<<<<<< HEAD
     public float range = 5;
     public float fireRate = 1f;
+=======
+    public float range = 1.3f;
+    public float fireRate = 3f;
+>>>>>>> seon2
     private float fireCountdown = 0f;
-
+   
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -30,9 +35,11 @@ public class Turret : MonoBehaviour
     private GameObject sparkEffectInstance; // 이 줄 추가
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
-
+        InvokeRepeating("UpdateTarget", 0f, 0.1f);
+        float updateRate = Mathf.Clamp(0.1f - GameObject.FindGameObjectsWithTag(enemyTag).Length * 0.01f, 0.02f, 0.1f);
         playerAnimator = GetComponent<Animator>();
+
+
     }
 
     void UpdateTarget()
@@ -42,7 +49,9 @@ public class Turret : MonoBehaviour
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+             Vector3 positionDifference = transform.position - enemy.transform.position;
+        positionDifference.y = 0; // y축을 무시하고 계산
+        float distanceToEnemy = positionDifference.magnitude; // Vector3.magnitude 사용
             if (distanceToEnemy < shortestDistance)
             {
                 shortestDistance = distanceToEnemy;
@@ -64,29 +73,28 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateTarget();
         if (target == null)
             return;
-
-        // 대상이 Enemy이고 적이 살아있으며 경로 끝에 도달하고 HP가 0이라면 공격하지 않습니다.
         Enemy enemyScript = target.GetComponent<Enemy>();
+        
+            Vector3 dir = target.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
+            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
         if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
         {
-            Vector3 dir = target.position - transform.position;
-            Quaternion LookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = LookRotation.eulerAngles;
-            rotation.y += 90f;
-            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
             if (fireCountdown <= 0f)
             {
                 Shoot();
                 playerAnimator.SetTrigger("Shooting");
                 fireCountdown = 1f / fireRate;
             }
-
-            fireCountdown -= Time.deltaTime;
         }
+
+        fireCountdown -= Time.deltaTime;
     }
+
     void Shoot()
     {
         if (firePoint == null)
@@ -101,25 +109,46 @@ public class Turret : MonoBehaviour
 
         if (bulletRigidbody != null)
         {
-            // 총알의 로컬 회전 x 값을 80도로 설정합니다.
-            bullet.transform.localRotation = Quaternion.Euler(80, 40, 0);
-
-            // 터렛의 현재 방향을 고려하여 총알의 전방 힘을 설정합니다.
-            Vector3 forwardForce = firePoint.forward * bulletSpeed;
-            bulletRigidbody.AddForce(forwardForce, ForceMode.Impulse);
-
-            // 상향 힘을 계산하고 적용합니다. (조절이 필요할 수 있습니다.)
-            Vector3 upwardForceVector = Vector3.up * (upwardForce / 2); // 강도를 조절
-            bulletRigidbody.AddForce(upwardForceVector, ForceMode.Impulse);
+            Vector3 shootingDirection = (target.position - firePoint.position).normalized;
+            bulletRigidbody.velocity = shootingDirection * bulletSpeed;
         }
 
         // 일정 시간이 지난 후에 총알을 파괴합니다.
         Destroy(bullet, 0.4f);
     }
+
+    class BulletCollisionHandler : MonoBehaviour
+    {
+        void Start()
+        {
+            // 이 컴포넌트가 부착된 GameObject의 Collider 설정
+            Collider collider = GetComponent<Collider>();
+            if (collider != null)
+            {
+                collider.isTrigger = false; // 일반적인 충돌로 설정
+            }
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                // 적과 충돌했을 때의 로직 구현
+                // 예: 적에게 데미지를 주고 총알 파괴
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    // 적에게 데미지 주기 로직 추가
+                }
+                Destroy(gameObject); // 총알 파괴
+            }
+        }
+    }
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.color = Color.red;       
+        Vector3 gizmoPosition = transform.position - new Vector3(0, 0.6f, 0);
+        Gizmos.DrawWireSphere(gizmoPosition, range);
     }
 
    

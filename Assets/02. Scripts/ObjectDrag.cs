@@ -16,6 +16,7 @@ public class ObjectDrag : MonoBehaviour
         turret = GetComponent<Turret>();
         turret2 = GetComponent<Turret2>();
         turret3 = GetComponent<Turret3>();
+
     }
 
     private void OnMouseUp()

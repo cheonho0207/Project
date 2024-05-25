@@ -70,6 +70,8 @@ public class ButtonManager : MonoBehaviour
             coinScore -= 5;
             UpdateCoinScoreText();
             selectedPrefeb = prefeb2;
+          
+
         }
         else
         {
@@ -219,7 +221,9 @@ public class ButtonManager : MonoBehaviour
     {
         spawntower = GameObject.Find("Grid");
         //spawntower.GetComponent<BuildingSystem>().SpawnTower();
+
         spawntower.GetComponent<BuildingSystem>().InitializeWithObject(selectedPrefeb);
+       
     }
 
     private void UpdateCoinScoreText()
