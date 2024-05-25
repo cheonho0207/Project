@@ -182,8 +182,7 @@ public class Turret2 : MonoBehaviour
 
 
     }
-  
-    private void DeactivateSparkEffect2() 
+    private void DeactivateSparkEffect2()
     {
         if (sparkEffect2.activeSelf)
         {

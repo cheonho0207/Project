@@ -118,7 +118,7 @@ public class BuildingSystem : MonoBehaviour
 
         RaycastHit[] hits;
         hits = Physics.RaycastAll(ray);
-        if (hits[1].collider.CompareTag("Tile"))
+        /*if (hits[1].collider.CompareTag("Tile"))
         {
             Debug.Log("Spawn Tower");
             GameObject obj = Instantiate(prefeb, position, Quaternion.identity);
@@ -128,7 +128,7 @@ public class BuildingSystem : MonoBehaviour
         else
         {
             Debug.Log("You Can`t Spawn Tower here");
-        }
+        }*/
         /*
         if (Physics.Raycast(ray, out hit))
         {

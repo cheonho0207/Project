@@ -8,13 +8,8 @@ public class Turret : MonoBehaviour
     private Transform target;
 
     [Header("Attributes")]
-<<<<<<< HEAD
-    public float range = 5;
-    public float fireRate = 1f;
-=======
     public float range = 1.3f;
     public float fireRate = 3f;
->>>>>>> seon2
     private float fireCountdown = 0f;
    
 
@@ -68,7 +63,6 @@ public class Turret : MonoBehaviour
             target = null;
         }
     }
-
 
     // Update is called once per frame
     void Update()
