@@ -22,5 +22,5 @@ public class ObjectData
     public GameObject Prefab { get; private set; }
 
     [field: SerializeField]
-    public float range { get; set; }
+    public Quaternion Rotation { get; set; } = Quaternion.identity;
 }

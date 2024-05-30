@@ -1,10 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System; //
+using System.Collections; //
+using System.Collections.Generic; //
+using UnityEngine; //
 
 public class PlacementSystem : MonoBehaviour
 {
+    #region setting
     [SerializeField]
     private GameObject mouseIndicator; //cellIndicator
     [SerializeField]
@@ -36,7 +37,8 @@ public class PlacementSystem : MonoBehaviour
     private PreviewSystem preview;
 
     private Vector3Int lastDetectedPosition = Vector3Int.zero;
-    
+    #endregion
+
     private void Start()
     {
         StopPlacement();
@@ -44,7 +46,7 @@ public class PlacementSystem : MonoBehaviour
         furnitureData = new();
         //previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
-
+#region 타워설치
     public void StartPlacement(int ID)
     {
         StopPlacement();
@@ -114,7 +116,7 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnExit -= StopPlacement;
         lastDetectedPosition = Vector3Int.zero;
     }
-    
+    #endregion
     private void Update()
     {
         

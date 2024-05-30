@@ -1289,16 +1289,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
-  fireRate: 1
+  fireRate: 2
   enemyTag: Enemy
   partToRotate: {fileID: 7701249647764729987}
-<<<<<<< HEAD:Assets/shingigeon/Turret3.prefab
-  turnspeed: 10
-  bulletPrefab: {fileID: 3123637056175034757, guid: 9ae0b866b651d6844a2c3b72134517be, type: 3}
-=======
   turnspeed: 1
   bulletPrefab: {fileID: 6503065869277177687, guid: d7ece5eb7a922254eb1d771c6aa6917e, type: 3}
->>>>>>> seon2:Assets/Tower Div/tower2(div~)/Turret3.prefab
   firePoint: {fileID: 1242663774331261025}
   bulletSpeed: 10
   upwardForce: 3
