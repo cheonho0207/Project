@@ -138,12 +138,12 @@ public class Turret3 : MonoBehaviour
 
     void Shoot()
     {
-        // 발사 위치를 위한 무작위 오프셋 추가
+        // 발사 위치를 위한 무작위 X와 Z 오프셋 추가
         float horizontalOffset = Random.Range(-0.3f, 0.3f); // 좌우 무작위 오프셋을 줄입니다.
         float verticalOffset = Random.Range(-0.3f, 0.3f); // 상하 무작위 오프셋을 줄입니다.
 
         // 발사 위치 수정
-        Vector3 firePosition = firePoint.position + new Vector3(horizontalOffset, verticalOffset, 0);
+        Vector3 firePosition = firePoint.position + new Vector3(horizontalOffset, 0, verticalOffset); // X와 Z 오프셋을 적용합니다.
 
         // 화살 생성 및 방향 설정
         GameObject bullet = Instantiate(bulletPrefab, firePosition, Quaternion.identity);
@@ -153,6 +153,7 @@ public class Turret3 : MonoBehaviour
         {
             bulletRigidbody.useGravity = false;
             Vector3 shootingDirection = partToRotate.forward; // 부품이 가리키는 방향을 발사 방향으로 사용
+
             bulletRigidbody.AddForce(shootingDirection * bulletSpeed, ForceMode.Impulse);
         }
 
