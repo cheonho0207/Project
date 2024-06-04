@@ -5,6 +5,8 @@ using UnityEditor;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using System;
+using UnityEngine.UIElements;
 
 [CustomEditor(typeof(StageLevelManager))]
 public class StageLevelEditor : Editor
@@ -219,6 +221,13 @@ public class StageLevelEditor : Editor
                 {
                     var tileType = manager.curEditType;
                     tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+
+
+                    Vector3 tilePosition = hit.point;
+                    //GlobalVariables.selectedData.AddObjectAt(gridPosition, tilePosition);
+
+                    // 타일을 선택한 위치에 배치하고, selectedData에 할당
+                    //PlaceTileAndAssignToSelectedData(manager.curEditType, tilePosition);
                 }
             }
         }
