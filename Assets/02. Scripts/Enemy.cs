@@ -242,6 +242,7 @@ public class Enemy : MonoBehaviour
             {
                 DeadEnemyCount = 0;
                 SceneManager.LoadScene("WinScene");
+                currHp = 100.0f;
             }
 
             StopTweenPath();

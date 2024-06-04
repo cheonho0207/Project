@@ -149,11 +149,42 @@ public class Turret3 : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePosition, Quaternion.identity);
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
+        // 화살 회전 값 설정
+        Vector3 shootingDirection = Vector3.zero;
+        Quaternion bulletRotation = Quaternion.identity;
+
         if (bulletRigidbody != null)
         {
             bulletRigidbody.useGravity = false;
-            Vector3 shootingDirection = partToRotate.forward; // 부품이 가리키는 방향을 발사 방향으로 사용
 
+            // 터렛의 회전 방향에 따라 화살의 회전 값을 설정
+            Vector3 turretForward = partToRotate.forward;
+
+            if (Vector3.Dot(turretForward, Vector3.forward) > 0.5f) // Z 양방향
+            {
+                shootingDirection = Vector3.forward;
+                bulletRotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (Vector3.Dot(turretForward, Vector3.back) > 0.5f) // Z 음방향
+            {
+                shootingDirection = Vector3.back;
+                bulletRotation = Quaternion.Euler(180, 0, 0);
+            }
+            else if (Vector3.Dot(turretForward, Vector3.right) > 0.5f) // X 양방향
+            {
+                shootingDirection = Vector3.right;
+                bulletRotation = Quaternion.Euler(0, 90, 0);
+            }
+            else if (Vector3.Dot(turretForward, Vector3.left) > 0.5f) // X 음방향
+            {
+                shootingDirection = Vector3.left;
+                bulletRotation = Quaternion.Euler(0, -90, 0);
+            }
+
+            // 화살의 회전 값을 설정
+            bullet.transform.rotation = bulletRotation;
+
+            // 화살에 힘을 가해 발사
             bulletRigidbody.AddForce(shootingDirection * bulletSpeed, ForceMode.Impulse);
         }
 
@@ -242,5 +273,6 @@ public class Turret3 : MonoBehaviour
         // 시간이 지난 후 비활성화
         sparkEffect2.SetActive(false);
     }
+
 
 }
