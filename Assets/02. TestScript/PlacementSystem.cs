@@ -85,10 +85,10 @@ public class PlacementSystem : MonoBehaviour
         GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
         newObject.transform.position = grid.CellToWorld(gridPosition);
         placedGameObjects.Add(newObject);
-        GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ?
+        GlobalVariables.selectedData = database.objectsData[selectedObjectIndex].ID == 0 ?
             floorData :
             furnitureData;
-        selectedData.AddObjectAt(gridPosition,
+        GlobalVariables.selectedData.AddObjectAt(gridPosition,
             database.objectsData[selectedObjectIndex].Size,
             database.objectsData[selectedObjectIndex].ID,
             placedGameObjects.Count - 1);
