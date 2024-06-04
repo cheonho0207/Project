@@ -5580,7 +5580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1289673948}
   spawnPoint: {fileID: 1996201717}
-  sparkEffectPrefab: {fileID: 0}
+  sparkEffectPrefab: {fileID: 5468854988849748017, guid: dfba7708cdcaad04890615437e279436, type: 3}
   timeBetweenWaves: 5
   timeText: {fileID: 1631616044}
 --- !u!4 &1603720228
@@ -5701,7 +5701,7 @@ PrefabInstance:
     - target: {fileID: 292723560177271546, guid: 8de398557494c194bbdda358ae230dcb, type: 3}
       propertyPath: sparkEffectPrefab
       value: 
-      objectReference: {fileID: 6177581640418137328, guid: efc16b47ffb508e4b95bfbb7386bd369, type: 3}
+      objectReference: {fileID: 5468854988849748017, guid: dfba7708cdcaad04890615437e279436, type: 3}
     - target: {fileID: 3242561697936468584, guid: 8de398557494c194bbdda358ae230dcb, type: 3}
       propertyPath: positionPoint.Array.data[0]
       value: 
