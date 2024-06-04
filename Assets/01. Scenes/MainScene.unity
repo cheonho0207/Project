@@ -526,9 +526,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e8e84ae388bfa4ab690358dd39e109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtScore: {fileID: 0}
-  notresetButton: {fileID: 0}
-  resetButton: {fileID: 0}
+  txtScore: {fileID: 955395916}
+  notresetButton: {fileID: 1892856018}
+  resetButton: {fileID: 840671670}
 --- !u!4 &595222685
 Transform:
   m_ObjectHideFlags: 0
@@ -747,7 +747,7 @@ GameObject:
   - component: {fileID: 840671670}
   m_Layer: 5
   m_Name: Start
-  m_TagString: Untagged
+  m_TagString: Reset
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
 {
     public Transform enemyPrefab;
     public Transform spawnPoint;
+    public GameObject sparkEffectPrefab; // SparkEffect 프리팹 추가
     public float timeBetweenWaves = 3f;
     private float countdown = 10f; // 첫 번째 웨이브에 대한 초기 카운트다운
     private int waveNumber = 1;
@@ -27,7 +28,7 @@ public class Spawner : MonoBehaviour
         InvokeRepeating("SpawnWave", 10f, 5f);
 
         // 타이머 초기화
-        timeRemaining = 30f;
+        timeRemaining = 10f;
         UpdateTimeText();
     }
 
@@ -72,6 +73,7 @@ public class Spawner : MonoBehaviour
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(sparkEffectPrefab, spawnPoint.position, Quaternion.Euler(0, 90, 90)); // SparkEffect 추가
     }
 
     // UI에 시간을 업데이트합니다.

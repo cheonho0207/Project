@@ -1337,7 +1337,7 @@ GameObject:
   - component: {fileID: 1202701757}
   m_Layer: 5
   m_Name: Exit
-  m_TagString: Untagged
+  m_TagString: Reset
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1557,9 +1557,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e8e84ae388bfa4ab690358dd39e109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtScore: {fileID: 0}
+  txtScore: {fileID: 1510761285}
   notresetButton: {fileID: 0}
-  resetButton: {fileID: 0}
+  resetButton: {fileID: 1202701757}
 --- !u!4 &1500768994
 Transform:
   m_ObjectHideFlags: 0

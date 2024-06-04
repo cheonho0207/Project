@@ -18,29 +18,47 @@ public class Enemy : MonoBehaviour
     public string enemyTag = "Enemy";
     Animator enemyAnimator;
     public Transform partToRotate;
-
+    public GameObject sparkEffectPrefab;
     public int Hp = 15;
     public float fadeDuration = 1.0f; // 투명해지는 데 걸리는 시간
     public Image imgHpBar;
     private int initHP;
-   
+
     private bool isFading = false;
     private float destroyDelay = 3.0f;
     private bool isDead = false;
+    public static Image HpBar2;
 
+    private static float currHp;
+    private static readonly float initHP2 = 100.0f;
 
     public static int TotalEnemyCount;
     public static int DeadEnemyCount;
-    // 시작 전에 호출됨
+
+    private Score score;
+
+    // 정적 생성자를 이용해 static 변수를 초기화합니다.
+    static Enemy()
+    {
+        currHp = initHP2;
+    }
+
     void Start()
     {
-        
         InvokeRepeating("UpdateTarget", 0f, 0.01f);
         enemyAnimator = GetComponent<Animator>();
         initHP = Hp;
-       
 
-}
+        if (HpBar2 == null)
+        {
+            HpBar2 = GameObject.FindGameObjectWithTag("HP")?.GetComponent<Image>();
+        }
+
+        DisplayHealth();
+
+        score = GameObject.Find("Score").GetComponent<Score>();
+
+    }
 
     void UpdateTarget()
     {
@@ -60,17 +78,18 @@ public class Enemy : MonoBehaviour
                 enemyAnimator.SetBool("Run", false); // 적이 죽었을 때 "Run" 애니메이션 중지
             }
 
-            // 적이 경로 끝에 도달하고 HP가 0일 때 사망 처리
             if (GetComponent<Tween_Path>().HasReachedEnd() && Hp <= 0)
             {
-                DeadEnemyCount++; // 정적 DeadEnemyCount를 증가
-                if (DeadEnemyCount >= 9) // 4가 아니라 5로 변경
+                DeadEnemyCount++;
+                Debug.Log("DeadEnemyCount: " + DeadEnemyCount);
+                if (DeadEnemyCount >= 9)
                 {
                     SceneManager.LoadScene("WinScene");
                 }
-                StopTweenPath(); // 적의 이동을 멈춥니다.
+                StopTweenPath();
                 StartCoroutine(DestroyEnemy());
                 isFading = true;
+                Score.Instance.Initialize();
             }
         }
         else
@@ -104,39 +123,37 @@ public class Enemy : MonoBehaviour
         {
             target = null;
 
-            // 추가: 경로에 없을 때도 HP가 0이면 사망 처리
             if (Hp <= 0 && !isFading)
             {
-                DeadEnemyCount++; // 정적 DeadEnemyCount를 증가
-                if (DeadEnemyCount >= 9) // 4가 아니라 5로 변경
+                DeadEnemyCount++;
+                if (DeadEnemyCount >= 9)
                 {
                     SceneManager.LoadScene("WinScene");
                 }
                 StartCoroutine(DestroyEnemy());
-                isFading = true; // 여러 번의 코루틴 호출을 방지하기 위해 여기서 isFading을 true로 설정합니다.
+                isFading = true;
             }
         }
     }
 
-    // 매 프레임마다 호출됨
     void Update()
     {
         if (isDead)
         {
-            // 죽은 상태에서의 투명성 및 이동 처리
-            // ...
             return;
         }
 
         if (Hp <= 0 && !isFading)
         {
-            DeadEnemyCount++; // 정적 DeadEnemyCount를 증가
-            if (DeadEnemyCount >= 6) // 4가 아니라 5로 변경
+            DeadEnemyCount++;
+            if (DeadEnemyCount >= 9)
             {
                 SceneManager.LoadScene("WinScene");
+
+
             }
             StartCoroutine(DestroyEnemy());
-           
+
             return;
         }
 
@@ -166,6 +183,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
+
     void Attack()
     {
         int randomAttack = Random.Range(1, 3);
@@ -181,12 +200,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     public void winScene()
     {
         SceneManager.LoadScene("WinScene");
     }
-
 
     void OnCollisionEnter(Collision collision)
     {
@@ -219,33 +236,26 @@ public class Enemy : MonoBehaviour
 
         if (Hp <= 0 && !isFading)
         {
-            DeadEnemyCount++; // 정적 DeadEnemyCount를 증가
-            if (DeadEnemyCount >= 9) // 4가 아니라 5로 변경
+            DeadEnemyCount++;
+            Debug.Log("DeadEnemyCount: " + DeadEnemyCount);
+            if (DeadEnemyCount >= 9)
             {
+                DeadEnemyCount = 0;
                 SceneManager.LoadScene("WinScene");
             }
 
             StopTweenPath();
             StartCoroutine(DestroyEnemy());
-            isFading = true; // 여러 번의 코루틴 호출을 방지하기 위해 여기서 isFading을 true로 설정합니다.
+            isFading = true;
         }
     }
 
-
-  
     IEnumerator DestroyEnemy()
     {
-        DeadEnemyCount++; // 정적 DeadEnemyCount를 증가
-        if (DeadEnemyCount >= 9) // 4가 아니라 5로 변경
-        {
-            SceneManager.LoadScene("WinScene");
-        }
-
         yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
+        Score.Instance.DipScore(50);
     }
-
-   
 
     private void OnDrawGizmosSelected()
     {
@@ -287,5 +297,35 @@ public class Enemy : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (currHp > 0.0f && other.CompareTag("Finish"))
+        {
+            Instantiate(sparkEffectPrefab, transform.position, Quaternion.Euler(0, -90, 0));
+            currHp -= 10.0f;
+            DisplayHealth();
+            Destroy(gameObject);
+            if (currHp <= 0.0f)
+            {
+                DeadEnemyCount = 0;
+                SceneManager.LoadScene("LoseScene");
+
+                currHp = 100.0f;
+            }
+        }
+    }
+
+    void DisplayHealth()
+    {
+        if (HpBar2 != null)
+        {
+            HpBar2.fillAmount = currHp / initHP2;
+        }
+        else
+        {
+            Debug.LogError("Unity Editor에서 HpBar2가 할당되지 않았습니다.");
+        }
     }
 }

@@ -16,6 +16,9 @@ TagManager:
   - Turret
   - FxTemporaire
   - Score
+  - HP
+  - Reset
+  - Goal
   layers:
   - Default
   - TransparentFX
