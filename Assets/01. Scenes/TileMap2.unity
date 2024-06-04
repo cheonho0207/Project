@@ -3704,6 +3704,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8697837578121557577, guid: 8c9477b926f918a43bc58ba61956a9b0, type: 3}
   m_PrefabInstance: {fileID: 786527409}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &786527411 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5301463264075815738, guid: 8c9477b926f918a43bc58ba61956a9b0, type: 3}
+  m_PrefabInstance: {fileID: 786527409}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &791178304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5553,6 +5558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1603720228}
   - component: {fileID: 1603720227}
+  - component: {fileID: 1603720229}
   m_Layer: 0
   m_Name: WavePoint
   m_TagString: Touch
@@ -5593,6 +5599,20 @@ Transform:
   - {fileID: 786527410}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1603720229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603720226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aace80aaf1d8f1342840557d28bf4ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparkEffect: {fileID: 786527411}
+  fadeDuration: 2
 --- !u!1001 &1619685328
 PrefabInstance:
   m_ObjectHideFlags: 0
