@@ -42,7 +42,7 @@ public class StageLevelEditor : Editor
 
         GUILayout.Space(20);
 
-        manager.stageSize = EditorGUILayout.IntSlider("Size", manager.stageSize, 5, 12);
+        manager.stageSize = EditorGUILayout.IntSlider("Size", manager.stageSize, 5, 16);
 
         EditorGUILayout.BeginHorizontal();
 
