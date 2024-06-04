@@ -497,6 +497,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483735705}
   m_CullTransparentMesh: 1
+--- !u!1 &595222683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 595222685}
+  - component: {fileID: 595222684}
+  m_Layer: 0
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &595222684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595222683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e8e84ae388bfa4ab690358dd39e109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtScore: {fileID: 0}
+  notresetButton: {fileID: 0}
+  resetButton: {fileID: 0}
+--- !u!4 &595222685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595222683}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &671120397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1754337637}
   - component: {fileID: 1754337636}
+  - component: {fileID: 1754337638}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1256,6 +1304,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1754337638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754337635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1821817781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1360,18 @@ MonoBehaviour:
   prefeb1: {fileID: 0}
   prefeb2: {fileID: 0}
   prefeb3: {fileID: 0}
+  prefeb4: {fileID: 0}
+  prefeb5: {fileID: 0}
+  prefeb6: {fileID: 0}
+  textUI: {fileID: 0}
+  textUI2: {fileID: 0}
+  textUI3: {fileID: 0}
+  textUI4: {fileID: 0}
+  coinScore: 60
+  coinScoreText: {fileID: 0}
+  Tower1: {fileID: 0}
+  Tower2: {fileID: 0}
+  Tower3: {fileID: 0}
 --- !u!4 &1821817783
 Transform:
   m_ObjectHideFlags: 0
@@ -1446,3 +1529,4 @@ SceneRoots:
   - {fileID: 1129395761}
   - {fileID: 671120400}
   - {fileID: 1821817783}
+  - {fileID: 595222685}
