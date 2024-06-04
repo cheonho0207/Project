@@ -203,9 +203,13 @@ public class StageLevelEditor : Editor
             manager.curEditType = StageLevelManager.StageCellType.Player;
         }
     }
+    
+    static int wayPointCount = 0;
 
     void PickTileEdit(StageLevelManager manager)
     {
+        string baseName = "WayPoint";
+
         Event e = Event.current;
         if (e.type == EventType.MouseDown && e.button == 0)
         {
@@ -220,12 +224,19 @@ public class StageLevelEditor : Editor
                 if (tile != null)
                 {
                     var tileType = manager.curEditType;
-                    tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                    if (tileType == StageLevelManager.StageCellType.ItemBox)
+                    {
+                        tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                        tile.transform.GetChild(0).name = baseName + wayPointCount;
+                        wayPointCount++;
+                    }
+                    else
+                    {
+                        tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                    }
+
                     //Vector3 tilePosition = hit.point;
                     //GlobalVariables.selectedData.AddObjectAt(gridPosition, tilePosition);
-
-                    // 타일을 선택한 위치에 배치하고, selectedData에 할당
-                    //PlaceTileAndAssignToSelectedData(manager.curEditType, tilePosition);
                 }
             }
         }
