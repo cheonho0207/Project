@@ -9,7 +9,7 @@ public class WayPointAttact : MonoBehaviour
     // 이름을 부여할 때 사용할 기본 이름
     public string baseName = "WayPoint";
 
-    void Start()
+    void Awake()
     {
         // 태그를 가진 모든 B 오브젝트들을 찾습니다.
         GameObject[] objectsToReparent = GameObject.FindGameObjectsWithTag(targetTag);

@@ -221,9 +221,7 @@ public class StageLevelEditor : Editor
                 {
                     var tileType = manager.curEditType;
                     tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
-
-
-                    Vector3 tilePosition = hit.point;
+                    //Vector3 tilePosition = hit.point;
                     //GlobalVariables.selectedData.AddObjectAt(gridPosition, tilePosition);
 
                     // 타일을 선택한 위치에 배치하고, selectedData에 할당
