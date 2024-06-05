@@ -7,6 +7,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System;
 using UnityEngine.UIElements;
+using UnityEditor.Rendering;
 
 [CustomEditor(typeof(StageLevelManager))]
 public class StageLevelEditor : Editor
@@ -41,7 +42,12 @@ public class StageLevelEditor : Editor
             EditorGUILayout.ObjectField("EndPoint prefab",
                                         manager.endpointPrefab,
                                         typeof(GameObject)) as GameObject;
-
+        /*
+        manager.editorDatabase =
+            EditorGUILayout.ObjectField("DataBase",
+                                        manager.editorDatabase,
+                                        typeof(ObjectsDatabaseSO)) as ObjectsDatabaseSO;
+        */
         GUILayout.Space(20);
 
         manager.stageSize = EditorGUILayout.IntSlider("Size", manager.stageSize, 5, 16);
@@ -185,22 +191,22 @@ public class StageLevelEditor : Editor
 
         if (GUI.Button(new Rect(140f, 70f, 100f, 30f), "Object"))
         {
-            manager.curEditType = StageLevelManager.StageCellType.Wall;
+            manager.curEditType = StageLevelManager.StageCellType.Object;
         }
 
         if (GUI.Button(new Rect(260f, 70f, 100f, 30f), "WayPoint"))
         {
-            manager.curEditType = StageLevelManager.StageCellType.ItemBox;
+            manager.curEditType = StageLevelManager.StageCellType.WayPoint;
         }
 
         if (GUI.Button(new Rect(380f, 70f, 100f, 30f), "StartPoint"))
         {
-            manager.curEditType = StageLevelManager.StageCellType.Goal;
+            manager.curEditType = StageLevelManager.StageCellType.StartPoint;
         }
 
         if (GUI.Button(new Rect(20f, 110f, 100f, 30f), "EndPoint"))
         {
-            manager.curEditType = StageLevelManager.StageCellType.Player;
+            manager.curEditType = StageLevelManager.StageCellType.EndPoint;
         }
     }
     
@@ -224,21 +230,77 @@ public class StageLevelEditor : Editor
                 if (tile != null)
                 {
                     var tileType = manager.curEditType;
-                    if (tileType == StageLevelManager.StageCellType.ItemBox)
+                    /*
+                    switch(tileType)
+                    {
+                        case StageLevelManager.StageCellType.None:
+                            tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                            break;
+
+                        case StageLevelManager.StageCellType.Object:
+                            tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                            //AddGridData(manager.GetTileTypePrefab(, tileType));
+                            break;
+
+                        case StageLevelManager.StageCellType.WayPoint:
+                            tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                            tile.transform.GetChild(0).name = baseName + wayPointCount;
+                            //AddGridData(manager.GetTileTypePrefab(0, tileType));
+                            wayPointCount++;
+                            break;
+
+                        case StageLevelManager.StageCellType.StartPoint:
+                            tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                            //AddGridData(manager.GetTileTypePrefab(1, tileType));
+                            break;
+
+                        case StageLevelManager.StageCellType.EndPoint:
+                            tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                            //AddGridData(manager.GetTileTypePrefab(2, tileType));
+                            break;
+                    }
+                    */
+
+                    if (tileType == StageLevelManager.StageCellType.WayPoint)
                     {
                         tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
                         tile.transform.GetChild(0).name = baseName + wayPointCount;
+                        //AddGridData(manager.GetTileTypePrefab(tileType));
                         wayPointCount++;
                     }
                     else
                     {
                         tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                        //AddGridData(manager.GetTileTypePrefab(tileType));
                     }
 
                     //Vector3 tilePosition = hit.point;
-                    //GlobalVariables.selectedData.AddObjectAt(gridPosition, tilePosition);
                 }
             }
         }
     }
+
+    #region Check Placement
+    public int selectedObjectIndex;
+
+    public List<GameObject> placedGameObjects = new();
+
+    void AddGridData(int ID, GameObject prefab)
+    {
+        selectedObjectIndex = StageLevelManager.editorDatabase.objectsData.FindIndex(data => data.ID == ID);
+        if (selectedObjectIndex < 0)
+        {
+            Debug.LogError($"No ID foudn {ID}");
+            return;
+        }
+
+        placedGameObjects.Add(prefab);
+        Vector3 mousePosition = Event.current.mousePosition;
+        Vector3Int gridPosition = StageLevelManager.grid.WorldToCell(mousePosition);
+        GlobalVariables.selectedData.AddObjectAt(gridPosition,
+            StageLevelManager.editorDatabase.objectsData[selectedObjectIndex].Size,
+            StageLevelManager.editorDatabase.objectsData[selectedObjectIndex].ID,
+            placedGameObjects.Count-1);
+    }
+    #endregion
 }

@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(TestEnemy))]
 public class EnemyMovement : MonoBehaviour
 {
-
+    private GameObject endPoint;
     private Transform target;
     private int wavepointIndex = 0;
 
@@ -15,6 +15,8 @@ public class EnemyMovement : MonoBehaviour
         enemy = GetComponent<TestEnemy>();
         
         target = Waypoints.points[0];
+
+        endPoint = GameObject.FindGameObjectWithTag("EndPoint");
     }
 
     void Update()
@@ -34,12 +36,24 @@ public class EnemyMovement : MonoBehaviour
     {
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {
-            EndPath();
+            //target = endPoint.transform;
+            //EndPath();
+            EndPoint();
             return;
         }
 
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+    }
+
+    void EndPoint()
+    {
+        target = endPoint.transform;
+        if(gameObject.transform == endPoint.transform)
+        {
+            EndPath();
+            return;
+        }
     }
 
     void EndPath()

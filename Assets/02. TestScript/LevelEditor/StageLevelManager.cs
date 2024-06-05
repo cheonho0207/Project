@@ -42,10 +42,10 @@ public class StageLevelManager : MonoBehaviour
     public enum StageCellType
     {
         None,
-        Wall,
-        ItemBox,
-        Goal,
-        Player,
+        Object,
+        WayPoint,
+        StartPoint,
+        EndPoint,
     }
 
     public List<StageEditTile> stageTiles = new List<StageEditTile>();
@@ -55,6 +55,14 @@ public class StageLevelManager : MonoBehaviour
     public GameObject waypointPrefab;
     public GameObject startpointPrefab;
     public GameObject endpointPrefab;
+
+    static public ObjectsDatabaseSO editorDatabase;
+    
+    #region Check Placement
+    [SerializeField]
+    static public Grid grid;
+
+    #endregion
 
     public int stageId = 0;
     public int stageSize = 16;
@@ -124,19 +132,19 @@ public class StageLevelManager : MonoBehaviour
         GameObject prefab = null;
         switch (type)
         {
-            case StageCellType.Wall:
+            case StageCellType.Object:
                 prefab = objectPrefab;
                 break;
 
-            case StageCellType.ItemBox:
+            case StageCellType.WayPoint:
                 prefab = waypointPrefab;
                 break;
 
-            case StageCellType.Goal:
+            case StageCellType.StartPoint:
                 prefab = startpointPrefab;
                 break;
 
-            case StageCellType.Player:
+            case StageCellType.EndPoint:
                 prefab = endpointPrefab;
                 break;
         }

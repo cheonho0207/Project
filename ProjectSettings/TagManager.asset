@@ -17,6 +17,7 @@ TagManager:
   - FxTemporaire
   - WayPoint
   - StartPoint
+  - EndPoint
   layers:
   - Default
   - TransparentFX
