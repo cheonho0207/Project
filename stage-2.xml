@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <stageInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <id>1</id>
+  <id>2</id>
   <size>12</size>
   <cells>
     <x>0</x>
@@ -40,15 +40,15 @@
   <cells>
     <x>0</x>
     <y>7</y>
-    <type>ItemBox</type>
-  </cells>
-  <cells>
-    <x>0</x>
-    <y>8</y>
     <type>None</type>
   </cells>
   <cells>
     <x>0</x>
+    <y>8</y>
+    <type>None</type>
+  </cells>
+  <cells>
+    <x>0</x>
     <y>9</y>
     <type>None</type>
   </cells>
@@ -105,12 +105,12 @@
   <cells>
     <x>1</x>
     <y>8</y>
-    <type>None</type>
+    <type>EndPoint</type>
   </cells>
   <cells>
     <x>1</x>
     <y>9</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>1</x>
@@ -150,17 +150,17 @@
   <cells>
     <x>2</x>
     <y>5</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>2</x>
     <y>6</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>2</x>
     <y>7</y>
-    <type>ItemBox</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>2</x>
@@ -170,7 +170,7 @@
   <cells>
     <x>2</x>
     <y>9</y>
-    <type>ItemBox</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>2</x>
@@ -210,7 +210,7 @@
   <cells>
     <x>3</x>
     <y>5</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>3</x>
@@ -220,7 +220,7 @@
   <cells>
     <x>3</x>
     <y>7</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>3</x>
@@ -230,7 +230,7 @@
   <cells>
     <x>3</x>
     <y>9</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>3</x>
@@ -270,7 +270,7 @@
   <cells>
     <x>4</x>
     <y>5</y>
-    <type>ItemBox</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>4</x>
@@ -280,17 +280,17 @@
   <cells>
     <x>4</x>
     <y>7</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>4</x>
     <y>8</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>4</x>
     <y>9</y>
-    <type>ItemBox</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>4</x>
@@ -330,12 +330,12 @@
   <cells>
     <x>5</x>
     <y>5</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>5</x>
     <y>6</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>5</x>
@@ -395,7 +395,7 @@
   <cells>
     <x>6</x>
     <y>6</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>6</x>
@@ -450,22 +450,22 @@
   <cells>
     <x>7</x>
     <y>5</y>
-    <type>ItemBox</type>
+    <type>None</type>
   </cells>
   <cells>
     <x>7</x>
     <y>6</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>7</x>
     <y>7</y>
-    <type>ItemBox</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>7</x>
     <y>8</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>7</x>
@@ -525,7 +525,7 @@
   <cells>
     <x>8</x>
     <y>8</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>8</x>
@@ -565,27 +565,27 @@
   <cells>
     <x>9</x>
     <y>4</y>
-    <type>ItemBox</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>9</x>
     <y>5</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>9</x>
     <y>6</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>9</x>
     <y>7</y>
-    <type>ItemBox</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>9</x>
     <y>8</y>
-    <type>None</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>9</x>
@@ -625,7 +625,7 @@
   <cells>
     <x>10</x>
     <y>4</y>
-    <type>ItemBox</type>
+    <type>WayPoint</type>
   </cells>
   <cells>
     <x>10</x>
@@ -685,7 +685,7 @@
   <cells>
     <x>11</x>
     <y>4</y>
-    <type>Goal</type>
+    <type>StartPoint</type>
   </cells>
   <cells>
     <x>11</x>

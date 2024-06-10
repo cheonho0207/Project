@@ -41,11 +41,11 @@ public class TestEnemyMovement : MonoBehaviour
         // 만약 적 오브젝트가 웨이포인트에 도착했다면, 다음으로 가장 가까운 웨이포인트 찾기
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
-            Debug.Log("Reached waypoint: " + currentWaypoint.name);
+            //Debug.Log("Reached waypoint: " + currentWaypoint.name);
             // 현재 웨이포인트를 제거하고, 다음으로 가장 가까운 웨이포인트 찾기
             remainingWaypoints.Remove(currentWaypoint);
             currentWaypoint = FindClosestWaypoint();
-            Debug.Log("Next closest waypoint: " + (currentWaypoint != null ? currentWaypoint.name : "None"));
+            //Debug.Log("Next closest waypoint: " + (currentWaypoint != null ? currentWaypoint.name : "None"));
         }
     }
 
