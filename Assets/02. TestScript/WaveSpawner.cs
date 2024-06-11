@@ -54,6 +54,7 @@ public class WaveSpawner : MonoBehaviour
         Wave wave = waves[waveIndex];
 
         EnemiesAlive = wave.count;
+        Debug.Log("³²Àº Àû : " + EnemiesAlive);
 
         for (int i = 0; i < wave.count; i++)
         {
