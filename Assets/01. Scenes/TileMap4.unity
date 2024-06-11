@@ -10686,6 +10686,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2096283675}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1602832693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1602832695}
+  - component: {fileID: 1602832694}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1602832694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602832693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13006ccdda1325843a884a09633d7ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageTiles: []
+  editTilePrefab: {fileID: 0}
+  objectPrefab: {fileID: 0}
+  waypointPrefab: {fileID: 0}
+  startpointPrefab: {fileID: 0}
+  endpointPrefab: {fileID: 0}
+  editorDatabase: {fileID: 0}
+  stageId: 0
+  stageSize: 16
+  curEditType: 0
+--- !u!4 &1602832695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602832693}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1976447, y: -5.1875887, z: 6.2192016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1602930159
 GameObject:
   m_ObjectHideFlags: 0
@@ -14018,9 +14072,10 @@ MonoBehaviour:
   waypointPrefab: {fileID: 7122568415931752844, guid: 9578091e174e89c41845c7901d95cc2c, type: 3}
   startpointPrefab: {fileID: 2378164526664668868, guid: c0028d81ee03f784988e545307f6a849, type: 3}
   endpointPrefab: {fileID: 5133255400892569147, guid: 5d740a484d0a0824d9f6a4e5e4fbddfd, type: 3}
+  editorDatabase: {fileID: 11400000, guid: 6160d79b613ecf14eb037f599eb74ce4, type: 2}
   stageId: 2
   stageSize: 12
-  curEditType: 4
+  curEditType: 0
 --- !u!4 &2096283675
 Transform:
   m_ObjectHideFlags: 0
@@ -15000,3 +15055,4 @@ SceneRoots:
   - {fileID: 286616109}
   - {fileID: 222779484}
   - {fileID: 467090127}
+  - {fileID: 1602832695}

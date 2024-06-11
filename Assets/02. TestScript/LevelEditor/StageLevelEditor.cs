@@ -12,14 +12,29 @@ using UnityEditor.Rendering;
 [CustomEditor(typeof(StageLevelManager))]
 public class StageLevelEditor : Editor
 {
+
+    public ObjectsDatabaseSO editorDatabase;
+
+    SerializedProperty databaseProperty;
+
+    void OnEnable()
+    {
+        // serializedObject를 사용하여 속성에 대한 참조를 가져옵니다.
+        databaseProperty = serializedObject.FindProperty("editorDatabase");
+    }
+
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(databaseProperty, new GUIContent("Database"));
+        serializedObject.ApplyModifiedProperties();
+
         StageLevelManager manager = target as StageLevelManager;
 
         GUILayout.Space(10);
 
         manager.editTilePrefab =
-            EditorGUILayout.ObjectField("타일 프리펩",
+            EditorGUILayout.ObjectField("타일 프리팹",
                                         manager.editTilePrefab,
                                         typeof(GameObject)) as GameObject;
 
@@ -42,12 +57,20 @@ public class StageLevelEditor : Editor
             EditorGUILayout.ObjectField("EndPoint prefab",
                                         manager.endpointPrefab,
                                         typeof(GameObject)) as GameObject;
-        /*
+
+        GUILayout.Space(10);
+
         manager.editorDatabase =
             EditorGUILayout.ObjectField("DataBase",
                                         manager.editorDatabase,
-                                        typeof(ObjectsDatabaseSO)) as ObjectsDatabaseSO;
-        */
+                                        typeof(ObjectsDatabaseSO), false) as ObjectsDatabaseSO;
+
+        manager.grid =
+            EditorGUILayout.ObjectField("Grid",
+                                        manager.grid,
+                                        typeof(Grid)) as Grid;
+
+
         GUILayout.Space(20);
 
         manager.stageSize = EditorGUILayout.IntSlider("Size", manager.stageSize, 5, 16);
@@ -230,37 +253,38 @@ public class StageLevelEditor : Editor
                 if (tile != null)
                 {
                     var tileType = manager.curEditType;
-                    /*
+                    
                     switch(tileType)
                     {
                         case StageLevelManager.StageCellType.None:
                             tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
+                            AddGridData(0, manager.GetTileTypePrefab(tileType));
                             break;
 
                         case StageLevelManager.StageCellType.Object:
                             tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
-                            //AddGridData(manager.GetTileTypePrefab(, tileType));
+                            AddGridData(1, manager.GetTileTypePrefab(tileType));
                             break;
 
                         case StageLevelManager.StageCellType.WayPoint:
                             tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
                             tile.transform.GetChild(0).name = baseName + wayPointCount;
-                            //AddGridData(manager.GetTileTypePrefab(0, tileType));
+                            AddGridData(2, manager.GetTileTypePrefab(tileType));
                             wayPointCount++;
                             break;
 
                         case StageLevelManager.StageCellType.StartPoint:
                             tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
-                            //AddGridData(manager.GetTileTypePrefab(1, tileType));
+                            AddGridData(3, manager.GetTileTypePrefab(tileType));
                             break;
 
                         case StageLevelManager.StageCellType.EndPoint:
                             tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
-                            //AddGridData(manager.GetTileTypePrefab(2, tileType));
+                            AddGridData(4, manager.GetTileTypePrefab(tileType));
                             break;
                     }
-                    */
-
+                    
+                    /*
                     if (tileType == StageLevelManager.StageCellType.WayPoint)
                     {
                         tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
@@ -273,6 +297,7 @@ public class StageLevelEditor : Editor
                         tile.EditType(tileType, manager.GetTileTypePrefab(tileType));
                         //AddGridData(manager.GetTileTypePrefab(tileType));
                     }
+                    */
 
                     //Vector3 tilePosition = hit.point;
                 }
@@ -285,8 +310,63 @@ public class StageLevelEditor : Editor
 
     public List<GameObject> placedGameObjects = new();
 
+
     void AddGridData(int ID, GameObject prefab)
     {
+    StageLevelManager manager = target as StageLevelManager;
+
+    if (manager == null)
+    {
+        Debug.LogError("StageLevelManager not found");
+        return;
+    }
+
+    // manager.grid가 null인지 확인하여 NullReferenceException 방지
+    if (manager.grid == null)
+    {
+        Debug.LogError("Grid not assigned in StageLevelManager");
+        return;
+    }
+
+    if (manager == null)
+    {
+        Debug.LogError("StageLevelManager not found");
+        return;
+    }
+
+    // editorDatabase가 null인지 확인하여 NullReferenceException 방지
+    if (manager.editorDatabase == null)
+    {
+        Debug.LogError("editorDatabase not initialized");
+        return;
+    }
+
+    int selectedObjectIndex = manager.editorDatabase.objectsData.FindIndex(data => data.ID == ID);
+    if (selectedObjectIndex < 0)
+    {
+        Debug.LogError($"No ID found {ID}");
+        return;
+    }
+
+    if (GlobalVariables.selectedData == null)
+    {
+        Debug.LogError("GlobalVariables.selectedData is null.");
+        return;
+    }
+
+    placedGameObjects.Add(prefab);
+
+    Vector3 mousePosition = Event.current.mousePosition;
+    Vector3Int gridPosition = manager.grid.WorldToCell(mousePosition);
+
+    GlobalVariables.selectedData.AddObjectAt(gridPosition,
+        manager.editorDatabase.objectsData[selectedObjectIndex].Size,
+        manager.editorDatabase.objectsData[selectedObjectIndex].ID,
+        placedGameObjects.Count - 1);
+    
+        Debug.Log(gridPosition + "좌표 안에 값을 저장했습니다.");
+        
+        /*
         selectedObjectIndex = StageLevelManager.editorDatabase.objectsData.FindIndex(data => data.ID == ID);
         if (selectedObjectIndex < 0)
         {
@@ -301,6 +381,7 @@ public class StageLevelEditor : Editor
             StageLevelManager.editorDatabase.objectsData[selectedObjectIndex].Size,
             StageLevelManager.editorDatabase.objectsData[selectedObjectIndex].ID,
             placedGameObjects.Count-1);
+        */
     }
     #endregion
 }
