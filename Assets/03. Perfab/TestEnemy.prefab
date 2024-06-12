@@ -2625,7 +2625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1026e7e0a21084782cbb6c62b63321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 3
+  startSpeed: 2
   speed: 0
   startHealth: 100
   worth: 50
@@ -2642,7 +2642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc5984e2075c3b4e951d341b537752d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
   endPoint: {fileID: 0}
 --- !u!1 &7625789292327415329
 GameObject:

@@ -4155,7 +4155,7 @@ MonoBehaviour:
   waves:
   - enemy: {fileID: 7529827614974205578, guid: 3e30a629d88f764429ac12f7928a2df8, type: 3}
     count: 10
-    rate: 2
+    rate: 5
   spawnPoint: {fileID: 222779484}
   timeBetweenWaves: 5
   waveCountdownText: {fileID: 0}
