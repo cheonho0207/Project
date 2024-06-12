@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
     private GameObject endPoint;
     private Transform target;
     private int wavepointIndex = 0;
+    private HPManager hpManager;
 
     private TestEnemy enemy;
 
@@ -60,6 +61,7 @@ public class EnemyMovement : MonoBehaviour
     {
         //PlayerStats.Lives--;
         WaveSpawner.EnemiesAlive--;
+        hpManager.HpDown();
         Destroy(gameObject);
     }
 
