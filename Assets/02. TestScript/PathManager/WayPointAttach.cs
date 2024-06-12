@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WayPointAttact : MonoBehaviour
+public class WayPointAttach : MonoBehaviour
 {
     // 찾을 프리팹 태그
     public string targetTag = "WayPoint";
