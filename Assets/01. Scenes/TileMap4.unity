@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4153,9 +4153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemy: {fileID: 3254366872986240887, guid: 3e30a629d88f764429ac12f7928a2df8, type: 3}
-    count: 5
-    rate: 3
+  - enemy: {fileID: 7529827614974205578, guid: 3e30a629d88f764429ac12f7928a2df8, type: 3}
+    count: 10
+    rate: 2
   spawnPoint: {fileID: 222779484}
   timeBetweenWaves: 5
   waveCountdownText: {fileID: 0}
@@ -12787,7 +12787,7 @@ SpriteRenderer:
   m_Size: {x: 7.44, y: 0.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!222 &1900796597
@@ -14014,10 +14014,10 @@ MonoBehaviour:
   - {fileID: 475823264}
   - {fileID: 563619344}
   editTilePrefab: {fileID: 6121508669740661807, guid: 36d2b640a0bc5bd439247d35814c633b, type: 3}
-  objectPrefab: {fileID: 5735552517207568645, guid: 70cd5c8578f100b4b864a94e09671e7c, type: 3}
+  objectPrefab: {fileID: 1213046709462209225, guid: 6c4a8511a38fa434f986343946943661, type: 3}
   waypointPrefab: {fileID: 7122568415931752844, guid: 9578091e174e89c41845c7901d95cc2c, type: 3}
   startpointPrefab: {fileID: 2378164526664668868, guid: c0028d81ee03f784988e545307f6a849, type: 3}
-  endpointPrefab: {fileID: 5133255400892569147, guid: 5d740a484d0a0824d9f6a4e5e4fbddfd, type: 3}
+  endpointPrefab: {fileID: 6933065346969798425, guid: 243a96035e3a64c4fa646b082811c507, type: 3}
   stageId: 2
   stageSize: 12
   curEditType: 4
