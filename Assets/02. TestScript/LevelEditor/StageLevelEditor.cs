@@ -70,6 +70,11 @@ public class StageLevelEditor : Editor
                                         manager.grid,
                                         typeof(Grid)) as Grid;
 
+        manager.selectedData =
+            EditorGUILayout.ObjectField("selectedData",
+                                        manager.selectedData,
+                                        typeof(GlobalVariables)) as GlobalVariables;
+
 
         GUILayout.Space(20);
 

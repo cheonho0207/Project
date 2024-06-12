@@ -21,7 +21,7 @@ MonoBehaviour:
   - <Name>k__BackingField: Object
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 5735552517207568645, guid: 70cd5c8578f100b4b864a94e09671e7c, type: 3}
+    <Prefab>k__BackingField: {fileID: 4634306593576264920, guid: 1ecdea10a72baf94697008d4408e8f1e, type: 3}
     <Rotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
   - <Name>k__BackingField: WayPoiny
     <ID>k__BackingField: 2
@@ -36,5 +36,5 @@ MonoBehaviour:
   - <Name>k__BackingField: EndPoint
     <ID>k__BackingField: 4
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 5133255400892569147, guid: 5d740a484d0a0824d9f6a4e5e4fbddfd, type: 3}
+    <Prefab>k__BackingField: {fileID: 5853351751870431481, guid: 9f7de8d049f362643872a034660ed315, type: 3}
     <Rotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}

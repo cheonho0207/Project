@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4153,7 +4153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemy: {fileID: 3254366872986240887, guid: 3e30a629d88f764429ac12f7928a2df8, type: 3}
+  - enemy: {fileID: 4665781416396691519, guid: 612cfea54b31f20489a8594a0e2e7d4c, type: 3}
     count: 5
     rate: 3
   spawnPoint: {fileID: 222779484}
@@ -9601,6 +9601,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2096283675}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1418815959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1418815961}
+  - component: {fileID: 1418815960}
+  m_Layer: 0
+  m_Name: StageGridData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1418815960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418815959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d52468ae7f3bba42896b1d2656f2434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1418815961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418815959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1421019800
 GameObject:
   m_ObjectHideFlags: 0
@@ -10685,60 +10729,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2096283675}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1602832693
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1602832695}
-  - component: {fileID: 1602832694}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1602832694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602832693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13006ccdda1325843a884a09633d7ba1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageTiles: []
-  editTilePrefab: {fileID: 0}
-  objectPrefab: {fileID: 0}
-  waypointPrefab: {fileID: 0}
-  startpointPrefab: {fileID: 0}
-  endpointPrefab: {fileID: 0}
-  editorDatabase: {fileID: 0}
-  stageId: 0
-  stageSize: 16
-  curEditType: 0
---- !u!4 &1602832695
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602832693}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.1976447, y: -5.1875887, z: 6.2192016}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1602930159
 GameObject:
@@ -12841,7 +12831,7 @@ SpriteRenderer:
   m_Size: {x: 7.44, y: 0.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!222 &1900796597
@@ -14068,11 +14058,13 @@ MonoBehaviour:
   - {fileID: 475823264}
   - {fileID: 563619344}
   editTilePrefab: {fileID: 6121508669740661807, guid: 36d2b640a0bc5bd439247d35814c633b, type: 3}
-  objectPrefab: {fileID: 5735552517207568645, guid: 70cd5c8578f100b4b864a94e09671e7c, type: 3}
+  objectPrefab: {fileID: 4634306593576264920, guid: 1ecdea10a72baf94697008d4408e8f1e, type: 3}
   waypointPrefab: {fileID: 7122568415931752844, guid: 9578091e174e89c41845c7901d95cc2c, type: 3}
   startpointPrefab: {fileID: 2378164526664668868, guid: c0028d81ee03f784988e545307f6a849, type: 3}
-  endpointPrefab: {fileID: 5133255400892569147, guid: 5d740a484d0a0824d9f6a4e5e4fbddfd, type: 3}
+  endpointPrefab: {fileID: 5853351751870431481, guid: 9f7de8d049f362643872a034660ed315, type: 3}
   editorDatabase: {fileID: 11400000, guid: 6160d79b613ecf14eb037f599eb74ce4, type: 2}
+  grid: {fileID: 895345878}
+  selectedData: {fileID: 1418815960}
   stageId: 2
   stageSize: 12
   curEditType: 0
@@ -15055,4 +15047,4 @@ SceneRoots:
   - {fileID: 286616109}
   - {fileID: 222779484}
   - {fileID: 467090127}
-  - {fileID: 1602832695}
+  - {fileID: 1418815961}

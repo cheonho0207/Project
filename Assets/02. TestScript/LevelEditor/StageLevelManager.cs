@@ -75,6 +75,9 @@ public class StageLevelManager : MonoBehaviour
     [SerializeField]
     public Grid grid;
 
+    [SerializeField]
+    public GlobalVariables selectedData;
+
     #endregion
 
     public int stageId = 0;
