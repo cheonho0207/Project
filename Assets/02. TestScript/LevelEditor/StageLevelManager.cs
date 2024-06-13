@@ -2,9 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Serialization;
+using UnityEditor;
 
 public class StageLevelManager : MonoBehaviour
 {
+    void OnEnable()
+    {
+        // manager.grid로 그리드 가져오기
+        grid = FindObjectOfType<Grid>();
+        if (grid == null)
+        {
+            Debug.LogWarning("Grid not found in the scene. Make sure to have a Grid GameObject in the scene.");
+        }
+    }
+
+
     [XmlRoot("stageInfo")]
     public class StageInfo
     {
@@ -56,11 +68,15 @@ public class StageLevelManager : MonoBehaviour
     public GameObject startpointPrefab;
     public GameObject endpointPrefab;
 
-    static public ObjectsDatabaseSO editorDatabase;
-    
+    public ObjectsDatabaseSO editorDatabase;
+
+
     #region Check Placement
     [SerializeField]
-    static public Grid grid;
+    public Grid grid;
+
+    [SerializeField]
+    public GlobalVariables selectedData;
 
     #endregion
 
