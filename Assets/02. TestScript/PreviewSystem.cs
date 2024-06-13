@@ -44,14 +44,15 @@ public class PreviewSystem : MonoBehaviour
             int count = 0;
             if (Input.GetMouseButtonDown(1))
             {
-                previewObject.transform.Rotate(Vector3.up, 90f);
+                previewObject.transform.GetChild(0).transform.Rotate(Vector3.up, 90f);
+                //previewObject.transform.Rotate(Vector3.up, 90f);
                 count++;
                 if (count == 4)
                 {
                     count -= 4;
                 }
             }
-
+            /*
             if (count == 0)
             {
                 cellIndicator.transform.localScale = new Vector3(
@@ -80,11 +81,13 @@ public class PreviewSystem : MonoBehaviour
                     cellIndicator.transform.localScale.y,
                     cellIndicator.transform.localScale.x);
             }
+            */
         }
         else
         {
             return;
         }
+            
     }
 
     private void PrepareCursor(Vector2Int size)

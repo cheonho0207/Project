@@ -4,17 +4,20 @@ using System.Collections;
 [RequireComponent(typeof(TestEnemy))]
 public class EnemyMovement : MonoBehaviour
 {
-
+    private GameObject endPoint;
     private Transform target;
     private int wavepointIndex = 0;
+    private HPManager hpManager;
 
     private TestEnemy enemy;
 
     void Start()
     {
         enemy = GetComponent<TestEnemy>();
+        
+        target = WayPoints.points[0];
 
-        target = Waypoints.points[0];
+        endPoint = GameObject.FindGameObjectWithTag("EndPoint");
     }
 
     void Update()
@@ -32,20 +35,33 @@ public class EnemyMovement : MonoBehaviour
 
     void GetNextWaypoint()
     {
-        if (wavepointIndex >= Waypoints.points.Length - 1)
+        if (wavepointIndex >= WayPoints.points.Length - 1)
         {
-            EndPath();
+            //target = endPoint.transform;
+            //EndPath();
+            EndPoint();
             return;
         }
 
         wavepointIndex++;
-        target = Waypoints.points[wavepointIndex];
+        target = WayPoints.points[wavepointIndex];
+    }
+
+    void EndPoint()
+    {
+        target = endPoint.transform;
+        if(gameObject.transform == endPoint.transform)
+        {
+            EndPath();
+            return;
+        }
     }
 
     void EndPath()
     {
         //PlayerStats.Lives--;
         WaveSpawner.EnemiesAlive--;
+        hpManager.HpDown();
         Destroy(gameObject);
     }
 
