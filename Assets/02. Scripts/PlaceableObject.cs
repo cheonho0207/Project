@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class PlaceableObject : MonoBehaviour
@@ -24,7 +23,7 @@ public class PlaceableObject : MonoBehaviour
     {
         if (BuildingSystem.current == null || BuildingSystem.current.gridLayout == null)
         {
-            Debug.LogError("BuildingSystem.current or gridLayout is not set");
+            Debug.Log("BuildingSystem.current or gridLayout is not set");
             return;
         }
 

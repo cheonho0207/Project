@@ -2219,7 +2219,6 @@ GameObject:
   - component: {fileID: 8600700810680704218}
   - component: {fileID: 8859084412897061857}
   - component: {fileID: 7759981530345539603}
-  - component: {fileID: 6266167449730076347}
   m_Layer: 0
   m_Name: Turret base
   m_TagString: Turret
@@ -2278,28 +2277,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8, y: 2.5, z: 1.8}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &6266167449730076347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4271624059850116112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24cce853f89f98441a986b99536e9f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 1.9
-  fireRate: 1
-  enemyTag: Enemy
-  partToRotate: {fileID: 0}
-  turnspeed: 10
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  bulletSpeed: 3
-  upwardForce: 4
-  sparkEffectPrefab: {fileID: 8562849757796561116}
 --- !u!1 &4367128335268083584
 GameObject:
   m_ObjectHideFlags: 0
