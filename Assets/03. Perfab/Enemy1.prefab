@@ -2672,7 +2672,6 @@ GameObject:
   - component: {fileID: 6636887654155840619}
   - component: {fileID: 4760308105839658559}
   - component: {fileID: 5646479422160514954}
-  - component: {fileID: 9197514978013106001}
   - component: {fileID: 8405445292810850452}
   m_Layer: 0
   m_Name: Enemy1
@@ -2751,25 +2750,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9197514978013106001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7388316941131022043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52c639ac9b6d5244bb53307ceedd5d80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 1
-  fireRate: 1.2
-  enemyTag: Enemy
-  partToRotate: {fileID: 6636887654155840619}
-  Hp: 5
-  fadeDuration: 1
-  imgHpBar: {fileID: 0}
 --- !u!54 &8405445292810850452
 Rigidbody:
   m_ObjectHideFlags: 0
