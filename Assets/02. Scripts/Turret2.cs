@@ -89,8 +89,8 @@ public class Turret2 : MonoBehaviour
         if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
         {
             Vector3 dir = target.position - transform.position;
-            Quaternion LookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = LookRotation.eulerAngles;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = lookRotation.eulerAngles;
             rotation.y += 90f;
             partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
@@ -98,24 +98,30 @@ public class Turret2 : MonoBehaviour
             float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
             // 기즈모 박스 영역 안에 있거나 거리가 사정 거리 이내인 경우에만 발사합니다.
-            if (sparkEffect2.activeSelf && distanceToTarget <= range)
+            if (distanceToTarget <= range)
             {
                 if (fireCountdown <= 0f)
-                { 
-                    Shoot();
+                {
+                    Shoot(); // 발사 메소드 호출
                     anim.SetTrigger("Attack");
                     fireCountdown = 1f / fireRate;
                 }
             }
-            else if (!sparkEffect2.activeSelf)
+
+            // 발사할 때마다 sparkEffect2를 활성화하고 일정 시간 후 비활성화합니다.
+            if (!sparkEffect2.activeSelf)
             {
                 sparkEffect2.SetActive(true);
                 Invoke("DeactivateSparkEffect2", 3f);
             }
-
-
-            fireCountdown -= Time.deltaTime;
         }
+        else
+        {
+            // 타겟이 유효하지 않거나 적이 더 이상 유효하지 않은 경우 target을 null로 설정합니다.
+            target = null;
+        }
+
+        fireCountdown -= Time.deltaTime;
     }
 
     void Shoot()

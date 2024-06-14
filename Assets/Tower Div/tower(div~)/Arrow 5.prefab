@@ -5304,6 +5304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 3
+  speed: 10
 --- !u!135 &3786756953137599986
 SphereCollider:
   m_ObjectHideFlags: 0
