@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class HPManager : MonoBehaviour
 {
-    public Image HpBar;
+    public static Image HpBar;
     public static readonly float initHP = 100.0f;
     public static float CurrHP = initHP;
 
@@ -21,11 +21,10 @@ public class HPManager : MonoBehaviour
         {
             CurrHP -= 10;
             DisplayHealth();
-            if (CurrHP <= 0.0f)
+            if (CurrHP < 0.0f)
             {
-                CurrHP = 10;
-                DisplayHealth();
-                //SceneManager.LoadScene("LoseScene");
+                CurrHP = 100;
+                SceneManager.LoadScene("LoseScene");
             }
         }
     }
@@ -38,7 +37,7 @@ public class HPManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Unity Editor에서 HpBar가 할당되지 않았습니다.");
+            Debug.LogError("Unity Editor에서 HpBar2가 할당되지 않았습니다.");
         }
     }
 }

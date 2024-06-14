@@ -21,8 +21,6 @@ public class TestEnemy : MonoBehaviour
 
     private bool isDead = false;
 
-    private Credit credit;
-
     void Start()
     {
         speed = startSpeed;
@@ -38,7 +36,6 @@ public class TestEnemy : MonoBehaviour
         if (health <= 0 && !isDead)
         {
             Die();
-            credit.SumCredit();
         }
     }
 
