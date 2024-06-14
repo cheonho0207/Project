@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class PlaceableObject : MonoBehaviour
@@ -21,6 +22,12 @@ public class PlaceableObject : MonoBehaviour
 
     private void CalculateSizeInCells()
     {
+        if (BuildingSystem.current == null || BuildingSystem.current.gridLayout == null)
+        {
+            Debug.LogError("BuildingSystem.current or gridLayout is not set");
+            return;
+        }
+
         Vector3Int[] vertices = new Vector3Int[Vertices.Length];
 
         for (int i = 0; i < vertices.Length; i++)
