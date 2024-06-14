@@ -12,7 +12,6 @@ public class StartPointAttach : MonoBehaviour
 
         foreach (GameObject obj in startObject)
         {
-            // B 오브젝트를 A 오브젝트의 자식으로 설정합니다.
             this.transform.SetParent(obj.transform);
             this.transform.position = obj.transform.position;
         }

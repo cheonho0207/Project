@@ -9,9 +9,10 @@ public class HPManager : MonoBehaviour
     public static readonly float initHP = 100.0f;
     public static float CurrHP = initHP;
 
-    void Start()
+    void Awake()
     {
         HpBar = GameObject.FindGameObjectWithTag("HP")?.GetComponent<Image>();
+        CurrHP = initHP;
     }
 
     public void HpDown()
@@ -22,9 +23,8 @@ public class HPManager : MonoBehaviour
             DisplayHealth();
             if (CurrHP < 0.0f)
             {
-                SceneManager.LoadScene("LoseScene");
-
                 CurrHP = 100;
+                SceneManager.LoadScene("LoseScene");
             }
         }
     }

@@ -33,6 +33,8 @@ public class TestEnemyMovement : MonoBehaviour
         {
             Debug.LogError("EndPoint not found! Make sure an object with the tag 'EndPoint' exists in the scene.");
         }
+
+        hpManager = FindObjectOfType<HPManager>();
     }
 
     void Update()
