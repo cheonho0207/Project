@@ -8,14 +8,14 @@ public class Turret : MonoBehaviour
    private Transform target;
 
     [Header("Attributes")]
-    public float range = 1.3f;
+    public float range = 1.2f;
     public float fireRate = 3f;
     private float fireCountdown = 0f;
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public Transform partToRotate;
-    public float turnspeed = 30f;
+    public float turnspeed = 60f;
     public GameObject bulletPrefab;
     public Transform firePoint;
     private Animator playerAnimator;
@@ -84,8 +84,6 @@ public class Turret : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-       
-
         if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
         {
             if (fireCountdown <= 0f)
@@ -114,14 +112,21 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        // 총알 프리팹을 인스턴스화합니다.
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+        if (target == null)
+        {
+            Debug.LogError("타겟이 없습니다.");
+            return;
+        }
 
+        // 타겟 방향으로 총알 발사
+        Vector3 shootingDirection = (target.position - firePoint.position).normalized;
+
+        // 총알 프리팹을 인스턴스화합니다.
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity); // 총알의 방향은 미리 정의된 방향으로 발사됩니다.
+        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
         if (bulletRigidbody != null)
         {
-            Vector3 shootingDirection = (target.position - firePoint.position).normalized;
             bulletRigidbody.velocity = shootingDirection * bulletSpeed;
         }
 

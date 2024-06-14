@@ -1256,11 +1256,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24cce853f89f98441a986b99536e9f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1.9
+  range: 1.2
   fireRate: 1
   enemyTag: Enemy
   partToRotate: {fileID: 8198945526555695538}
-  turnspeed: 10
+  turnspeed: 60
   bulletPrefab: {fileID: 2814070145257008197, guid: 39e532a0547cd2644990278f3ed1b1fa, type: 3}
   firePoint: {fileID: 6299967795240425937}
   bulletSpeed: 10
@@ -2235,8 +2235,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4271624059850116112}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.54, y: 0, z: -0.499}
+  m_LocalRotation: {x: -0, y: 0.99984777, z: -0, w: 0.017450355}
+  m_LocalPosition: {x: -0.49049756, y: 0, z: 0.5179591}
   m_LocalScale: {x: 0.5061373, y: 0.5061374, z: 0.5061374}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2244,7 +2244,7 @@ Transform:
   - {fileID: 2001111891531242720}
   - {fileID: 147924702570039037}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 178, z: 0}
 --- !u!114 &3529858823051236081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,11 +2290,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24cce853f89f98441a986b99536e9f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1.9
+  range: 1.2
   fireRate: 1
   enemyTag: Enemy
   partToRotate: {fileID: 0}
-  turnspeed: 10
+  turnspeed: 60
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   bulletSpeed: 3
@@ -4406,7 +4406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9005540514173222840
 Transform:
   m_ObjectHideFlags: 0
