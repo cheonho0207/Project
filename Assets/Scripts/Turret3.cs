@@ -31,7 +31,7 @@ public class Turret3 : MonoBehaviour
     public float turretUpwardForce = 10.0f;
 
     private Material sparkEffectMaterial;
-    public GameObject sparkEffectPrefab;
+    // GameObject sparkEffectPrefab;
     private GameObject sparkEffectInstance;
     private Motion2_2 motionScript;
 
@@ -44,7 +44,7 @@ public class Turret3 : MonoBehaviour
     {
         InvokeRepeating("UpdateTarget", 0f, 0.03f);
         anim = GetComponent<Animator>();
-        SpPoint = GameObject.Find("SpPoint").transform;
+        SpPoint = GameObject.Find("FirePoint").transform;
         power3 = 550;
         motionScript = GameObject.FindObjectOfType<Motion2_2>();
         if (motionScript == null)
@@ -195,11 +195,13 @@ public class Turret3 : MonoBehaviour
 
     public void ActivateSparkEffect()
     {
+        /*
         if (sparkEffectPrefab != null)
         {
             sparkEffectInstance = Instantiate(sparkEffectPrefab, transform.position, Quaternion.identity);
             sparkEffectInstance.SetActive(true);
         }
+        */
     }
 
     private void DeactivateSparkEffect2()

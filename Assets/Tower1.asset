@@ -16,20 +16,20 @@ MonoBehaviour:
   - <Name>k__BackingField: 111
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 7807723238573310027, guid: 96edbe4ed817a5d41bb1a10f29154b94, type: 3}
-    <Rotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+    <Prefab>k__BackingField: {fileID: 5210075591708956570, guid: c4d11c0a6ed1c594189db2048e4fc138, type: 3}
+    <Cost>k__BackingField: 5
   - <Name>k__BackingField: 222
     <ID>k__BackingField: 2
-    <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 1213046709462209225, guid: 6c4a8511a38fa434f986343946943661, type: 3}
-    <Rotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Prefab>k__BackingField: {fileID: 4302799442635612759, guid: 40fb241f2e656a4439547782835cdec8, type: 3}
+    <Cost>k__BackingField: 20
   - <Name>k__BackingField: 333
     <ID>k__BackingField: 3
     <Size>k__BackingField: {x: 2, y: 2}
-    <Prefab>k__BackingField: {fileID: 7930265848189419793, guid: fcfc941465a918b4b9daf2708d72f3b1, type: 3}
-    <Rotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+    <Prefab>k__BackingField: {fileID: 5529463377455601205, guid: cd4f5a69d5ae453469c3d3659a39b9d7, type: 3}
+    <Cost>k__BackingField: 15
   - <Name>k__BackingField: 444
     <ID>k__BackingField: 4
     <Size>k__BackingField: {x: 1, y: 2}
     <Prefab>k__BackingField: {fileID: 5093564438564339435, guid: 530afd75e7d81814eac91cb9715f3a6d, type: 3}
-    <Rotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+    <Cost>k__BackingField: 0

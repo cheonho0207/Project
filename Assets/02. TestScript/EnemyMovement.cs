@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
     private GameObject endPoint;
     private Transform target;
     private int wavepointIndex = 0;
+    private HPManager hpManager;
 
     private TestEnemy enemy;
 
@@ -14,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     {
         enemy = GetComponent<TestEnemy>();
         
-        target = Waypoints.points[0];
+        target = WayPoints.points[0];
 
         endPoint = GameObject.FindGameObjectWithTag("EndPoint");
     }
@@ -34,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
 
     void GetNextWaypoint()
     {
-        if (wavepointIndex >= Waypoints.points.Length - 1)
+        if (wavepointIndex >= WayPoints.points.Length - 1)
         {
             //target = endPoint.transform;
             //EndPath();
@@ -43,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         wavepointIndex++;
-        target = Waypoints.points[wavepointIndex];
+        target = WayPoints.points[wavepointIndex];
     }
 
     void EndPoint()
@@ -60,6 +61,7 @@ public class EnemyMovement : MonoBehaviour
     {
         //PlayerStats.Lives--;
         WaveSpawner.EnemiesAlive--;
+        hpManager.HpDown();
         Destroy(gameObject);
     }
 

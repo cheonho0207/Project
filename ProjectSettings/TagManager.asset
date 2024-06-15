@@ -18,6 +18,7 @@ TagManager:
   - WayPoint
   - StartPoint
   - EndPoint
+  - HP
   layers:
   - Default
   - TransparentFX

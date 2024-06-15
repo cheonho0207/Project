@@ -27,12 +27,12 @@ public class Motion : MonoBehaviour
             // Animator 컴포넌트가 없는 경우 에러 메시지 출력
             if (playerAnimator == null)
             {
-                Debug.LogError("Player 오브젝트에 Animator 컴포넌트가 없습니다!");
+                Debug.Log("Player 오브젝트에 Animator 컴포넌트가 없습니다!");
             }
         }
         else
         {
-            Debug.LogError("Player 오브젝트를 찾을 수 없습니다!");
+            Debug.Log("Player 오브젝트를 찾을 수 없습니다!");
         }
     }
 

@@ -10,9 +10,11 @@ public class TestEnemyMovement : MonoBehaviour
     private Transform currentWaypoint;  // 현재 목표 웨이포인트
     public GameObject endPoint;  // 마지막 EndPoint 오브젝트
 
+    private HPManager hpManager;
+
     void Start()
     {
-        waypoints = Waypoints.points;
+        waypoints = WayPoints.points;
 
         if (waypoints == null || waypoints.Length == 0)
         {
@@ -31,6 +33,8 @@ public class TestEnemyMovement : MonoBehaviour
         {
             Debug.LogError("EndPoint not found! Make sure an object with the tag 'EndPoint' exists in the scene.");
         }
+
+        hpManager = FindObjectOfType<HPManager>();
     }
 
     void Update()
@@ -104,5 +108,6 @@ public class TestEnemyMovement : MonoBehaviour
         WaveSpawner.EnemiesAlive--;
         Debug.Log("남은 적 : " + WaveSpawner.EnemiesAlive);
         Destroy(this.gameObject);
+        hpManager.HpDown();
     }
 }

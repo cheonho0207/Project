@@ -7551,11 +7551,10 @@ MonoBehaviour:
   enemyTag: Enemy
   partToRotate: {fileID: 5487528649018616054}
   turnspeed: 10
-  bulletPrefab: {fileID: 6925598877361736305, guid: 0a3d4f3cd856c6f41af4dcbc97e6c9be, type: 3}
+  bulletPrefab: {fileID: 0}
   firePoint: {fileID: 367700903822480990}
   bulletSpeed: 3
   upwardForce: 10
-  power3: 0
   DestroyTime: 3
   turretUpwardForce: 10
   sparkEffectPrefab: {fileID: 108585884109743, guid: 03cf22dffedc5574cb6217684e598796, type: 3}
