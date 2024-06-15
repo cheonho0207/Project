@@ -44,6 +44,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret base
       objectReference: {fileID: 0}
+    - target: {fileID: 5379667267999864684, guid: 399c398e52b17fb4d9107dfdf1f72675, type: 3}
+      propertyPath: sparkEffect
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8600700810680704218, guid: 399c398e52b17fb4d9107dfdf1f72675, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -85,8 +89,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
+    - {fileID: 6266167449730076347, guid: 399c398e52b17fb4d9107dfdf1f72675, type: 3}
     - {fileID: 7759981530345539603, guid: 399c398e52b17fb4d9107dfdf1f72675, type: 3}
-    m_RemovedGameObjects: []
+    - {fileID: 3529858823051236081, guid: 399c398e52b17fb4d9107dfdf1f72675, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8562849757796561116, guid: 399c398e52b17fb4d9107dfdf1f72675, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 399c398e52b17fb4d9107dfdf1f72675, type: 3}

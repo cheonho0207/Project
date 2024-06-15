@@ -27,6 +27,28 @@ public class TestEnemy : MonoBehaviour
     {
         speed = startSpeed;
         health = startHealth;
+        credit = FindObjectOfType<Credit>();
+    }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Arrow"))
+        {
+            if (collision.gameObject.GetComponent<Arrow>().IsAlreadyProcessed())
+            {
+                return;
+            }
+
+            int damage = 5;
+            TakeDamage(damage);
+
+            collision.gameObject.GetComponent<Arrow>().MarkAsProcessed();
+        }
     }
 
     public void TakeDamage(float amount)
@@ -53,11 +75,11 @@ public class TestEnemy : MonoBehaviour
 
         //PlayerStats.Money += worth;
 
-        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 5f);
+        //GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+        //Destroy(effect, 5f);
 
         WaveSpawner.EnemiesAlive--;
-
+        Debug.Log("³²Àº Àû : " + WaveSpawner.EnemiesAlive);
         Destroy(gameObject);
     }
 
