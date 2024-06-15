@@ -122486,7 +122486,7 @@ MonoBehaviour:
   editTilePrefab: {fileID: 6121508669740661807, guid: 36d2b640a0bc5bd439247d35814c633b, type: 3}
   objectPrefab: {fileID: 1213046709462209225, guid: 6c4a8511a38fa434f986343946943661, type: 3}
   waypointPrefab: {fileID: 7122568415931752844, guid: 700cca0a664a96e4a8dbd1647c71ee02, type: 3}
-  startpointPrefab: {fileID: 2378164526664668868, guid: 33f996ca40b75764f97d7f0a4c0295bc, type: 3}
+  startpointPrefab: {fileID: 4736558123946762030, guid: 33f996ca40b75764f97d7f0a4c0295bc, type: 3}
   endpointPrefab: {fileID: 5133255400892569147, guid: d5783f700a550254d9086ebd2fad9ff5, type: 3}
   stageId: 2
   stageSize: 12
