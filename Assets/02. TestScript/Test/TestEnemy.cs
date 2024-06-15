@@ -29,6 +29,11 @@ public class TestEnemy : MonoBehaviour
         health = startHealth;
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+
     public void TakeDamage(float amount)
     {
         health -= amount;
@@ -60,5 +65,4 @@ public class TestEnemy : MonoBehaviour
 
         Destroy(gameObject);
     }
-
 }

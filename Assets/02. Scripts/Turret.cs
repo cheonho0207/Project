@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-   private Transform target;
+    private Transform target;
 
     [Header("Attributes")]
     public float range = 1.2f;
@@ -33,8 +33,6 @@ public class Turret : MonoBehaviour
         float updateRate = Mathf.Clamp(0.1f - GameObject.FindGameObjectsWithTag(enemyTag).Length * 0.01f, 0.02f, 0.1f);
         playerAnimator = GetComponent<Animator>();
         fireRate = 1f;
-
-
     }
 
     void UpdateTarget()
@@ -59,6 +57,8 @@ public class Turret : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            Debug.Log("적 감지됨: " + target.name); // 적 감지 시 콘솔 메시지 출력
+            RotateAndShoot();
             if (!IsInvoking("FireArrowsContinuously"))
             {
                 InvokeRepeating("FireArrowsContinuously", 0f, 1f / fireRate);
@@ -73,26 +73,6 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
-        UpdateTarget();
-        if (target == null)
-            return;
-
-        Enemy enemyScript = target.GetComponent<Enemy>();
-
-        Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
-        {
-            if (fireCountdown <= 0f)
-            {
-                Shoot();
-                playerAnimator.SetTrigger("Shooting");
-                fireCountdown = 1f / fireRate;
-            }
-        }
         fireCountdown -= Time.deltaTime;
     }
 
@@ -100,10 +80,28 @@ public class Turret : MonoBehaviour
     {
         if (target != null)
         {
-            Shoot();
-            playerAnimator.SetTrigger("Shooting");
+            RotateAndShoot();
         }
     }
+
+    void RotateAndShoot()
+    {
+        if (target == null)
+            return;
+
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            playerAnimator.SetTrigger("Shooting");
+            fireCountdown = 1f / fireRate;
+        }
+    }
+
     void Shoot()
     {
         if (firePoint == null)
@@ -122,7 +120,7 @@ public class Turret : MonoBehaviour
         Vector3 shootingDirection = (target.position - firePoint.position).normalized;
 
         // 총알 프리팹을 인스턴스화합니다.
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity); // 총알의 방향은 미리 정의된 방향으로 발사됩니다.
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
         if (bulletRigidbody != null)
@@ -158,4 +156,4 @@ public class Turret : MonoBehaviour
             sparkEffectInstance.SetActive(true);
         }
     }
-    }
+}

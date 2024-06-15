@@ -68,7 +68,7 @@ public class PowEffect : MonoBehaviour
 
             if (distanceToTarget <= range)
             {
-                Enemy enemyScript = target.GetComponent<Enemy>();
+                TestEnemy enemyScript = target.GetComponent<TestEnemy>();
                 if (enemyScript != null)
                 {
                     // Enemy에게 데미지를 입히기
@@ -106,25 +106,23 @@ public class PowEffect : MonoBehaviour
                     Debug.LogError("sparkEffect is not set. Please assign a valid GameObject to sparkEffect in the Inspector.");
                 }
 
-               if (sparkEffect2 != null)
-{
-    // 현재 위치에서 y 값을 1.384로 설정하여 인스턴스 생성
-    Vector3 sparkEffect2Position = new Vector3(transform.position.x, 1.384f, transform.position.z);
-    GameObject sparkEffectInstance2 = Instantiate(sparkEffect2, sparkEffect2Position, Quaternion.identity);
-    Destroy(sparkEffectInstance2, 3f);
-}
-else
-{
-    Debug.LogError("sparkEffect2 is not set. Please assign a valid GameObject to sparkEffect2 in the Inspector.");
-}
+                if (sparkEffect2 != null)
+                {
+                    // 현재 위치에서 y 값을 1.384로 설정하여 인스턴스 생성
+                    Vector3 sparkEffect2Position = new Vector3(transform.position.x, 1.384f, transform.position.z);
+                    GameObject sparkEffectInstance2 = Instantiate(sparkEffect2, sparkEffect2Position, Quaternion.identity);
+                    Destroy(sparkEffectInstance2, 3f);
+                }
+                else
+                {
+                    Debug.LogError("sparkEffect2 is not set. Please assign a valid GameObject to sparkEffect2 in the Inspector.");
+                }
 
                 isArrowInactive = true; // Arrow를 비활성화 상태로 표시
                 hasSpawnedEffect = true; // 이펙트가 생성되었음을 표시
             }
         }
     }
-
-    // 나머지 코드는 동일하게 유지됩니다.
 
     // 기즈모를 그리는 코드
     private void OnDrawGizmosSelected()

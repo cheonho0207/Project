@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Turret2 : MonoBehaviour
 {
-
-    private Transform target;
+    private List<Transform> target = new List<Transform>();
+    private Transform SpPoint;
 
     [Header("Attributes")]
     public float range = 3f;
@@ -26,8 +27,6 @@ public class Turret2 : MonoBehaviour
     public float upwardForce = 6.0f;
 
     private bool arrowSpawned = false;
-    public int power3;
-    private Transform SpPoint;
 
     public float DestroyTime = 3.0f;
     public float turretUpwardForce = 10.0f;
@@ -41,12 +40,12 @@ public class Turret2 : MonoBehaviour
     private GameObject sparkEffectInstance2;
 
     private float fadeSpeed = 2f;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         anim = GetComponent<Animator>();
         SpPoint = GameObject.Find("SpPoint").transform;
-        power3 = 550;
         motionScript = GameObject.FindObjectOfType<Motion2_2>();
         if (motionScript == null)
         {
@@ -72,57 +71,54 @@ public class Turret2 : MonoBehaviour
 
         if (nearestEnemy != null && shortestDistance <= range)
         {
-            target = nearestEnemy.transform;
-        }
-        else
-        {
-            target = null;
+            target.Add(nearestEnemy.transform);
         }
     }
 
     void Update()
     {
-        if (target == null)
+        if (target.Count == 0)
             return;
 
-        Enemy enemyScript = target.GetComponent<Enemy>();
-        if (enemyScript != null && !enemyScript.GetComponent<Tween_Path>().HasReachedEnd() && enemyScript.Hp > 0)
+        // 타겟과의 거리를 계산합니다.
+        for (int i = target.Count - 1; i >= 0; i--)
         {
-            Vector3 dir = target.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = lookRotation.eulerAngles;
-            rotation.y += 90f;
-            partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-            // 타겟과의 거리를 계산합니다.
-            float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-            // 기즈모 박스 영역 안에 있거나 거리가 사정 거리 이내인 경우에만 발사합니다.
-            if (distanceToTarget <= range)
+            Transform currentTarget = target[i];
+            if (currentTarget == null)
             {
-                if (fireCountdown <= 0f)
+                target.RemoveAt(i);
+                continue;
+            }
+
+            TestEnemy enemyScript = currentTarget.GetComponent<TestEnemy>();
+            if (enemyScript != null && enemyScript.GetHealth() > 0)
+            {
+                Vector3 dir = currentTarget.position - transform.position;
+                Quaternion lookRotation = Quaternion.LookRotation(dir);
+                Vector3 rotation = lookRotation.eulerAngles;
+                rotation.y += 90f;
+                partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+                // 기즈모 박스 영역 안에 있거나 거리가 사정 거리 이내인 경우에만 발사합니다.
+                if (sparkEffect2.activeSelf && dir.magnitude <= range)
                 {
-                    Shoot(); // 발사 메소드 호출
-                    anim.SetTrigger("Attack");
-                    fireCountdown = 1f / fireRate;
+                    if (fireCountdown <= 0f)
+                    {
+                        Shoot();
+                        anim.SetTrigger("Attack");
+                        fireCountdown = 1f / fireRate;
+                    }
+                }
+                else if (!sparkEffect2.activeSelf)
+                {
+                    sparkEffect2.SetActive(true);
+                    Invoke("DeactivateSparkEffect2", 3f);
                 }
             }
-
-            // 발사할 때마다 sparkEffect2를 활성화하고 일정 시간 후 비활성화합니다.
-            if (!sparkEffect2.activeSelf)
-            {
-                sparkEffect2.SetActive(true);
-                Invoke("DeactivateSparkEffect2", 3f);
-            }
         }
-        else
-        {
-            // 타겟이 유효하지 않거나 적이 더 이상 유효하지 않은 경우 target을 null로 설정합니다.
-            target = null;
-        }
-
         fireCountdown -= Time.deltaTime;
     }
+
 
     void Shoot()
     {
@@ -133,19 +129,21 @@ public class Turret2 : MonoBehaviour
         }
 
         // 타겟이 없으면 발사하지 않습니다.
-        if (target == null)
+        if (target.Count == 0)
             return;
 
         // SparkEffect를 발동합니다.
         motionScript.TriggerSparkEffects();
 
+        // 첫 번째 타겟에 대해서만 총알을 발사합니다.
+        Transform currentTarget = target[0];
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
         if (bulletRigidbody != null)
         {
             // 타겟의 위치로 총알의 방향을 조정합니다.
-            Vector3 targetDirection = target.position - firePoint.position;
+            Vector3 targetDirection = currentTarget.position - firePoint.position;
             bulletRigidbody.rotation = Quaternion.LookRotation(targetDirection.normalized);
 
             // 총알 발사
@@ -158,6 +156,9 @@ public class Turret2 : MonoBehaviour
         }
 
         Destroy(bullet, 2f);
+
+        // 발사 후 타겟 리스트에서 첫 번째 타겟을 제거합니다.
+        target.RemoveAt(0);
     }
 
     private void OnDrawGizmosSelected()
@@ -165,7 +166,6 @@ public class Turret2 : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
-
 
     public void DeactivateSparkEffect()
     {
@@ -177,7 +177,6 @@ public class Turret2 : MonoBehaviour
         }
     }
 
-
     public void ActivateSparkEffect()
     {
         if (sparkEffectPrefab != null)
@@ -185,9 +184,8 @@ public class Turret2 : MonoBehaviour
             sparkEffectInstance = Instantiate(sparkEffectPrefab, transform.position, Quaternion.identity);
             sparkEffectInstance.SetActive(true);
         }
-
-
     }
+
     private void DeactivateSparkEffect2()
     {
         if (sparkEffect2.activeSelf)

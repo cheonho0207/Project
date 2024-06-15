@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5536355449418824952
 Transform:
   m_ObjectHideFlags: 0
@@ -7470,8 +7470,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6892075073708110240}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0015947544, y: 0.010919301, z: -0.03229806, w: -0.99941736}
-  m_LocalPosition: {x: -2.25, y: -0.25, z: -0.78}
+  m_LocalRotation: {x: -0.042159148, y: -0.716414, z: -0.0046788994, w: -0.6963847}
+  m_LocalPosition: {x: 0.52, y: -0.24044743, z: 1.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7479,7 +7479,7 @@ Transform:
   - {fileID: 3404132464441143429}
   - {fileID: 5487528649018616054}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0.223, y: -1.245, z: 3.7}
+  m_LocalEulerAnglesHint: {x: 2.982, y: -628.276, z: 3.843}
 --- !u!95 &6635948256360434388
 Animator:
   serializedVersion: 5
@@ -7546,16 +7546,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb3b1ab82fef1245befb6857ddd6e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 4
+  range: 3
   fireRate: 1
   enemyTag: Enemy
   partToRotate: {fileID: 5487528649018616054}
-  turnspeed: 10
-  bulletPrefab: {fileID: 6925598877361736305, guid: 0a3d4f3cd856c6f41af4dcbc97e6c9be, type: 3}
+  turnspeed: 15
+  bulletPrefab: {fileID: 919132149155446097, guid: 0a3d4f3cd856c6f41af4dcbc97e6c9be, type: 3}
   firePoint: {fileID: 367700903822480990}
   bulletSpeed: 3
   upwardForce: 10
-  power3: 0
   DestroyTime: 3
   turretUpwardForce: 10
   sparkEffectPrefab: {fileID: 108585884109743, guid: 03cf22dffedc5574cb6217684e598796, type: 3}
