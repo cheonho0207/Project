@@ -64,7 +64,7 @@ public class PlacementSystem : MonoBehaviour
             database.objectsData[selectedObjectIndex].Prefab,
             database.objectsData[selectedObjectIndex].Size);
         //cellIndicator.SetActive(true);
-        mouseIndicator.SetActive(true);
+        mouseIndicator.SetActive(false);
         stopText.SetActive(true);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;

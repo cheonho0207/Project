@@ -11017,8 +11017,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8326606904228890514}
-  - component: {fileID: 6825514588014381254}
-  - component: {fileID: 5238554489994057566}
   - component: {fileID: 3385082797855050239}
   m_Layer: 0
   m_Name: Turret3 base
@@ -11044,39 +11042,6 @@ Transform:
   - {fileID: 5661678956448516959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0.694, z: 0}
---- !u!114 &6825514588014381254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5529463377455601205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b22ae13a85b174c983846ac8897c4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &5238554489994057566
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5529463377455601205}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4, y: 3, z: 4}
-  m_Center: {x: -0.9, y: 1, z: -1}
 --- !u!114 &3385082797855050239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14430,7 +14395,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5661678956448516959}
   - component: {fileID: 7297146411594818739}
-  - component: {fileID: 429670314092838093}
   - component: {fileID: 7257772273453105123}
   m_Layer: 0
   m_Name: Turret3_1
@@ -14477,18 +14441,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &429670314092838093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8476055570795836207}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b22ae13a85b174c983846ac8897c4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7257772273453105123
 MonoBehaviour:
   m_ObjectHideFlags: 0
