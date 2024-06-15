@@ -18,7 +18,7 @@ public class Credit : MonoBehaviour
         hpManager = FindObjectOfType<HPManager>();
 
         haveCredit = startCredit;
-        InvokeRepeating("ChargeCredit", 3.0f, 1.0f);
+        InvokeRepeating("ChargeCredit", 30.0f, 1.0f);
         UpdateCoinText();
     }
 

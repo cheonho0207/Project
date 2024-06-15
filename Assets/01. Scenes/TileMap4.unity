@@ -25253,7 +25253,7 @@ MonoBehaviour:
     rate: 2
   spawnPoint: {fileID: 222779484}
   timeBetweenWaves: 5
-  waveCountdownText: {fileID: 0}
+  waveCountdownText: {fileID: 1596697066}
 --- !u!4 &543659816
 Transform:
   m_ObjectHideFlags: 0
@@ -103886,6 +103886,17 @@ Transform:
   - {fileID: 827351510}
   m_Father: {fileID: 1701724314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1596697066 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3595806044522320891, guid: 0b806ee35b2fc4a46a463058841ee233, type: 3}
+  m_PrefabInstance: {fileID: 1377315552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1607007567
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01. Scenes/WinScene.unity
     guid: 4951925a50fd8e44298d4182c8e1af8e
+  - enabled: 1
+    path: Assets/01. Scenes/TileMap4.unity
+    guid: c32888f31c9a8494d91de1e30e041a6a
+  - enabled: 1
+    path: Assets/01. Scenes/TileMap5.unity
+    guid: c1266e0f7badc0049a8a90cbb0ec6d2a
+  - enabled: 1
+    path: Assets/01. Scenes/LoseScene.unity
+    guid: f6e61a5eafcfde0468b4a35941d9bbc9
   m_configObjects: {}
