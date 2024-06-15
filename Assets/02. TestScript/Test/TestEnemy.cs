@@ -34,6 +34,22 @@ public class TestEnemy : MonoBehaviour
         return health;
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Arrow"))
+        {
+            if (collision.gameObject.GetComponent<Arrow>().IsAlreadyProcessed())
+            {
+                return;
+            }
+
+            int damage = 5;
+            TakeDamage(damage);
+
+            collision.gameObject.GetComponent<Arrow>().MarkAsProcessed();
+        }
+    }
+
     public void TakeDamage(float amount)
     {
         health -= amount;
