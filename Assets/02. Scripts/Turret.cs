@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 public class Turret : MonoBehaviour
 {
@@ -21,7 +24,7 @@ public class Turret : MonoBehaviour
     public float bulletSpeed = 3f;
     public float upwardForce = 4.0f;
 
-    //public GameObject sparkEffectPrefab;
+    public GameObject sparkEffectPrefab;
     private GameObject sparkEffectInstance;
 
     void Start()
@@ -147,12 +150,11 @@ public class Turret : MonoBehaviour
 
     public void ActivateSparkEffect()
     {
-        /*
         if (sparkEffectPrefab != null)
         {
             sparkEffectInstance = Instantiate(sparkEffectPrefab, transform.position, Quaternion.identity);
             sparkEffectInstance.SetActive(true);
         }
-        */
     }
+
 }

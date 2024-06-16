@@ -8,12 +8,12 @@ public class Effect : MonoBehaviour
     public GameObject sparkEffect2;
     public GameObject sparkEffect3;
     public GameObject sparkEffect4;
-    
+
     private GameObject sparkEffectInstance;
     private GameObject sparkEffectInstance2;
     private GameObject sparkEffectInstance3;
     private GameObject sparkEffectInstance4;
-   
+
     private Rigidbody arrowRigidbody;
     private bool isArrowInactive = false;
 

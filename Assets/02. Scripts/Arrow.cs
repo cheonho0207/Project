@@ -7,7 +7,7 @@ public class Arrow : MonoBehaviour
     private bool alreadyProcessed = false;
 
     public int power = 5;
-
+    public float speed = 10f;
     public bool IsAlreadyProcessed()
     {
         return alreadyProcessed;

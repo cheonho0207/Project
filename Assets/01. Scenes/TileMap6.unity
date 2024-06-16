@@ -38376,7 +38376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemy: {fileID: 6102933551829725136, guid: 503c17e9edf791b49a10e9c1105edaea, type: 3}
+  - enemy: {fileID: 6102933551829725136, guid: ad9a3198c109bc14aa87dd1e439652a5, type: 3}
     count: 10
     rate: 2
   spawnPoint: {fileID: 222779484}
