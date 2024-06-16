@@ -22,12 +22,12 @@ MonoBehaviour:
     <ID>k__BackingField: 2
     <Size>k__BackingField: {x: 2, y: 2}
     <Prefab>k__BackingField: {fileID: 4302799442635612759, guid: 40fb241f2e656a4439547782835cdec8, type: 3}
-    <Cost>k__BackingField: 20
+    <Cost>k__BackingField: 10
   - <Name>k__BackingField: 333
     <ID>k__BackingField: 3
     <Size>k__BackingField: {x: 2, y: 2}
     <Prefab>k__BackingField: {fileID: 5529463377455601205, guid: cd4f5a69d5ae453469c3d3659a39b9d7, type: 3}
-    <Cost>k__BackingField: 15
+    <Cost>k__BackingField: 10
   - <Name>k__BackingField: 444
     <ID>k__BackingField: 4
     <Size>k__BackingField: {x: 1, y: 2}

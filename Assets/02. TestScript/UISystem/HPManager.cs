@@ -25,7 +25,7 @@ public class HPManager : MonoBehaviour
             {
                 CurrHP = 0;
                 DisplayHealth();
-                //SceneManager.LoadScene("LoseScene");
+                SceneManager.LoadScene("LoseScene");
             }
         }
     }
