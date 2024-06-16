@@ -14,7 +14,7 @@ public class Turret2 : MonoBehaviour
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public Transform partToRotate;
-    public float turnspeed = 10f;
+    public float turnspeed = 15f;
     public GameObject bulletPrefab;
     public Transform firePoint;
     private Animator anim;
@@ -152,7 +152,7 @@ public class Turret2 : MonoBehaviour
             bulletRigidbody.AddForce(upwardForceVector, ForceMode.Impulse);
         }
 
-        Destroy(bullet, 2f);
+        Destroy(bullet, 1.9f);
 
         // 발사 후 타겟 리스트에서 첫 번째 타겟을 제거합니다.
         target.RemoveAt(0);

@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09d310c52482ab4b885b194dc0d8125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 15
-  speed: 20
+  power: 10
+  speed: 10
 --- !u!114 &8842884510429334058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,5 +164,5 @@ MonoBehaviour:
   sparkEffect: {fileID: 3354976033911175088, guid: c0ee563e4a348654e9063445490dc8d7, type: 3}
   sparkEffect2: {fileID: 5564656073243444480, guid: db7dbead9db203349a486f7a570d82d2, type: 3}
   gizmoColor: {r: 0, g: 0, b: 1, a: 1}
-  range: 1.3
+  range: 1.4
   enemyTag: Enemy

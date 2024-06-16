@@ -38897,6 +38897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 5
+  speed: 10
 --- !u!114 &897544523232025227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38910,7 +38911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparkEffect: {fileID: 4430925548112356825, guid: 5e6b0fcb72a5f8745a61cddafc5d028e, type: 3}
-  sparkEffect2: {fileID: 6177581640418137328, guid: efc16b47ffb508e4b95bfbb7386bd369, type: 3}
+  sparkEffect2: {fileID: 6177581640418137328, guid: 49aa478c75c088f42a344785de1c26db, type: 3}
 --- !u!114 &4595488010855744707
 MonoBehaviour:
   m_ObjectHideFlags: 0
