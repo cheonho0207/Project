@@ -3,6 +3,7 @@ using System.Collections; //
 using System.Collections.Generic; //
 using UnityEditor.VersionControl;
 using UnityEngine; //
+using UnityEngine.UI;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class PlacementSystem : MonoBehaviour
 
     int count;
 
+    [SerializeField]
+    private GameObject creditText;
+
     #endregion
 
     private void Start()
@@ -52,6 +56,7 @@ public class PlacementSystem : MonoBehaviour
         furnitureData = new();
         //previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
         credit = FindObjectOfType<Credit>();
+        creditText.SetActive(false);
     }
 
     #region 타워설치
@@ -93,6 +98,7 @@ public class PlacementSystem : MonoBehaviour
         int cost = database.objectsData[selectedObjectIndex].Cost;
         if (credit.haveCredit < cost)
         {
+            StartCoroutine(LackOfCredit());
             Debug.Log("재화가 부족합니다");
             return;
         }
@@ -115,6 +121,13 @@ public class PlacementSystem : MonoBehaviour
             placedGameObjects.Count - 1);
         preview.UpdatePosition(grid.CellToWorld(gridPosition), false);
         StopPlacement();
+    }
+
+    IEnumerator LackOfCredit()
+    {
+        creditText.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        creditText.SetActive(false);
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
