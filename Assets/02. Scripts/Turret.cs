@@ -129,7 +129,7 @@ public class Turret : MonoBehaviour
         }
 
         // 일정 시간이 지난 후에 총알을 파괴합니다.
-        Destroy(bullet, 0.4f);
+        Destroy(bullet, 0.6f);
     }
 
     private void OnDrawGizmosSelected()

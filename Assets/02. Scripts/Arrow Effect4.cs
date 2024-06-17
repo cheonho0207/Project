@@ -29,6 +29,8 @@ public class ArrowEffect4 : MonoBehaviour
             {
                 // Activate the spark effect
                 sparkEffectInstance.SetActive(true);
+
+                Destroy(sparkEffectInstance, 2f);
             }
 
             // Optionally, you can update the position of the spark effect if needed

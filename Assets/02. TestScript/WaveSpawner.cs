@@ -1,26 +1,33 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class WaveSpawner : MonoBehaviour
 {
-
     public static int EnemiesAlive = 0;
 
     public Wave[] waves;
-
     public Transform spawnPoint;
-
-    public float timeBetweenWaves = 5f; //wave delay time
-
+    public float timeBetweenWaves = 5f; // 웨이브 간의 시간
     [SerializeField]
     private float countdown = 30f;
-
     public Text waveCountdownText;
 
-    //public GameManager gameManager;
+    public TextMeshProUGUI waveCompleteText1;  // 새 UI 요소
+    public TextMeshProUGUI waveCompleteText2;  // 새 UI 요소
+    public Image waveCompleteImage; // 새 UI 요소
 
     private int waveIndex = 0;
+    private bool isGameCompleted = false; // 게임 완료 여부를 체크하기 위한 플래그
+
+    void Start()
+    {
+        waveCompleteText1.gameObject.SetActive(false);
+        waveCompleteText2.gameObject.SetActive(false);
+        waveCompleteImage.gameObject.SetActive(false);
+    }
 
     void Update()
     {
@@ -31,8 +38,9 @@ public class WaveSpawner : MonoBehaviour
 
         if (waveIndex == waves.Length)
         {
-            //gameManager.WinLevel();
+            StageScene();
             this.enabled = false;
+            return;
         }
 
         if (countdown <= 0f)
@@ -51,7 +59,7 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        //PlayerStats.Rounds++;
+        // PlayerStats.Rounds++;
 
         Wave wave = waves[waveIndex];
 
@@ -60,11 +68,11 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < wave.count; i++)
         {
             SpawnEnemy(wave.enemy);
-
             yield return new WaitForSeconds(1f / wave.rate);
         }
-        countdown = 10;
+
         waveIndex++;
+        StartCoroutine(CheckEnemiesAlive());
     }
 
     void SpawnEnemy(GameObject enemy)
@@ -72,4 +80,82 @@ public class WaveSpawner : MonoBehaviour
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
     }
 
+    IEnumerator CheckEnemiesAlive()
+    {
+        while (EnemiesAlive > 0)
+        {
+            yield return null;
+        }
+
+        if (!isGameCompleted) // 게임 완료 여부 체크
+        {
+            countdown = 13;
+            yield return StartCoroutine(DisplayWaveCompleteUI());
+        }
+    }
+
+    IEnumerator DisplayWaveCompleteUI()
+    {
+        if (isGameCompleted) // 게임 완료 여부 체크
+        {
+            yield break; // 게임이 완료되었으면 UI 표시를 하지 않고 종료
+        }
+
+        // UI 요소 보이기
+        waveCompleteText1.gameObject.SetActive(true);
+        waveCompleteText2.gameObject.SetActive(true);
+        waveCompleteImage.gameObject.SetActive(true);
+
+        // 초기 알파 값 설정
+        Color textColor1 = waveCompleteText1.color;
+        Color textColor2 = waveCompleteText2.color;
+        Color imageColor = waveCompleteImage.color;
+
+        textColor1.a = 1;
+        textColor2.a = 1;
+        imageColor.a = 1;
+
+        waveCompleteText1.color = textColor1;
+        waveCompleteText2.color = textColor2;
+        waveCompleteImage.color = imageColor;
+
+        // 3초 대기
+        yield return new WaitForSeconds(4);
+
+        // 2초 동안 서서히 사라짐
+        float fadeDuration = 2f;
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            float normalizedTime = t / fadeDuration;
+            textColor1.a = Mathf.Lerp(1, 0, normalizedTime);
+            textColor2.a = Mathf.Lerp(1, 0, normalizedTime);
+            imageColor.a = Mathf.Lerp(1, 0, normalizedTime);
+
+            waveCompleteText1.color = textColor1;
+            waveCompleteText2.color = textColor2;
+            waveCompleteImage.color = imageColor;
+
+            yield return null;
+        }
+
+        // 알파 값을 0으로 설정
+        textColor1.a = 0;
+        textColor2.a = 0;
+        imageColor.a = 0;
+
+        waveCompleteText1.color = textColor1;
+        waveCompleteText2.color = textColor2;
+        waveCompleteImage.color = imageColor;
+
+        // UI 요소 숨기기
+        waveCompleteText1.gameObject.SetActive(false);
+        waveCompleteText2.gameObject.SetActive(false);
+        waveCompleteImage.gameObject.SetActive(false);
+    }
+
+    public void StageScene()
+    {
+        isGameCompleted = true; // 게임 완료 플래그 설정
+        SceneManager.LoadScene("WinScene");
+    }
 }

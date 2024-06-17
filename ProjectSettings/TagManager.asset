@@ -19,6 +19,7 @@ TagManager:
   - StartPoint
   - EndPoint
   - HP
+  - Anim
   layers:
   - Default
   - TransparentFX
