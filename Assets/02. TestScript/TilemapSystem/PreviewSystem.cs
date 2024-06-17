@@ -20,7 +20,7 @@ public class PreviewSystem : MonoBehaviour
     private Renderer cellIndicatorRenderer;
 
     bool SetTower = false;
-    int count;
+    public int count;
 
     private void Start()
     {

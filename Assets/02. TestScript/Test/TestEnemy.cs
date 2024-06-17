@@ -18,8 +18,8 @@ public class TestEnemy : MonoBehaviour
 
     [Header("Unity Stuff")]
     //public Image healthBar;
-
-    private bool isDead = false;
+    Animator enemyAnimator;
+    public bool isDead = false;
 
     private Credit credit;
 
@@ -28,6 +28,36 @@ public class TestEnemy : MonoBehaviour
         speed = startSpeed;
         health = startHealth;
         credit = FindObjectOfType<Credit>();
+        enemyAnimator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        if (isDead)
+        {
+            // 죽은 상태에서의 투명성 및 이동 처리
+            // ...
+            return;
+        }
+        UpdateTarget();
+    }
+
+    void UpdateTarget()
+    {
+        if (enemyAnimator == null)
+        {
+            enemyAnimator = GetComponent<Animator>();
+        }
+
+        if (!isDead)
+        {
+            transform.rotation = Quaternion.Euler(0, 260, 0); // Set rotation to Y 260 degrees
+            enemyAnimator.SetBool("Run", true);
+        }
+        else
+        {
+            enemyAnimator.SetBool("Run", false); // 적이 죽었을 때 "Run" 애니메이션 중지
+        }
     }
 
     public float GetHealth()
@@ -59,6 +89,7 @@ public class TestEnemy : MonoBehaviour
 
         if (health <= 0 && !isDead)
         {
+            speed = 0;
             Die();
             credit.SumCredit();
         }
@@ -72,6 +103,13 @@ public class TestEnemy : MonoBehaviour
     void Die()
     {
         isDead = true;
+        
+
+        // Set "Death1" trigger animation
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.SetTrigger("Death1");
+        }
 
         //PlayerStats.Money += worth;
 
@@ -80,7 +118,7 @@ public class TestEnemy : MonoBehaviour
 
         WaveSpawner.EnemiesAlive--;
         Debug.Log("남은 적 : " + WaveSpawner.EnemiesAlive);
-        Destroy(gameObject);
+        Destroy(gameObject, 2f); // Add delay to allow death animation to play
     }
 
 }

@@ -4861,6 +4861,88 @@ Transform:
   - {fileID: 4375897756910027571}
   m_Father: {fileID: 4798232255632268772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4350634073042990951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5351105463251319376}
+  - component: {fileID: 4702807064321284383}
+  - component: {fileID: 854337317618207012}
+  m_Layer: 0
+  m_Name: Turret3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5351105463251319376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350634073042990951}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 4453434909011868930}
+  - {fileID: 2043805134323691210}
+  m_Father: {fileID: 8326606904228890514}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4702807064321284383
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350634073042990951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 226735cddc3158e41b49e19475179c80, type: 3}
+  m_Controller: {fileID: 9100000, guid: 153632d9022e39f45b3feb7546f8f036, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &854337317618207012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350634073042990951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56af93dfdba5d74f95734b8d9527766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5
+  fireRate: 2
+  enemyTag: Enemy
+  partToRotate: {fileID: 2043805134323691210}
+  turnspeed: 1
+  bulletPrefab: {fileID: 7272409255717840813, guid: 155006122463cea43ad70b7ddd9ac8f0, type: 3}
+  firePoint: {fileID: 5104575585095285849}
+  bulletSpeed: 10
+  upwardForce: 3
+  power3: 0
+  DestroyTime: 0.4
+  turretUpwardForce: 10
+  sparkEffectPrefab: {fileID: 0}
+  sparkEffect2: {fileID: 1259813375104647402}
 --- !u!1 &4373763661355228957
 GameObject:
   m_ObjectHideFlags: 0
@@ -5998,17 +6080,17 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5382509290986543502}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005632387, y: -0.71436346, z: -0.69973683, w: -0.004647803}
-  m_LocalPosition: {x: 0.48942506, y: -0.03443009, z: 0.046848614}
-  m_LocalScale: {x: 1.9489759, y: 2.0953436, z: 1.9489764}
+  m_LocalRotation: {x: -0.70709515, y: -0.004085166, z: -0.004085168, w: 0.7070949}
+  m_LocalPosition: {x: -0.47, y: -0.0759701, z: 0.02}
+  m_LocalScale: {x: 3.7574823, y: 4.039667, z: 3.7574816}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3891061456254500604}
   - {fileID: 1568330866548037462}
   - {fileID: 5650729897491945425}
   - {fileID: 8024597295654873833}
-  m_Father: {fileID: 5661678956448516959}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 5351105463251319376}
+  m_LocalEulerAnglesHint: {x: -88.812, y: -176.565, z: -4.93}
 --- !u!33 &795074314049909094
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6146,12 +6228,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5529463377455601205}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.0060549267, z: -0, w: 0.99998164}
+  m_LocalRotation: {x: 0, y: 0.0060562096, z: 0, w: 0.9999817}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5061373, y: 0.5061374, z: 0.5061374}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5661678956448516959}
+  - {fileID: 5351105463251319376}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0.694, z: 0}
 --- !u!1 &5585148411469679780
@@ -7021,9 +7103,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6297510296158966849}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.018473666, y: -0.99982923, z: 0.00026890726, w: 0.00038203917}
-  m_LocalPosition: {x: 0.23800123, y: -0.036999993, z: 0.036000833}
-  m_LocalScale: {x: 0.1020555, y: 0.10205551, z: 0.102055535}
+  m_LocalRotation: {x: -0.010103642, y: 0.001683031, z: -0.017840672, w: 0.99978834}
+  m_LocalPosition: {x: -0.06582889, y: -0.074947804, z: -0.007436633}
+  m_LocalScale: {x: 0.24160151, y: 0.24160154, z: 0.24160163}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5104575585095285849}
@@ -7037,8 +7119,8 @@ Transform:
   - {fileID: 4037653466195294672}
   - {fileID: 1956112351837898069}
   - {fileID: 935805113889347399}
-  m_Father: {fileID: 5661678956448516959}
-  m_LocalEulerAnglesHint: {x: 0.032, y: -179.957, z: -2.117}
+  m_Father: {fileID: 5351105463251319376}
+  m_LocalEulerAnglesHint: {x: 0.031, y: -180.619, z: -2.131}
 --- !u!95 &1180629070520297523
 Animator:
   serializedVersion: 5
@@ -9471,88 +9553,6 @@ Transform:
   - {fileID: 5447397696795934580}
   m_Father: {fileID: 6597534619123640696}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8476055570795836207
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5661678956448516959}
-  - component: {fileID: 7297146411594818739}
-  - component: {fileID: 7257772273453105123}
-  m_Layer: 0
-  m_Name: Turret3_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5661678956448516959
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8476055570795836207}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.00069620553, y: 0.9999199, z: -0.010342643, w: -0.0072691925}
-  m_LocalPosition: {x: 2.7, y: 0.3, z: 2.1}
-  m_LocalScale: {x: 1.9757484, y: 1.9757483, z: 1.9757484}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4453434909011868930}
-  - {fileID: 2043805134323691210}
-  m_Father: {fileID: 8326606904228890514}
-  m_LocalEulerAnglesHint: {x: 1.186, y: 540.83203, z: -0.071}
---- !u!95 &7297146411594818739
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8476055570795836207}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 226735cddc3158e41b49e19475179c80, type: 3}
-  m_Controller: {fileID: 9100000, guid: 153632d9022e39f45b3feb7546f8f036, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7257772273453105123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8476055570795836207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56af93dfdba5d74f95734b8d9527766, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 5
-  fireRate: 2
-  enemyTag: Enemy
-  partToRotate: {fileID: 2043805134323691210}
-  turnspeed: 1
-  bulletPrefab: {fileID: 7272409255717840813, guid: 155006122463cea43ad70b7ddd9ac8f0, type: 3}
-  firePoint: {fileID: 5104575585095285849}
-  bulletSpeed: 10
-  upwardForce: 3
-  power3: 0
-  DestroyTime: 0.4
-  turretUpwardForce: 10
-  sparkEffectPrefab: {fileID: 0}
-  sparkEffect2: {fileID: 1259813375104647402}
 --- !u!1 &8581671225789725616
 GameObject:
   m_ObjectHideFlags: 0

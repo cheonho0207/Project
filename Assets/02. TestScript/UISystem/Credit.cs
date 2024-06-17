@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public class Credit : MonoBehaviour
 {
-    static private int startCredit = 30;
+    [SerializeField]
+    static private int startCredit = 50;
+
+    [SerializeField]
     public int haveCredit = 0;
 
     private HPManager hpManager;

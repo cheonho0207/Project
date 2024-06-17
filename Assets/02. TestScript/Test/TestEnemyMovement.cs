@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,14 @@ public class TestEnemyMovement : MonoBehaviour
     private Transform currentWaypoint;  // 현재 목표 웨이포인트
     public GameObject endPoint;  // 마지막 EndPoint 오브젝트
 
+    private TestEnemy testEnemy;
+
     private HPManager hpManager;
 
     void Start()
     {
+        testEnemy = GetComponent<TestEnemy>();
+
         waypoints = WayPoints.points;
 
         if (waypoints == null || waypoints.Length == 0)
@@ -53,35 +58,44 @@ public class TestEnemyMovement : MonoBehaviour
             return;
         }
 
-        // 현재 이동 중인 웨이포인트를 향해 이동
-        Vector3 targetPosition = currentWaypoint.position;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
-        // 만약 적 오브젝트가 웨이포인트에 도착했다면, 다음으로 가장 가까운 웨이포인트 찾기
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        if (testEnemy.isDead == true) 
+        { 
+            return; 
+        }
+        else
         {
-            if (currentWaypoint == endPoint.transform)
-            {
-                EndPath();
-            }
-            else
-            {
-                //Debug.Log("Reached waypoint: " + currentWaypoint.name);
-                // 현재 웨이포인트를 제거하고, 다음으로 가장 가까운 웨이포인트 찾기
-                remainingWaypoints.Remove(currentWaypoint);
-                currentWaypoint = null;  // 추가: 다음 웨이포인트를 설정하기 전에 currentWaypoint를 null로 설정
+            // 현재 이동 중인 웨이포인트를 향해 이동
+            Vector3 targetPosition = currentWaypoint.position;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-                if (remainingWaypoints.Count > 0)
+            // 만약 적 오브젝트가 웨이포인트에 도착했다면, 다음으로 가장 가까운 웨이포인트 찾기
+            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            {
+                if (currentWaypoint == endPoint.transform)
                 {
-                    currentWaypoint = FindClosestWaypoint();
+                    EndPath();
                 }
                 else
                 {
-                    currentWaypoint = endPoint.transform;
+                    //Debug.Log("Reached waypoint: " + currentWaypoint.name);
+                    // 현재 웨이포인트를 제거하고, 다음으로 가장 가까운 웨이포인트 찾기
+                    remainingWaypoints.Remove(currentWaypoint);
+                    currentWaypoint = null;  // 추가: 다음 웨이포인트를 설정하기 전에 currentWaypoint를 null로 설정
+
+                    if (remainingWaypoints.Count > 0)
+                    {
+                        currentWaypoint = FindClosestWaypoint();
+                    }
+                    else
+                    {
+                        currentWaypoint = endPoint.transform;
+                    }
+                    //Debug.Log("Next closest waypoint: " + (currentWaypoint != null ? currentWaypoint.name : "None"));
                 }
-                //Debug.Log("Next closest waypoint: " + (currentWaypoint != null ? currentWaypoint.name : "None"));
             }
+
         }
+
     }
 
     Transform FindClosestWaypoint()
@@ -108,6 +122,12 @@ public class TestEnemyMovement : MonoBehaviour
         WaveSpawner.EnemiesAlive--;
         Debug.Log("남은 적 : " + WaveSpawner.EnemiesAlive);
         Destroy(this.gameObject);
+        endPathEffect();
         hpManager.HpDown();
+    }
+
+    private void endPathEffect()
+    {
+        
     }
 }

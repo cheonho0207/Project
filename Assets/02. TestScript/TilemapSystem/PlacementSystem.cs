@@ -1,6 +1,7 @@
 using System; //
 using System.Collections; //
 using System.Collections.Generic; //
+using UnityEditor.VersionControl;
 using UnityEngine; //
 
 public class PlacementSystem : MonoBehaviour
@@ -39,6 +40,9 @@ public class PlacementSystem : MonoBehaviour
     private Vector3Int lastDetectedPosition = Vector3Int.zero;
 
     private Credit credit;
+
+    int count;
+
     #endregion
 
     private void Start()
@@ -49,7 +53,8 @@ public class PlacementSystem : MonoBehaviour
         //previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
         credit = FindObjectOfType<Credit>();
     }
-#region 타워설치
+
+    #region 타워설치
     public void StartPlacement(int ID)
     {
         StopPlacement();
@@ -72,7 +77,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void PlaceStructure()
     {
-        if(inputManager.IsPointerOverUI())
+        if (inputManager.IsPointerOverUI())
         {
             return;
         }
@@ -97,6 +102,9 @@ public class PlacementSystem : MonoBehaviour
 
         GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
         newObject.transform.position = grid.CellToWorld(gridPosition);
+        newObject.transform.GetChild(0).transform.Rotate(Vector3.up, 90 * count);
+        Debug.Log(count);
+
         placedGameObjects.Add(newObject);
         GlobalVariables.selectedData = database.objectsData[selectedObjectIndex].ID == 0 ?
             floorData :
@@ -112,7 +120,7 @@ public class PlacementSystem : MonoBehaviour
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
         GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ?
-            floorData : 
+            floorData :
             furnitureData;
 
         return selectedData.CanPlaceObjectAt(gridPosition, database.objectsData[selectedObjectIndex].Size);
@@ -128,18 +136,19 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
         lastDetectedPosition = Vector3Int.zero;
+        count = 0;
     }
     #endregion
     private void Update()
     {
-        
+
         if (selectedObjectIndex < 0)
             return;
-        
+
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
-        if(lastDetectedPosition != gridPosition)
+        if (lastDetectedPosition != gridPosition)
         {
             bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
 
@@ -151,6 +160,13 @@ public class PlacementSystem : MonoBehaviour
             lastDetectedPosition = gridPosition;
         }
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            count++;
+            if (count == 4)
+            {
+                count -= 4;
+            }
+        }
     }
 }
-    

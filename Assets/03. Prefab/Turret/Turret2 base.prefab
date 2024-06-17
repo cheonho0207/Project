@@ -2031,7 +2031,6 @@ GameObject:
   m_Component:
   - component: {fileID: 774552673254785290}
   - component: {fileID: 8826446284614343395}
-  - component: {fileID: 7770399536047405908}
   m_Layer: 0
   m_Name: Turret2 base
   m_TagString: Untagged
@@ -2048,7 +2047,7 @@ Transform:
   m_GameObject: {fileID: 4302799442635612759}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.91, y: 0, z: -0.18}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2076,30 +2075,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7770399536047405908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302799442635612759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb3b1ab82fef1245befb6857ddd6e36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 4
-  fireRate: 1
-  enemyTag: Enemy
-  partToRotate: {fileID: 4501776890399325079}
-  turnspeed: 15
-  bulletPrefab: {fileID: 919132149155446097, guid: 0a3d4f3cd856c6f41af4dcbc97e6c9be, type: 3}
-  firePoint: {fileID: 668037616689629604}
-  bulletSpeed: 10
-  upwardForce: 6
-  DestroyTime: 3
-  turretUpwardForce: 10
-  sparkEffect2: {fileID: 8714062462696011672}
 --- !u!1 &4400784877182186209
 GameObject:
   m_ObjectHideFlags: 0
@@ -3277,6 +3252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5013216025532158019}
+  - component: {fileID: 8718336243186270831}
   m_Layer: 0
   m_Name: Turret2
   m_TagString: Untagged
@@ -3293,7 +3269,7 @@ Transform:
   m_GameObject: {fileID: 6635898518119135930}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0004774453, y: -0.011579272, z: 0.0006856153, w: 0.99993265}
-  m_LocalPosition: {x: 0.8984499, y: 0.00017082691, z: 1.1678915}
+  m_LocalPosition: {x: 1, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3301,6 +3277,30 @@ Transform:
   - {fileID: 4501776890399325079}
   m_Father: {fileID: 774552673254785290}
   m_LocalEulerAnglesHint: {x: 0.056, y: -1.327, z: 0.078}
+--- !u!114 &8718336243186270831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635898518119135930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb3b1ab82fef1245befb6857ddd6e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 4
+  fireRate: 1
+  enemyTag: Enemy
+  partToRotate: {fileID: 4501776890399325079}
+  turnspeed: 15
+  bulletPrefab: {fileID: 919132149155446097, guid: 0a3d4f3cd856c6f41af4dcbc97e6c9be, type: 3}
+  firePoint: {fileID: 668037616689629604}
+  bulletSpeed: 10
+  upwardForce: 6
+  DestroyTime: 3
+  turretUpwardForce: 10
+  sparkEffect2: {fileID: 8714062462696011672}
 --- !u!1 &6679974243835950506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,8 +3456,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7018540597917483988}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000040745363, y: -0.7304711, z: 0.0000000011641532, w: -0.68294364}
-  m_LocalPosition: {x: -1.04, y: 0.25, z: -0.94}
+  m_LocalRotation: {x: 0.000064003885, y: -0.7032286, z: 0.000012917268, w: -0.71096385}
+  m_LocalPosition: {x: -0.21, y: 0.25, z: 0.02}
   m_LocalScale: {x: 0.102055535, y: 0.102055535, z: 0.10205554}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3470,7 +3470,7 @@ Transform:
   - {fileID: 7108754006899676260}
   - {fileID: 756416421464193665}
   m_Father: {fileID: 5013216025532158019}
-  m_LocalEulerAnglesHint: {x: 0, y: -266.148, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.004, y: -270.627, z: -0.006}
 --- !u!95 &3245640252202904522
 Animator:
   serializedVersion: 5
@@ -4416,8 +4416,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8696209217397092289}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7076246, y: -0.034844544, z: 0.010844625, w: -0.7056456}
-  m_LocalPosition: {x: -1.04, y: 0.07, z: -0.97}
+  m_LocalRotation: {x: -0.7070404, y: 0.007826577, z: 0.007792747, w: 0.707087}
+  m_LocalPosition: {x: -0.21, y: 0.07, z: -0.01}
   m_LocalScale: {x: 1.9489759, y: 2.0953448, z: 1.9489772}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4426,7 +4426,7 @@ Transform:
   - {fileID: 5489636912168676351}
   - {fileID: 5654951563946238073}
   m_Father: {fileID: 5013216025532158019}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 1.263}
 --- !u!33 &6961925632075878860
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
 
     public float timeBetweenWaves = 5f; //wave delay time
+
+    [SerializeField]
     private float countdown = 30f;
 
     public Text waveCountdownText;
