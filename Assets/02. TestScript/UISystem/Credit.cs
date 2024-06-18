@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Credit : MonoBehaviour
 {
     [SerializeField]
-    static private int startCredit = 50;
+    static private int startCredit = 30;
 
     [SerializeField]
     public int haveCredit = 0;
