@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,8 @@ public class Scor : MonoBehaviour
     private WaveSpawner waveSpawner;
 
     [SerializeField]
-    private Text scoreText;
-    
+ 
+    private TextMeshProUGUI ScoreText2;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class Scor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = WaveSpawner.gameScore.ToString();
+
+        ScoreText2.text = WaveSpawner.gameScore.ToString();
     }
 }
