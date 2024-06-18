@@ -117,6 +117,7 @@ public class TestEnemy : MonoBehaviour
         //Destroy(effect, 5f);
 
         WaveSpawner.EnemiesAlive--;
+        WaveSpawner.score++;
         Debug.Log("³²Àº Àû : " + WaveSpawner.EnemiesAlive);
         Destroy(gameObject, 2f); // Add delay to allow death animation to play
     }

@@ -32,11 +32,33 @@ public class PreviewSystem : MonoBehaviour
     public void StartShowingPlacementPreview(GameObject prefab, Vector2Int size)
     {
         previewObject = Instantiate(prefab);
+        RemoveScriptsRecursive(previewObject.transform);
         PreparePreaview(previewObject);
         PrepareCursor(size);
         cellIndicator.SetActive(true);
         SetTower = true;
     }
+
+    void RemoveScriptsRecursive(Transform parentTransform)
+    {
+        // 현재 Transform의 모든 MonoBehaviour 가져오기
+        MonoBehaviour[] allScripts = parentTransform.GetComponents<MonoBehaviour>();
+
+        // 모든 스크립트 컴포넌트 제거
+        foreach (var script in allScripts)
+        {
+            // 스크립트를 비활성화한 후에 제거하기
+            script.enabled = false;
+            Destroy(script);
+        }
+
+        // 모든 자식 Transform에 대해 재귀적으로 호출
+        foreach (Transform childTransform in parentTransform)
+        {
+            RemoveScriptsRecursive(childTransform);
+        }
+    }
+
     private void Update()
     {
         if (SetTower == true)

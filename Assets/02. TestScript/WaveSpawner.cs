@@ -13,17 +13,28 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWaves = 5f; // 웨이브 간의 시간
     [SerializeField]
     private float countdown = 30f;
-    public Text waveCountdownText;
+    //space
     public GameObject sparkEffectPrefab;
     public TextMeshProUGUI waveCompleteText1;  // 새 UI 요소
     public TextMeshProUGUI waveCompleteText2;  // 새 UI 요소
     public Image waveCompleteImage; // 새 UI 요소
-
+    //space
     private int waveIndex = 0;
     private bool isGameCompleted = false; // 게임 완료 여부를 체크하기 위한 플래그
-
+    //space
+    public Text waveCountdownText;
+    [SerializeField]
+    private TextMeshProUGUI waveText;
+    [SerializeField]
+    private Text enemyText;
+    [SerializeField]
+    private Text scoreText;
+    //space
+    static public int score = 0;
+    static public int gameScore;
     void Start()
     {
+        score = 0;
         waveCompleteText1.gameObject.SetActive(false);
         waveCompleteText2.gameObject.SetActive(false);
         waveCompleteImage.gameObject.SetActive(false);
@@ -31,6 +42,10 @@ public class WaveSpawner : MonoBehaviour
 
     void Update()
     {
+        gameScore = score * 100;
+        enemyText.text = "남은 적 : " + EnemiesAlive.ToString();
+        scoreText.text = "점수 : " + gameScore.ToString();
+
         if (EnemiesAlive > 0)
         {
             return;
@@ -45,6 +60,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (countdown <= 0f)
         {
+            waveTextUp();
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
             return;
@@ -56,7 +72,12 @@ public class WaveSpawner : MonoBehaviour
 
         waveCountdownText.text = "시간 : " + string.Format("{0:00}", countdown);
     }
+    void waveTextUp()
+    {
+        int waveCount = waveIndex + 1;
+        waveText.text = "웨이브 : " + waveCount.ToString();
 
+    }
     IEnumerator SpawnWave()
     {
         // PlayerStats.Rounds++;
