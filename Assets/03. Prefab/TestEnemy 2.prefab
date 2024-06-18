@@ -2064,6 +2064,7 @@ MonoBehaviour:
   startHealth: 100
   worth: 50
   deathEffect: {fileID: 0}
+  isDead: 0
 --- !u!114 &5877516244181637346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2078,6 +2079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   endPoint: {fileID: 0}
+  sparkEffectPrefab: {fileID: 5468854988849748017, guid: dfba7708cdcaad04890615437e279436, type: 3}
 --- !u!1 &6279952777566056268
 GameObject:
   m_ObjectHideFlags: 0

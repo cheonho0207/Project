@@ -2080,6 +2080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   endPoint: {fileID: 0}
+  sparkEffectPrefab: {fileID: 5468854988849748017, guid: dfba7708cdcaad04890615437e279436, type: 3}
 --- !u!1 &6279952777566056268
 GameObject:
   m_ObjectHideFlags: 0

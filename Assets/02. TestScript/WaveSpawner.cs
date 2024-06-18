@@ -14,7 +14,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     private float countdown = 30f;
     public Text waveCountdownText;
-
+    public GameObject sparkEffectPrefab;
     public TextMeshProUGUI waveCompleteText1;  // 货 UI 夸家
     public TextMeshProUGUI waveCompleteText2;  // 货 UI 夸家
     public Image waveCompleteImage; // 货 UI 夸家
@@ -78,6 +78,7 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy(GameObject enemy)
     {
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(sparkEffectPrefab, spawnPoint.position, Quaternion.Euler(0, 90, 90));
     }
 
     IEnumerator CheckEnemiesAlive()
