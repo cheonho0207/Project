@@ -38,7 +38,7 @@ public class HPManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Unity Editor에서 HpBar가 할당되지 않았습니다.");
+            Debug.Log("Unity Editor에서 HpBar가 할당되지 않았습니다.");
         }
     }
 }

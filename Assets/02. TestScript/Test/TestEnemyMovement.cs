@@ -129,5 +129,6 @@ public class TestEnemyMovement : MonoBehaviour
     private void endPathEffect()
     {
         Instantiate(sparkEffectPrefab, transform.position, Quaternion.Euler(0, -4, 0));
+        Destroy(sparkEffectPrefab, 2f);
     }
 }

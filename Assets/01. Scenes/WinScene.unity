@@ -1021,7 +1021,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1745676077}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: SelectScene
+        m_MethodName: Stage2Scene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1098,22 +1098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3323e48659a92b544b2544d760b5bd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawntower: {fileID: 0}
-  prefeb1: {fileID: 0}
-  prefeb2: {fileID: 0}
-  prefeb3: {fileID: 0}
-  prefeb4: {fileID: 0}
-  prefeb5: {fileID: 0}
-  prefeb6: {fileID: 0}
-  textUI: {fileID: 0}
-  textUI2: {fileID: 0}
-  textUI3: {fileID: 0}
-  textUI4: {fileID: 0}
-  coinScore: 60
-  coinScoreText: {fileID: 0}
-  Tower1: {fileID: 0}
-  Tower2: {fileID: 0}
-  Tower3: {fileID: 0}
 --- !u!4 &1745676078
 Transform:
   m_ObjectHideFlags: 0

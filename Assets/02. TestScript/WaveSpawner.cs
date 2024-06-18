@@ -32,9 +32,10 @@ public class WaveSpawner : MonoBehaviour
     //space
     static public int score = 0;
     static public int gameScore;
+    private HPManager hpManager;
     void Start()
     {
-        score = 0;
+        hpManager = FindObjectOfType<HPManager>();
         waveCompleteText1.gameObject.SetActive(false);
         waveCompleteText2.gameObject.SetActive(false);
         waveCompleteImage.gameObject.SetActive(false);
@@ -100,6 +101,7 @@ public class WaveSpawner : MonoBehaviour
     {
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         Instantiate(sparkEffectPrefab, spawnPoint.position, Quaternion.Euler(0, 90, 90));
+        Destroy(sparkEffectPrefab, 2f);
     }
 
     IEnumerator CheckEnemiesAlive()
@@ -122,7 +124,10 @@ public class WaveSpawner : MonoBehaviour
         {
             yield break; // 게임이 완료되었으면 UI 표시를 하지 않고 종료
         }
-
+        if (HPManager.CurrHP <= 0.0f)
+        {
+            yield break;
+        }
         // UI 요소 보이기
         waveCompleteText1.gameObject.SetActive(true);
         waveCompleteText2.gameObject.SetActive(true);

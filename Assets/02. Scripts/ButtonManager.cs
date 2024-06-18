@@ -24,24 +24,27 @@ public class ButtonManager : MonoBehaviour
 
     public void SelectScene()
     {
+        
         SceneManager.LoadScene("SelectScene");
+        WaveSpawner.gameScore = 0;
     }
 
     public void MainScene()
     {
+        WaveSpawner.gameScore = 0;
         SceneManager.LoadScene("MainScene");
+      
     }
 
     public void Stage1Scene()
     {
-        WaveSpawner.gameScore = 0;
+        WaveSpawner.score = 0;
         SceneManager.LoadScene("TileMap4");
     }
 
     public void Stage2Scene()
     {
-        WaveSpawner.gameScore = 0;
-        SceneManager.LoadScene("TileMap5");
+        SceneManager.LoadScene("TileMap4 1");
     }
 
     public void Exit()

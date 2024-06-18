@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01. Scenes/LoseScene.unity
     guid: f6e61a5eafcfde0468b4a35941d9bbc9
+  - enabled: 1
+    path: Assets/01. Scenes/TileMap4 1.unity
+    guid: 2eee43ab940b74a4ab7fff90c074e364
   m_configObjects: {}
