@@ -13,15 +13,17 @@ public class Credit : MonoBehaviour
     public int haveCredit = 0;
 
     private HPManager hpManager;
+    private WaveSpawner waveSpawner;
 
     public Text creditText;
 
     private void Start()
     {
         hpManager = FindObjectOfType<HPManager>();
+        waveSpawner = FindObjectOfType<WaveSpawner>();
 
         haveCredit = startCredit;
-        InvokeRepeating("ChargeCredit", 30.0f, 1.0f);
+        InvokeRepeating("ChargeCredit", WaveSpawner.countdown, 1.0f);
         UpdateCoinText();
     }
 
@@ -42,6 +44,6 @@ public class Credit : MonoBehaviour
 
     public void SumCredit()
     {
-        haveCredit = haveCredit + 5;
+        haveCredit = haveCredit + 3;
     }
 }

@@ -12,7 +12,7 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
     public float timeBetweenWaves = 5f; // 웨이브 간의 시간
     [SerializeField]
-    private float countdown = 30f;
+    static public float countdown = 15f;
     //space
     public GameObject sparkEffectPrefab;
     public TextMeshProUGUI waveCompleteText1;  // 새 UI 요소

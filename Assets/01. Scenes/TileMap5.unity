@@ -378,6 +378,7 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: 266c88ededa7e524595e9b9d5eecb492, type: 2}
   gridVisualization: {fileID: 536503706}
   preview: {fileID: 1200252483}
+  creditText: {fileID: 1302957693}
 --- !u!1 &44454063 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2539173733246426642, guid: af8879987c1331146880e9f4d3dc5a38, type: 3}
@@ -43846,7 +43847,14 @@ MonoBehaviour:
     rate: 2
   spawnPoint: {fileID: 222779484}
   timeBetweenWaves: 5
+  sparkEffectPrefab: {fileID: 0}
+  waveCompleteText1: {fileID: 0}
+  waveCompleteText2: {fileID: 0}
+  waveCompleteImage: {fileID: 0}
   waveCountdownText: {fileID: 1596697066}
+  waveText: {fileID: 0}
+  enemyText: {fileID: 0}
+  scoreText: {fileID: 0}
 --- !u!4 &543659816
 Transform:
   m_ObjectHideFlags: 0
@@ -87285,6 +87293,7 @@ MonoBehaviour:
   previewYOffset: 0.06
   cellIndicator: {fileID: 44454063}
   previewMaterialsPrefab: {fileID: 2100000, guid: f0c03664de3ef114093c2f653dbda12d, type: 2}
+  count: 0
 --- !u!1 &1215351464
 GameObject:
   m_ObjectHideFlags: 0
@@ -92740,6 +92749,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2096283675}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1302957693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4921237851551375884, guid: aecf248237bcaba4997bb7c16394339c, type: 3}
+  m_PrefabInstance: {fileID: 52085086}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1317393565
 GameObject:
   m_ObjectHideFlags: 0

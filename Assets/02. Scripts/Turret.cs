@@ -88,12 +88,10 @@ public class Turret : MonoBehaviour
     {
         if (target == null)
             return;
-
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnspeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
         if (fireCountdown <= 0f)
         {
             Shoot();
@@ -118,7 +116,6 @@ public class Turret : MonoBehaviour
 
         // 타겟 방향으로 총알 발사
         Vector3 shootingDirection = (target.position - firePoint.position).normalized;
-
         // 총알 프리팹을 인스턴스화합니다.
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
