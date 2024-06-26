@@ -143,9 +143,9 @@ Material:
     - _Float3: 0.744
     - _FoamContrast: 1.63
     - _FoamDepth: 0
-    - _FoamDistance: 11
+    - _FoamDistance: 16
     - _FoamFalloff: 0
-    - _FoamPower: 0.76
+    - _FoamPower: 0.18
     - _FoamScale: 3.04
     - _FoamSmoothness: 0
     - _FoamSpeed: 1
@@ -162,14 +162,14 @@ Material:
     - _Min: 0
     - _Mode: 0
     - _MultiplyOpacity: 1
-    - _NormalPower: 0.325
+    - _NormalPower: 0.39
     - _NormalPower1: 1
     - _NormalScale: 1
     - _NormalSpeed: 3
     - _NormalTiling: 0.05
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RefractionPower: 1.64
+    - _RefractionPower: 2.18
     - _SmoothnessPower: 0.99
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
