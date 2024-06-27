@@ -12,9 +12,15 @@ EditorBuildSettings:
     path: Assets/01. Scenes/SelectScene.unity
     guid: 90cf69e7442b64f40a50eabd4f197760
   - enabled: 1
-    path: Assets/01. Scenes/TileMap2.unity
-    guid: c6d7b417a46d80c4ea38479505df1770
-  - enabled: 1
     path: Assets/01. Scenes/WinScene.unity
     guid: 4951925a50fd8e44298d4182c8e1af8e
+  - enabled: 1
+    path: Assets/01. Scenes/TileMap4.unity
+    guid: c32888f31c9a8494d91de1e30e041a6a
+  - enabled: 1
+    path: Assets/01. Scenes/TileMap5.unity
+    guid: 7d65d9f13e488b24f83754323079fcb5
+  - enabled: 1
+    path: Assets/01. Scenes/LoseScene.unity
+    guid: 5f0f83fa4d33e64478955b77af4832c2
   m_configObjects: {}

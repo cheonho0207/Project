@@ -12,13 +12,14 @@ public class WaveSpawner : MonoBehaviour
     public Transform spawnPoint;
 
     public float timeBetweenWaves = 5f; //wave delay time
-    private float countdown = 2f;
+    private float countdown = 30f;
 
     public Text waveCountdownText;
 
     //public GameManager gameManager;
 
     private int waveIndex = 0;
+
 
     void Update()
     {
@@ -41,10 +42,10 @@ public class WaveSpawner : MonoBehaviour
         }
 
         countdown -= Time.deltaTime;
-
+        
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
 
-        //waveCountdownText.text = string.Format("{0:00.00}", countdown);
+        waveCountdownText.text = "시간 : " + string.Format("{0:00}", countdown);
     }
 
     IEnumerator SpawnWave()
@@ -54,7 +55,6 @@ public class WaveSpawner : MonoBehaviour
         Wave wave = waves[waveIndex];
 
         EnemiesAlive = wave.count;
-        Debug.Log("남은 적 : " + EnemiesAlive);
 
         for (int i = 0; i < wave.count; i++)
         {

@@ -1,8 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Waypoints : MonoBehaviour
+public class WayPoints : MonoBehaviour
 {
-
     public static Transform[] points;
 
     void Start()
@@ -13,6 +14,4 @@ public class Waypoints : MonoBehaviour
             points[i] = transform.GetChild(i);
         }
     }
-
 }
-

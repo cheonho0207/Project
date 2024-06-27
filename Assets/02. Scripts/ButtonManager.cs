@@ -26,8 +26,10 @@ public class ButtonManager : MonoBehaviour
     public Button Tower1;
     public Button Tower2;
     public Button Tower3;
+
     void Start()
     {
+        /*
         textUI.gameObject.SetActive(false);
         textUI2.gameObject.SetActive(false);
         textUI3.gameObject.SetActive(false);
@@ -36,7 +38,10 @@ public class ButtonManager : MonoBehaviour
         Tower1.gameObject.SetActive(false);
         Tower2.gameObject.SetActive(false);
         Tower3.gameObject.SetActive(false);
+        */
     }
+
+    /*
     public void SetSelectedPrefeb1()
     {
         if (coinScore >= 20)
@@ -206,7 +211,7 @@ public class ButtonManager : MonoBehaviour
         // Text 형식 UI를 비활성화
         textUI4.gameObject.SetActive(false);
     }
-
+    */
     public void SelectScene()
     {
         SceneManager.LoadScene("SelectScene");
@@ -219,12 +224,12 @@ public class ButtonManager : MonoBehaviour
 
     public void Stage1Scene()
     {
-        SceneManager.LoadScene("TileMap2");
+        SceneManager.LoadScene("TileMap4");
     }
 
     public void Stage2Scene()
     {
-        SceneManager.LoadScene("TileMap2");
+        SceneManager.LoadScene("TileMap5");
     }
 
     public void Exit()
@@ -235,7 +240,7 @@ public class ButtonManager : MonoBehaviour
                 Application.Quit();
         #endif
     }
-
+    /*
     public void SpawnTower()
     {
         spawntower = GameObject.Find("Grid");
@@ -244,7 +249,7 @@ public class ButtonManager : MonoBehaviour
         spawntower.GetComponent<BuildingSystem>().InitializeWithObject(selectedPrefeb);
        
     }
-
+    
     private void UpdateCoinScoreText()
     {
         coinScoreText.text = coinScore.ToString() + " :전";
@@ -274,4 +279,5 @@ public class ButtonManager : MonoBehaviour
         }
 
     }
+    */
 }
