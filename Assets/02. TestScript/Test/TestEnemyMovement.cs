@@ -10,7 +10,7 @@ public class TestEnemyMovement : MonoBehaviour
     private List<Transform> remainingWaypoints = new List<Transform>(); // 남은 웨이포인트 리스트
     private Transform currentWaypoint;  // 현재 목표 웨이포인트
     public GameObject endPoint;  // 마지막 EndPoint 오브젝트
-    public GameObject sparkEffectPrefab;
+    //public GameObject sparkEffectPrefab;
     private TestEnemy testEnemy;
 
     private HPManager hpManager;
@@ -122,13 +122,15 @@ public class TestEnemyMovement : MonoBehaviour
         WaveSpawner.EnemiesAlive--;
         Debug.Log("남은 적 : " + WaveSpawner.EnemiesAlive);
         Destroy(this.gameObject);
-        endPathEffect();
+        //endPathEffect();
         hpManager.HpDown();
     }
 
+    /*
     private void endPathEffect()
     {
         Instantiate(sparkEffectPrefab, transform.position, Quaternion.Euler(0, -4, 0));
-        Destroy(sparkEffectPrefab, 2f);
+        DestroyImmediate(sparkEffectPrefab, 2f);
     }
+    */
 }

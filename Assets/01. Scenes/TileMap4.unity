@@ -16969,6 +16969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8346575957250535614, guid: 0c2990e96237f1b40b4bc1996197b714, type: 3}
+    - {fileID: 8929092867466509091, guid: 0c2990e96237f1b40b4bc1996197b714, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -30876,7 +30877,6 @@ MonoBehaviour:
     rate: 2
   spawnPoint: {fileID: 222779484}
   timeBetweenWaves: 5
-  sparkEffectPrefab: {fileID: 5468854988849748017, guid: dfba7708cdcaad04890615437e279436, type: 3}
   waveCompleteText1: {fileID: 1274118099}
   waveCompleteText2: {fileID: 557095777}
   waveCompleteImage: {fileID: 632739219}
@@ -76181,11 +76181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 06871d3d126eb3c4bb50021e6dbd346c, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 0
 --- !u!65 &1332190756
 BoxCollider:
   m_ObjectHideFlags: 0
